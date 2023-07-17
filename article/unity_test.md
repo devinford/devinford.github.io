@@ -2,10 +2,12 @@
 layout: default
 ---
 
-# Test Unity
+# 1K RTS
+
+
 
 <div id="unity-container" class="unity-desktop">
-  <canvas id="unity-canvas" aspect-ratio="8 / 5"></canvas>
+  <canvas id="unity-canvas"></canvas>
   <div id="unity-loading-bar">
     <div id="unity-logo"></div>
     <div id="unity-progress-bar-empty">
