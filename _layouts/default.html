@@ -15,38 +15,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" /> -->
 
-    <link href="./styles/layout-mobile.css" rel="stylesheet" type="text/css" />
-    <link href="./styles/layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
-    <link href="./styles/notebook.css" rel="stylesheet" type="text/css" />
-    <link href="./styles/notebook-override-layout-mobile.css" rel="stylesheet" type="text/css" />
-    <link href="./styles/notebook-override-layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
-
-    <link rel="manifest" href="./site.webmanifest" />
+    <link href="/styles/layout-mobile.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
+    <link href="/styles/notebook.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/notebook-override-layout-mobile.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/notebook-override-layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
   </head>
   <body>
     <script>
       var style_content = {
-        "atomic-pile": {
-          themeColor: "#efd030"
-        },
-        "fungicide": {
-          themeColor: "#880088"
-        },
-        "musicbot": {
-          themeColor: "#00bFa9"
-        },
         "notebook": {
           themeColor: "#ffffff"
-        },
-        "pumpkincoach": {
-          themeColor: "#efd000"
         },
         "spacefrog": {
           themeColor: "#55aaff"
         },
-        "benotafraid": {
-          themeColor: "#55aaff"
-        }
+        "pumpkincoach": {
+          themeColor: "#efd000"
+        },
       }
 
       function replace_link(index, href, media) {
@@ -71,9 +57,9 @@
         document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]);
 
         // Replace Style-Specific Sheets
-        replace_link(2, "./styles/" + path + ".css");
-        replace_link(3, "./styles/" + path + "-override-layout-mobile.css");
-        replace_link(3, "./styles/" + path + "-override-layout.css", "only screen and (min-width: 600px)");
+        replace_link(2, "/styles/" + path + ".css");
+        replace_link(3, "/styles/" + path + "-override-layout-mobile.css");
+        replace_link(3, "/styles/" + path + "-override-layout.css", "only screen and (min-width: 600px)");
 
         return true;
       }

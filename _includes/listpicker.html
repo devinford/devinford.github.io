@@ -22,7 +22,9 @@
     {% assign start = include.page_radius | times: -2 %}
     {% assign start = start | minus: 2 %}
     {% assign start = start | plus: include.count %}
-    <!-- todo: max with 1 -->
+    {% if start < 1 %}
+      {% assign start = 1 %}
+    {% endif %}
   {% endif %}
 
   {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}

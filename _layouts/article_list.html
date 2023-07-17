@@ -15,10 +15,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" /> -->
 
-    <link href="./styles/notebook.css" rel="stylesheet" type="text/css" />
-    <link href="./styles/layout.css" rel="stylesheet" type="text/css" />
-
-    <link rel="manifest" href="./site.webmanifest" />
+    <link href="/styles/layout-mobile.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
+    <link href="/styles/notebook.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/notebook-override-layout-mobile.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/notebook-override-layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
   </head>
   <body>
     <script>
@@ -53,14 +54,10 @@
         document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]);
         document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]);
 
-        var oldlink = document.getElementsByTagName("link").item(0);
-
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", "./styles/" + path + ".css");
-
-        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+        // Replace Style-Specific Sheets
+        replace_link(2, "/styles/" + path + ".css");
+        replace_link(3, "/styles/" + path + "-override-layout-mobile.css");
+        replace_link(3, "/styles/" + path + "-override-layout.css", "only screen and (min-width: 600px)");
 
         return true;
       }
