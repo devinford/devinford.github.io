@@ -58,7 +58,7 @@ main {
   /*grid-template-columns: 1;
   grid-template-rows: 3;*/
   min-height: 100%;
-  grid-template-rows: 90px auto 30px;
+  grid-template-rows: 130px auto 30px;
   grid-template-columns: 100%;
 }
 
@@ -67,7 +67,6 @@ main {
   text-align:center;
   height: 60px;
   width: 100%;
-  clear:both; /* ? */
 }
 
 .navigation {
