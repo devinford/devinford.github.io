@@ -13,7 +13,7 @@
 html, body {
   font-family : Courier New, sans-serif;
   background-color: var(--bg-color);
-  background-image: url("../media/starfield.png");
+  background-image: url("/media/starfield.png");
   background-size: 20%;
 }
 

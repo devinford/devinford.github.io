@@ -1,6 +1,7 @@
 ---
 layout: article_list
-index_name: /index
+first_index: /index
+secondary_index_prefix: /index
 current: 4
 count: 10
 ---

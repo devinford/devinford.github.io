@@ -6,7 +6,7 @@
     {% if include.current == 0 %}
       <strong>1</strong>
     {% else %}
-      <a href="{{ include.index_name }}.html">1</a>
+      <a href="{{ include.first_index }}.html">1</a>
     {% endif %}
 
     {% comment %} Calculate the inner page range {% endcomment %}
@@ -38,7 +38,7 @@
       {% if i == include.current %}
         <strong>{{ i | plus: 1 }}</strong>
       {% else %}
-        <a href="{{ include.index_name }}{{ i }}.html">{{ i | plus: 1 }}</a>
+        <a href="{{ include.secondary_index_prefix }}{{ i }}.html">{{ i | plus: 1 }}</a>
       {% endif %}
     {% endfor %}
 
@@ -51,7 +51,7 @@
     {% if include.current == count_minus_1 %}
       <strong>{{ include.count }}</strong>
     {% else %}
-      <a href="{{ include.index_name }}{{ count_minus_1 }}.html">{{ include.count }}</a>
+      <a href="{{ include.secondary_index_prefix }}{{ count_minus_1 }}.html">{{ include.count }}</a>
     {% endif %}
   {% endif %}
 </div>
