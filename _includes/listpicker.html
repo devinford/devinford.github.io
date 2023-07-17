@@ -3,8 +3,8 @@
   <a href="{{ include.index_name }}.html">1</a>
 
   {% comment %} Calculate the inner page range {% endcomment %}
-  {% assign start = include.current - include.page_radius %}
-  {% assign end = include.current + include.page_radius %}
+  {% assign start = include.current | minus: include.page_radius %}
+  {% assign end = include.current | plus: include.page_radius %}
   {{ start }} {{ end }} {{ include.current }} {{ include.page_radius }}
   {% if start <= 0 %}
     {% assign start = 1 %}
