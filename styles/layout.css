@@ -67,6 +67,7 @@ main {
   text-align:center;
   height: 60px;
   width: 100%;
+  clear:both; /* ? */
 }
 
 .navigation {
