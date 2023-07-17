@@ -22,7 +22,7 @@
   {% comment %} List a limited number of in-between pages. {% endcomment %}
   {% for i in (start..end) %}
     {% if i == include.current %}
-      <strong>{{ i }}.html</strong>
+      <strong>{{ i }}</strong>
     {% else %}
       <a href="{{ include.index_name }}{{ i }}.html">{{ i + 1 }}</a>
     {% endif %}

@@ -1,7 +1,7 @@
 ---
 layout: article_list
 index_name: /index
-current: 1
+current: 2
 count: 10
 ---
   <div class="option-item"><a href="#0">Option 1</a></div>
