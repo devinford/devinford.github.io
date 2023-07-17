@@ -5,7 +5,7 @@ layout: default
 # Test Unity
 
 <div id="unity-container" class="unity-desktop">
-  <canvas id="unity-canvas"></canvas>
+  <canvas id="unity-canvas" aspect-ratio="8 / 5"></canvas>
   <div id="unity-loading-bar">
     <div id="unity-logo"></div>
     <div id="unity-progress-bar-empty">
@@ -89,8 +89,8 @@ layout: default
   } else {
     // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-    canvas.style.width = "960px";
-    canvas.style.height = "600px";
+    // canvas.style.width = "960px";
+    // canvas.style.height = "600px";
   }
 
   loadingBar.style.display = "block";
