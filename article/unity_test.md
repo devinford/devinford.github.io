@@ -8,7 +8,7 @@ layout: default
 
 <div id="unity-container" class="unity-desktop">
   <div id="unity-canvas-scaler" style="aspect-ratio: 8 / 5;">
-    <canvas id="unity-canvas"></canvas>
+    <canvas id="unity-canvas" style="width: 1; height: 1;"></canvas>
   </div>
   <div id="unity-loading-bar">
     <div id="unity-logo"></div>
@@ -60,6 +60,10 @@ layout: default
     var width = canvas_scaler.clientWidth;
     var height = canvas_scaler.clientHeight;
 
+    canvas.setAttribute('width', width);
+    canvas.setAttribute('height', height);
+    // Unity's rendering is driven off of these specific style
+    // attributes, rather than the actual size of the canvas.
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
   }
