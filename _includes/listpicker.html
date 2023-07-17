@@ -1,9 +1,9 @@
 {% if include.count > 1 %}
   {% comment %} First Page - Skip number for filename here {% endcomment %}
   {% if include.current == 0 %}
-    <strong>1</strong>
+    <strong>FirstA</strong>
   {% else %}
-    <a href="{{ include.index_name }}.html">1</a>
+    <a href="{{ include.index_name }}.html">FirstB</a>
   {% endif %}
 
   {% comment %} Calculate the inner page range {% endcomment %}
@@ -39,8 +39,8 @@
 
   {% comment %} Last Page {% endcomment %}
   {% if include.current == include.count - 1 %}
-    <strong>{{ include.count }}</strong>
+    <strong>LastA</strong>
   {% else %}
-    <a href="{{ include.index_name }}{{ include.count | minus: 1 }}.html">{{ include.count }}</a>
+    <a href="{{ include.index_name }}{{ include.count | minus: 1 }}.html">LastB</a>
   {% endif %}
 {% endif %}
