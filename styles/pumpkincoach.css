@@ -47,6 +47,10 @@ footer {
   background-color: var(--header-bg-color);
   color: var(--header-fg-color);
   border-radius: 5px 200px;
+
+  background-image: url("/media/leaf-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .title-text a {
@@ -75,6 +79,10 @@ footer {
   margin-right: 5px;
   margin-top: 5px;
   text-align: center;
+
+  background-image: url("/media/leaf-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .footer-stripe {
