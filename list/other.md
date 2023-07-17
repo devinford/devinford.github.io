@@ -1,6 +1,7 @@
 ---
 layout: article_list
-index_name: /list/other
+first_index: /list/other
+secondary_index_prefix: /list/other
 current: 0
 current: 1
 ---

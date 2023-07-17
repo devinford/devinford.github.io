@@ -1,6 +1,7 @@
 ---
 layout: article_list
-index_name: /list/prog
+first_index: /list/prog
+secondary_index_prefix: /list/prog
 current: 0
 count: 3
 ---
