@@ -1,0 +1,59 @@
+
+:root {
+  --bg-color: #001040;
+  --content-bg-color: #000020;
+  --content-fg-color: #55aaff;
+  --content-link-color: #F2F2FF;
+  --header-bg-color: #000000;
+  --header-fg-color: #55aaff;
+  --footer-bg-color: #4C4C59;
+  --footer-fg-color: #F2F2FF;
+}
+
+html, body {
+  font-family : Courier New, sans-serif;
+  background-color: var(--bg-color);
+  background-image: url("../media/starfield.png");
+  background-size: 20%;
+}
+
+main {
+  background-color: var(--content-bg-color);
+  color: var(--content-fg-color);
+  border-radius: 5px 200px;
+  padding-left 200px;
+  padding-bottom 200px;
+}
+
+.title-strip {
+  background-color: var(--header-bg-color);
+  color: var(--header-fg-color);
+}
+
+.title-text a {
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration:none;
+  color: var(--header-fg-color);
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('/media/logo.png');
+}
+
+.footer-stripe {
+  background-color: var(--footer-bg-color);
+  color: var(--footer-fg-color);
+}
+
+.content {
+  color: var(--content-fg-color);
+}
+
+.content a {
+  color: var(--content-link-color);
+}

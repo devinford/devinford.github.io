@@ -1,0 +1,90 @@
+
+:root {
+  --bg-color: #775533;
+  --bg-shadow-color: #663722;
+  --content-bg-color: #ffa000;
+  --content-fg-color: #000000;
+  --content-bg-shadow-color: #cf8000;
+  --content-link-color: #660066;
+  --header-bg-color: #008866;
+  --header-fg-color: #004422;
+  --tab-bg-color: #008866;
+  --tab-fg-color: #004422;
+  --footer-bg-color: #008866;
+  --footer-fg-color: #004422;
+}
+
+html, body {
+  font-family : Open Sans, sans-serif;
+  background-color: var(--bg-color);
+}
+
+main {
+  background-color: var(--content-bg-color);
+  color: var(--content-fg-color);
+  border-radius: 80px;
+  /*box-shadow: 3px 3px var(--bg-shadow-color), -1em 0 .4em var(--bg-shadow-color), inset 5em 1em var(--content-bg-shadow-color), inset -1em 1em var(--content-bg-shadow-color);*/
+  box-shadow: 3px 3px var(--bg-shadow-color),
+  -1em 0 .4em var(--bg-shadow-color),
+  inset 4em 1em var(--content-bg-shadow-color),
+  inset -1em 1em var(--content-bg-shadow-color),
+  inset 8em 1em var(--content-bg-color),
+  inset -3em 1em var(--content-bg-color),
+  inset 9em 2em var(--content-bg-shadow-color),
+  inset -4em 2em var(--content-bg-shadow-color),
+  inset 15em 2em var(--content-bg-color),
+  inset -9em 2em var(--content-bg-color),
+  inset 16em 2em var(--content-bg-shadow-color),
+  inset -10em 2em var(--content-bg-shadow-color);
+}
+
+footer {
+  border-radius: 5px 200px;
+  background-color: var(--footer-bg-color);
+}
+
+.title-strip {
+  background-color: var(--header-bg-color);
+  color: var(--header-fg-color);
+  border-radius: 5px 200px;
+}
+
+.title-text a {
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration:none;
+  color: var(--header-fg-color);
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('/media/logo.png');
+}
+
+.nav-item {
+  background-color: var(--tab-bg-color);
+  border-radius: 0px 10px 0px 10px;
+  padding: 0px 20px 5px 20px;
+  box-shadow: -3px -3px var(--bg-shadow-color), -0.5em 0 .4em var(--bg-shadow-color);
+  text-decoration:none;
+  width: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.footer-stripe {
+  color: var(--footer-fg-color);
+}
+
+.content {
+  color: var(--content-fg-color);
+}
+
+.content a {
+  color: var(--content-link-color);
+}
