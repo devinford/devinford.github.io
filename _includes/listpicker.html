@@ -1,0 +1,38 @@
+{% if include.count > 1 %}
+  {% comment %} First Page - Skip number here {% endcomment %}
+  <a href="{{ include.index_name }}.html">First</a>
+
+  {% comment %} Calculate the inner page range {% endcomment %}
+  {% assign start = include.current - include.page_radius %}
+  {% assign end = include.current + include.page_radius %}
+  {% if start <= 0 %}
+    {% assign start = 1 %}
+    {% assign end = 1 + 2 * include.page_radius %}
+  {% endif %}
+  {% if end >= include.count - 1 %}
+    {% assign end = include.count - 2 %}
+    {% assign start = [1, include.count - 2 - 2 * include.page_radius] | max %}
+  {% endif %}
+
+  {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
+  {% if start > 1 %}
+    ...
+  {% endif %}
+
+  {% comment %} List a limited number of in-between pages. {% endcomment %}
+  {% for i in (start..end) %}
+    {% if i == include.current %}
+      <strong>{{ i }}.html</strong>
+    {% else %}
+      <a href="{{ include.index_name }}{{ i }}.html">{{ i }}.html</a>
+    {% endif %}
+  {% endfor %}
+
+  {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
+  {% if end < include.count - 2 %}
+    ...
+  {% endif %}
+
+  {% comment %} Last Page {% endcomment %}
+  <a href="{{ include.index_name }}{{ include.count - 1 }}.html">Last</a>
+{% endif %}

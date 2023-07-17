@@ -46,6 +46,14 @@ footer {
   font-family: Brush Script MT, cursive;
 }
 
+.logo {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('/media/logo-notebook.png');
+}
+
 .nav-item {
   background-color: var(--tab-bg-color);
   border-radius:  0px 0px 10px 10px;

@@ -79,13 +79,13 @@ main {
   flex: 1;
 }
 
-.theme-picker {
+.option-picker {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.theme-item {
+.option-item {
   width: 200px;
   height: 200px;
   flex: 200px;

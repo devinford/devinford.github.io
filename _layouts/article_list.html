@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Dev Info R&amp;D</title>
+
+    <meta name="msapplication-TileColor"  content="#ffffff" />
+    <meta name="theme-color"  content="#ffffff" />
+    <!-- <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ffffff" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" /> -->
+
+    <link href="./styles/notebook.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/layout.css" rel="stylesheet" type="text/css" />
+
+    <link rel="manifest" href="./site.webmanifest" />
+  </head>
+  <body>
+    <script>
+      var style_content = {
+        "atomic-pile": {
+          themeColor: "#efd030"
+        },
+        "fungicide": {
+          themeColor: "#880088"
+        },
+        "musicbot": {
+          themeColor: "#00bFa9"
+        },
+        "notebook": {
+          themeColor: "#ffffff"
+        },
+        "pumpkincoach": {
+          themeColor: "#efd000"
+        },
+        "spacefrog": {
+          themeColor: "#55aaff"
+        },
+        "benotafraid": {
+          themeColor: "#55aaff"
+        }
+      }
+
+      function replace_css(path) {
+        if(!(path in style_content)) return false;
+
+        // Update Theme Colors
+        document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]);
+        document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]);
+
+        var oldlink = document.getElementsByTagName("link").item(0);
+
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", "./styles/" + path + ".css");
+
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+
+        return true;
+      }
+
+      function update_cookie(path) {
+        if(replace_css(path)) {
+          alert(path)
+          document.cookie = "selected-style=" + path + "; path=/";
+          alert(document.cookie)
+        }
+      }
+
+      replace_css(document.cookie.split('; ').find(row => row.startsWith('selected-style='))?.split('=')?.[1]);
+    </script>
+    <div id="grid">
+      <header id="header">
+        <div class="title-strip"><div class="title-text"><a href="./index.html">Dev Info R&amp;D</a></div></div>
+      </header>
+      {% include navbar.html %}
+      <main id="main">
+        <div class="content">
+          {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
+          {{content}}
+          {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
+        </div>
+      </main>
+      <footer>
+        <div class="footer-stripe"><div class="footer-text">Footer</div></div>
+      </footer>
+    </div>
+
+<!-- Disable IE11 -->
+    <script>
+      if (window.document.documentMode) {
+        document.body.innerHTML = '<div style="position:fixed;top:0px;left:0px;width:100%;height:100%;background:white;padding-top:25%;text-align:center;">This website does not support Internet Explorer.</div>';
+      }
+    </script>
+
+<!-- Disable IE <11 -->
+<!--[if IE]>
+<div style="position:fixed;top:0px;left:0px;width:100%;height:100%;background:white;padding-top:25%;text-align:center;">This website does not support Internet Explorer.</div>
+<![endif]-->
+  </body>
+</html>
