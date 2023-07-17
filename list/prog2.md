@@ -1,8 +1,8 @@
 ---
 layout: article_list
 index_name: /list/prog
-current: 0
-count: 10
+current: 2
+count: 3
 ---
 <div class="option-picker">
   <div class="option-item"><a href="#0">Option 1</a></div>

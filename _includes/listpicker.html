@@ -1,10 +1,11 @@
 {% if include.count > 1 %}
   {% comment %} First Page - Skip number for filename here {% endcomment %}
   {% assign count_minus_1 = include.count | minus: 1 %}
+  {% assign count_minus_2 = include.count | minus: 2 %}
   {% if include.current == 0 %}
-    <strong>FirstA</strong>
+    <strong>1</strong>
   {% else %}
-    <a href="{{ include.index_name }}.html">FirstB</a>
+    <a href="{{ include.index_name }}.html">1</a>
   {% endif %}
 
   {% comment %} Calculate the inner page range {% endcomment %}
@@ -39,14 +40,14 @@
   {% endfor %}
 
   {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
-  {% if end < include.count - 2 %}
+  {% if end < count_minus_2 %}
     ...
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
   {% if include.current == count_minus_1 %}
-    <strong>LastA</strong>
+    <strong>{{ include.count }}</strong>
   {% else %}
-    <a href="{{ include.index_name }}{{ count_minus_1 }}.html">LastB</a>
+    <a href="{{ include.index_name }}{{ count_minus_1 }}.html">{{ include.count }}</a>
   {% endif %}
 {% endif %}
