@@ -1,5 +1,6 @@
 {% if include.count > 1 %}
   {% comment %} First Page - Skip number for filename here {% endcomment %}
+  {% assign count_minus_1 = include.count | minus: 1 %}
   {% if include.current == 0 %}
     <strong>FirstA</strong>
   {% else %}
@@ -13,7 +14,7 @@
     {% assign start = 1 %}
     {% assign end = 1 + 2 * include.page_radius %}
   {% endif %}
-  {% if end >= include.count - 1 %}
+  {% if end >= count_minus_1 %}
     {% assign end = include.count - 2 %}
     {% assign start = [1, include.count - 2 - 2 * include.page_radius] | max %}
   {% endif %}
@@ -38,9 +39,9 @@
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
-  {% if include.current == include.count - 1 %}
+  {% if include.current == count_minus_1 %}
     <strong>LastA</strong>
   {% else %}
-    <a href="{{ include.index_name }}{{ include.count | minus: 1 }}.html">LastB</a>
+    <a href="{{ include.index_name }}{{ count_minus_1 }}.html">LastB</a>
   {% endif %}
 {% endif %}
