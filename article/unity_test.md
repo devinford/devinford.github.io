@@ -7,7 +7,9 @@ layout: default
 
 
 <div id="unity-container" class="unity-desktop">
-  <canvas id="unity-canvas"></canvas>
+  <div id="unity-canvas-scaler" style="aspect-ratio: 8 / 5;">
+    <canvas id="unity-canvas"></canvas>
+  </div>
   <div id="unity-loading-bar">
     <div id="unity-logo"></div>
     <div id="unity-progress-bar-empty">
@@ -52,6 +54,14 @@ layout: default
     }
     updateBannerVisibility();
   }
+  function resizeCanvas() {
+    var canvas_scaler = document.getElementById('unity-canvas-scaler');
+    var canvas = document.getElementById('unity-canvas');
+    var width = canvas_scaler.clientWidth;
+    var height = canvas_scaler.clientHeight;
+    canvas.setAttribute('width', width);
+    canvas.setAttribute('height', height);
+  }
 
   var buildUrl = "/players/unity_rts_webgl";
   var loaderUrl = buildUrl + "/rts_webgl.loader.js";
@@ -91,8 +101,9 @@ layout: default
   } else {
     // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-    canvas.style.width = "960px";
-    canvas.style.height = "600px";
+    resizeCanvas();
+    // canvas.style.width = "960px";
+    // canvas.style.height = "600px";
   }
 
   loadingBar.style.display = "block";
@@ -112,4 +123,5 @@ layout: default
     });
   };
   document.body.appendChild(script);
+  window.addEventListener('resize', resizeCanvas);
 </script>
