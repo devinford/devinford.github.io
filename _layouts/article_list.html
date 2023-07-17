@@ -83,11 +83,11 @@
       </header>
       <main id="main">
         <div class="content">
-          {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
+          {% include listpicker.html first_index=page.first_index secondary_index_prefix=page.secondary_index_prefix current=page.current count=page.count page_radius=2 %}
           <br />
           {{content}}
           <br />
-          {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
+          {% include listpicker.html first_index=page.first_index secondary_index_prefix=page.secondary_index_prefix current=page.current count=page.count page_radius=2 %}
         </div>
       </main>
       <footer>
