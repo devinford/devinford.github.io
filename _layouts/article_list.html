@@ -54,8 +54,8 @@
         if(!(path in style_content)) return false;
 
         // Update Theme Colors
-        document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]);
-        document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]);
+        document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]["themeColor"]);
+        document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]["themeColor"]);
 
         // Replace Style-Specific Sheets
         replace_link(2, "/styles/" + path + ".css");
