@@ -21,8 +21,8 @@
 /* todo: this should be able to be specialized by style */
 #unity-canvas {
   background: #231F20;
-  margin-left: 20px;
-  margin-top: 20px;
+/*  margin-left: 20px;
+  margin-top: 20px;*/
 }
 #unity-fullscreen-button {
   width: 38px;
