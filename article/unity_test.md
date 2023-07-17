@@ -4,7 +4,7 @@ layout: default
 
 # 1K RTS
 
-<div id="unity-container" class="unity-desktop">
+<div id="unity-container" class="unity-desktop" style="position: relative;">
   <div id="unity-canvas-scaler" style="aspect-ratio: 8 / 5;">
     <canvas id="unity-canvas" style="width: 1; height: 1;"></canvas>
   </div>
