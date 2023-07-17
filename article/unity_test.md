@@ -58,7 +58,7 @@ layout: default
     var canvas_scaler = document.getElementById('unity-canvas-scaler');
     var canvas = document.getElementById('unity-canvas');
     var width = canvas_scaler.clientWidth;
-    var height = canvas_scaler.clientHeight;
+    var height = width * 960.0 / 600.0;
 
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
