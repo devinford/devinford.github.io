@@ -79,6 +79,10 @@ main {
   flex: 1;
 }
 
+.page-selector {
+  text-align:center;
+}
+
 .option-picker {
   display: flex;
   flex-direction: row;
