@@ -14,3 +14,6 @@
 #unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('/media/unity/progress-bar-empty-dark.png') no-repeat center }
 #unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('/media/unity/progress-bar-full-dark.png') no-repeat center }
 #unity-fullscreen-button { float: right; width: 38px; height: 38px; background: url('/media/unity/fullscreen-button.png') no-repeat center }
+#unity-fullscreen-button:hover {
+  cursor: pointer;
+}
