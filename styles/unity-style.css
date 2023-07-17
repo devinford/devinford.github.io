@@ -14,9 +14,9 @@
 #unity-fullscreen-button { float: right; width: 38px; height: 38px; background: url('/media/unity/fullscreen-button.png') no-repeat center }
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }*/
 
-#unity-canvas {
+/*#unity-canvas {
   width: 100%;
   height: 0;
-  padding-bottom: 62.5%; /* height/width ratio */
+  padding-bottom: 62.5%;
   position: relative;
-}
+}*/
