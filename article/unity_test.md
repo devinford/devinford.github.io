@@ -4,7 +4,7 @@ layout: default
 
 # 1K RTS
 
-<div id="unity-container" class="unity-desktop" style="position: relative;">
+<div id="unity-container" class="unity-desktop">
   <div id="unity-canvas-scaler">
     <canvas id="unity-canvas"></canvas>
   </div>
@@ -68,15 +68,19 @@ layout: default
     canvas.style.height = `${height}px`;
   }
 
-  var buildUrl = "/players/unity_rts_webgl";
-  var loaderUrl = buildUrl + "/rts_webgl.loader.js";
+  var project_identifier = "rts_webgl";
+  var project_name = "1K RTS";
+  var company_name = "Dev Info R&amp;D";
+
+  var buildUrl = `/players/unity_${project_identifier}`;
+  var loaderUrl = buildUrl + `/${project_identifier}.loader.js`;
   var config = {
-    dataUrl: buildUrl + "/rts_webgl.data",
-    frameworkUrl: buildUrl + "/rts_webgl.framework.js",
-    codeUrl: buildUrl + "/rts_webgl.wasm",
+    dataUrl: buildUrl + `/${project_identifier}.data`,
+    frameworkUrl: buildUrl + `/${project_identifier}.framework.js`,
+    codeUrl: buildUrl + `/${project_identifier}.wasm`,
     streamingAssetsUrl: "StreamingAssets",
-    companyName: "DefaultCompany",
-    productName: "1K RTS",
+    companyName: "Dev Info R&D",
+    productName: project_name,
     productVersion: "0.1",
     showBanner: unityShowBanner,
   };
