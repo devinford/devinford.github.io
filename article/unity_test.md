@@ -4,8 +4,6 @@ layout: default
 
 # 1K RTS
 
-
-
 <div id="unity-container" class="unity-desktop">
   <div id="unity-canvas-scaler" style="aspect-ratio: 8 / 5;">
     <canvas id="unity-canvas" style="width: 1; height: 1;"></canvas>
@@ -55,10 +53,12 @@ layout: default
     updateBannerVisibility();
   }
   function resizeCanvas() {
+    var inverse_aspect_ratio = 600.0 / 960.0;
+
     var canvas_scaler = document.getElementById('unity-canvas-scaler');
     var canvas = document.getElementById('unity-canvas');
     var width = canvas_scaler.clientWidth;
-    var height = width * 600.0 / 960.0;
+    var height = width * inverse_aspect_ratio;
 
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
@@ -107,8 +107,6 @@ layout: default
     // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
     resizeCanvas();
-    // canvas.style.width = "960px";
-    // canvas.style.height = "600px";
   }
 
   loadingBar.style.display = "block";
