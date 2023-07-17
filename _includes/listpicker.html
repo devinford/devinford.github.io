@@ -1,6 +1,6 @@
 {% if include.count > 1 %}
   {% comment %} First Page - Skip number here {% endcomment %}
-  <a href="{{ include.index_name }}.html">First</a>
+  <a href="{{ include.index_name }}.html">1</a>
 
   {% comment %} Calculate the inner page range {% endcomment %}
   {% assign start = include.current - include.page_radius %}
@@ -24,7 +24,7 @@
     {% if i == include.current %}
       <strong>{{ i }}.html</strong>
     {% else %}
-      <a href="{{ include.index_name }}{{ i }}.html">{{ i }}.html</a>
+      <a href="{{ include.index_name }}{{ i }}.html">{{ i + 1 }}</a>
     {% endif %}
   {% endfor %}
 
@@ -34,5 +34,5 @@
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
-  <a href="{{ include.index_name }}{{ include.count - 1 }}.html">Last</a>
+  <a href="{{ include.index_name }}{{ include.count - 1 }}.html">{{ include.count }}</a>
 {% endif %}

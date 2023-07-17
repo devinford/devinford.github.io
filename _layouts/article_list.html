@@ -65,7 +65,7 @@
         return true;
       }
 
-      function update_cookie(path) {
+      function update_style_cookie(path) {
         if(replace_css(path)) {
           alert(path)
           document.cookie = "selected-style=" + path + "; path=/";
@@ -83,7 +83,9 @@
       <main id="main">
         <div class="content">
           {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
+          <br />
           {{content}}
+          <br />
           {% include listpicker.html index_name=page.index_name current=page.current count=page.count page_radius=2 %}
         </div>
       </main>
