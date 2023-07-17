@@ -34,5 +34,5 @@
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
-  <a href="{{ include.index_name }}{{ include.count - 1 }}.html">{{ include.count }}</a>
+  <a href="{{ include.index_name }}{{ (include.count - 1) }}.html">{{ include.count }}</a>
 {% endif %}

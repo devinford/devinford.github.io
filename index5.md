@@ -1,9 +1,10 @@
 ---
 layout: article_list
 index_name: /index
-current: 1
+current: 5
 count: 10
 ---
+<div class="option-picker">
   <div class="option-item"><a href="#0">Option 1</a></div>
   <div class="option-item"><a href="#0">Option 2</a></div>
   <div class="option-item"><a href="#0">Option 3</a></div>
@@ -22,3 +23,4 @@ count: 10
   <div class="option-item"><a href="#0">Option 16</a></div>
   <div class="option-item"><a href="#0">Option 17</a></div>
   <div class="option-item"><a href="#0">Option 18</a></div>
+</div>
