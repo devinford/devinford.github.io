@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Font+Name&display=swap');
+
 :root {
   --bg-color: #ddaa77;
   --bg-shadow-color: #bb8855;
@@ -16,7 +18,7 @@
 }
 
 html, body {
-  font-family : Candara, Rosario, Lumanosimo, sans-serif;
+  font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
   background-color: var(--bg-color);
 }
 
