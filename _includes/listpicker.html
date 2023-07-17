@@ -16,8 +16,12 @@
     {% assign end = end | plus: 1 %}
   {% endif %}
   {% if end >= count_minus_1 %}
-    {% assign end = include.count - 2 %}
-    {% assign start = [1, include.count - 2 - 2 * include.page_radius] | max %}
+    {% assign end = include.count | minus: 2 %}
+
+    {% assign start = include.page_radius | times: -2 %}
+    {% assign start = start | minus: 2 %}
+    {% assign start = start | plus: include.count %}
+    <!-- todo: max with 1 -->
   {% endif %}
 
   {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
