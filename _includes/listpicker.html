@@ -3,15 +3,15 @@
   <a href="{{ include.index_name }}.html">1</a>
 
   {% comment %} Calculate the inner page range {% endcomment %}
-  {% assign start = include.current - include.page_radius %}
-  {% assign end = include.current + include.page_radius %}
+  {% assign start = include.current - 2 %}
+  {% assign end = include.current + 2 %}
   {% if start <= 0 %}
     {% assign start = 1 %}
-    {% assign end = 1 + 2 * include.page_radius %}
+    {% assign end = 1 + 2 * 2 %}
   {% endif %}
   {% if end >= include.count - 1 %}
     {% assign end = include.count - 2 %}
-    {% assign start = [1, include.count - 2 - 2 * include.page_radius] | max %}
+    {% assign start = [1, include.count - 2 - 2 * 2] | max %}
   {% endif %}
 
   {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
@@ -24,7 +24,7 @@
     {% if i == include.current %}
       <strong>{{ i }}</strong>
     {% else %}
-      <a href="{{ include.index_name }}{{ i }}.html">{{ i + 1 }}</a>
+      <a href="{{ include.index_name }}{{ i }}.html">{{ i | plus: 1 }}</a>
     {% endif %}
   {% endfor %}
 
@@ -34,5 +34,5 @@
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
-  <a href="{{ include.index_name }}{{ (include.count - 1) }}.html">{{ include.count }}</a>
+  <a href="{{ include.index_name }}{{ include.count | plus: 1 }}.html">{{ include.count }}</a>
 {% endif %}
