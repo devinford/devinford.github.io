@@ -1,5 +1,6 @@
 ---
 layout: default
+title: "Dev Info R&D: RPG Test"
 ---
 
 # Test RPG

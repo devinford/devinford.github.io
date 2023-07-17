@@ -1,5 +1,6 @@
 ---
 layout: article_list
+title: "Dev Info R&D: Articles: Programming"
 first_index: /list/prog
 secondary_index_prefix: /list/prog
 current: 0

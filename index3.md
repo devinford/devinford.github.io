@@ -1,5 +1,6 @@
 ---
 layout: article_list
+title: "Dev Info R&D"
 first_index: /index
 secondary_index_prefix: /index
 current: 3
