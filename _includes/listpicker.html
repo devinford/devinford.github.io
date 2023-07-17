@@ -1,6 +1,10 @@
 {% if include.count > 1 %}
-  {% comment %} First Page - Skip number here {% endcomment %}
-  <a href="{{ include.index_name }}.html">1</a>
+  {% comment %} First Page - Skip number for filename here {% endcomment %}
+  {% if include.current == 0 %}
+    <strong>1</strong>
+  {% else %}
+    <a href="{{ include.index_name }}.html">1</a>
+  {% endif %}
 
   {% comment %} Calculate the inner page range {% endcomment %}
   {% assign start = include.current | minus: include.page_radius %}
@@ -34,5 +38,9 @@
   {% endif %}
 
   {% comment %} Last Page {% endcomment %}
-  <a href="{{ include.index_name }}{{ include.count | minus: 1 }}.html">{{ include.count }}</a>
+  {% if include.current == include.count - 1 %}
+    <strong>{{ include.count }}</strong>
+  {% else %}
+    <a href="{{ include.index_name }}{{ include.count | minus: 1 }}.html">{{ include.count }}</a>
+  {% endif %}
 {% endif %}
