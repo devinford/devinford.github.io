@@ -59,8 +59,9 @@ layout: default
     var canvas = document.getElementById('unity-canvas');
     var width = canvas_scaler.clientWidth;
     var height = canvas_scaler.clientHeight;
-    canvas.setAttribute('width', width);
-    canvas.setAttribute('height', height);
+
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
   }
 
   var buildUrl = "/players/unity_rts_webgl";
