@@ -28,8 +28,6 @@ class Main {
     run() {
         this.showLoadingSpinner();
         this.testXhr();
-    }
-    run2() {
         this.hookNwjsClose();
         this.loadMainScripts();
     }
@@ -53,16 +51,7 @@ class Main {
     testXhr() {
         const xhr = new XMLHttpRequest();
         xhr.open("GET", document.currentScript.src);
-        xhr.onload = () =>  {
-            this.xhrSucceeded = true
-            this.run2();
-        };
-        xhr.onerror = () => {
-            this.run2();
-        };
-        xhr.ontimeout = () => {
-            this.run2();
-        };
+        xhr.onload = () => (this.xhrSucceeded = true);
         xhr.send();
     }
 
@@ -87,13 +76,8 @@ class Main {
             document.body.appendChild(script);
         }
         this.numScripts = scriptUrls.length;
-        if (document.readyState === 'complete') {
-            this.onWindowLoad();
-            this.onWindowError();
-        } else {
-            window.addEventListener("load", this.onWindowLoad.bind(this));
-            window.addEventListener("error", this.onWindowError.bind(this));
-        }
+        window.addEventListener("load", this.onWindowLoad.bind(this));
+        window.addEventListener("error", this.onWindowError.bind(this));
     }
 
     onScriptLoad() {
