@@ -57,6 +57,8 @@ footer {
 .logo-1 {
   background-image: url('/media/logo-notebook.png');
   position: absolute;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   transition: opacity 2s;
@@ -66,6 +68,8 @@ footer {
 .logo-2 {
   background-image: url('/media/logo-notebook2.png');
   position: absolute;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   transition: opacity 2s;
@@ -75,6 +79,8 @@ footer {
 .logo-3 {
   background-image: url('/media/logo-notebook3.png');
   position: absolute;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   transition: opacity 2s;
