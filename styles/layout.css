@@ -68,7 +68,7 @@ main {
 }
 
 .navigation {
-  height: 40px;
+  height: 48px;
   display: flex;
   flex-direction: row;
 }

@@ -34,7 +34,12 @@
         "pumpkincoach": {
           themeColor: "#efd000"
         },
-      }
+      };
+
+      var scribble_sounds = [
+        "/media/scribble.wav",
+        "/media/scribble2.wav",
+      ]
 
       function replace_link(index, href, media) {
         var oldlink = document.getElementsByTagName("link").item(index);
@@ -71,6 +76,10 @@
         }
       }
 
+      function get_random_int(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
       var logo_index = 1
       function toggle_logo() {
         const image1 = document.getElementById('logo-1');
@@ -95,6 +104,9 @@
             break;
           }
         }
+
+        var sound_index = get_random_int(0, scribble_sounds.length);
+        new Audio(scribble_sounds[sound_index]).play();
       }
 
       replace_css(document.cookie.split('; ').find(row => row.startsWith('selected-style='))?.split('=')?.[1]);
