@@ -45,7 +45,8 @@ footer {
   text-decoration-thickness: 3px;
   border-bottom: 3px solid var(--header-fg-color);
   color: var(--header-fg-color);
-  font-family: Brush Script MT, cursive;
+  font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
+/*  font-family: Brush Script MT, cursive;*/
 }
 
 .logo-container {

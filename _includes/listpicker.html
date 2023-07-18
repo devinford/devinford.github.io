@@ -15,7 +15,7 @@
     {% if start <= 1 %}
       {% assign start = 2 %}
       {% assign end = include.page_radius | times: 2 %}
-      {% assign end = end | plus: 1 %}
+      {% assign end = end | plus: 2 %}
     {% endif %}
     {% if end >= include.count %}
       {% assign end = count_minus_1 %}
