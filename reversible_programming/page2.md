@@ -1,10 +1,10 @@
 ---
 layout: article_list
-title: "Dev Info R&D"
-first_index: /
-secondary_index_prefix: /index/page
-current: 7
-count: 10
+title: "Dev Info R&D: Articles: Reversible Programming"
+first_index: /reversible_programming/
+secondary_index_prefix: /reversible_programming/page
+current: 2
+current: 2
 ---
 
 <div class="option-picker">

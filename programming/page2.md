@@ -1,9 +1,9 @@
 ---
 layout: article_list
 title: "Dev Info R&D: Articles: Programming"
-first_index: /programming/index
+first_index: /programming/
 secondary_index_prefix: /programming/page
-current: 1
+current: 2
 count: 3
 ---
 
@@ -27,5 +27,3 @@ count: 3
   <div class="option-item"><a href="#0">Option 17</a></div>
   <div class="option-item"><a href="#0">Option 18</a></div>
 </div>
-
-

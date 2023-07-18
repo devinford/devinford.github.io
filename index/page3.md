@@ -1,9 +1,9 @@
 ---
 layout: article_list
 title: "Dev Info R&D"
-first_index: /index
+first_index: /
 secondary_index_prefix: /index/page
-current: 2
+current: 3
 count: 10
 ---
 

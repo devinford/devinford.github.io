@@ -3,17 +3,17 @@
     {% comment %} First Page - Skip number for filename here {% endcomment %}
     {% assign count_minus_1 = include.count | minus: 1 %}
     {% assign count_minus_2 = include.count | minus: 2 %}
-    {% if include.current == 0 %}
+    {% if include.current == 1 %}
       <strong>1</strong>
     {% else %}
-      <a href="{{ include.first_index }}.html">1</a>
+      <a href="{{ include.first_index }}">1</a>
     {% endif %}
 
     {% comment %} Calculate the inner page range {% endcomment %}
     {% assign start = include.current | minus: include.page_radius %}
     {% assign end = include.current | plus: include.page_radius %}
-    {% if start <= 0 %}
-      {% assign start = 1 %}
+    {% if start <= 1 %}
+      {% assign start = 2 %}
       {% assign end = include.page_radius | times: 2 %}
       {% assign end = end | plus: 1 %}
     {% endif %}
@@ -23,35 +23,35 @@
       {% assign start = include.page_radius | times: -2 %}
       {% assign start = start | minus: 2 %}
       {% assign start = start | plus: include.count %}
-      {% if start < 1 %}
-        {% assign start = 1 %}
+      {% if start < 2 %}
+        {% assign start = 2 %}
       {% endif %}
     {% endif %}
 
     {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
-    {% if start > 1 %}
+    {% if start > 2 %}
       ...
     {% endif %}
 
     {% comment %} List a limited number of in-between pages. {% endcomment %}
     {% for i in (start..end) %}
       {% if i == include.current %}
-        <strong>{{ i | plus: 1 }}</strong>
+        <strong>{{ i }}</strong>
       {% else %}
-        <a href="{{ include.secondary_index_prefix }}{{ i }}.html">{{ i | plus: 1 }}</a>
+        <a href="{{ include.secondary_index_prefix }}{{ i }}.html">{{ i }}</a>
       {% endif %}
     {% endfor %}
 
     {% comment %} Add ellipsis if there are omitted pages. {% endcomment %}
-    {% if end < count_minus_2 %}
+    {% if end < count_minus_1 %}
       ...
     {% endif %}
 
     {% comment %} Last Page {% endcomment %}
-    {% if include.current == count_minus_1 %}
+    {% if include.current == include.count %}
       <strong>{{ include.count }}</strong>
     {% else %}
-      <a href="{{ include.secondary_index_prefix }}{{ count_minus_1 }}.html">{{ include.count }}</a>
+      <a href="{{ include.secondary_index_prefix }}{{ count }}.html">{{ include.count }}</a>
     {% endif %}
   {% endif %}
 </div>
