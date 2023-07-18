@@ -75,6 +75,7 @@ class Main {
     }
 
     loadMainScripts() {
+        this.numScripts = scriptUrls.length;
         for (const url of scriptUrls) {
             const script = document.createElement("script");
             script.type = "text/javascript";
@@ -86,7 +87,6 @@ class Main {
             script._url = url;
             document.body.appendChild(script);
         }
-        this.numScripts = scriptUrls.length;
     }
 
     onScriptLoad() {
