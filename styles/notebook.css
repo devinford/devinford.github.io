@@ -48,12 +48,37 @@ footer {
   font-family: Brush Script MT, cursive;
 }
 
-.logo {
+.logo-container {
+  position: relative;
   width: 100px;
   height: 100px;
+}
+
+.logo-1 {
+  background-image: url('/media/logo-notebook.png');
+  position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('/media/logo-notebook.png');
+  transition: opacity 2s;
+  opacity: 0;
+}
+
+.logo-2 {
+  background-image: url('/media/logo-notebook2.png');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 2s;
+  opacity: 1;
+}
+
+.logo-3 {
+  background-image: url('/media/logo-notebook3.png');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 2s;
+  opacity: 0;
 }
 
 .nav-item {
