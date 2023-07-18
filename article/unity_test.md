@@ -1,9 +1,32 @@
 ---
 layout: default
-title: "Dev Info R&D: Unity Test"
+title: "Dev Info R&D: 1K RTS"
 ---
 
 # 1K RTS
+
+## What is a 1K Prototype?
+
+*If you've read one of my 1K Prototype articles in the past, feel free to skip this section.*
+
+A "1K prototype" is a prototype of a game written in less than 1000 lines of fairly casual code, usually in the span of less than a day or two, with a fairly informal plan for its features, and very basic art assets without animation-- just enough to make what's happening visible. Building such a prototype generally requires relying on some engine or framework, or some existing personal codebase, to supply some basic rendering APIs that the prototype will be built on top of. 1000 lines of code doesn't sound like much; however, in my experience, there are very few genres that require much more than 1000 lines of code to effectively prototype. Most modern game genres are designed to be data driven, so the core update loops are relatively simple. The hardest games to squeeze into these constraints are games that are dependent on (even simple) AI or complex UI state machines.
+
+The goal of a 1K prototype is not to serve as an example of how a professionally-made game *should* be programmed, or even to serve as the starting point to extend into a more complex codebase. Instead, the objective is moreso to write such a prototype yourself in order to gain some perspective on the actual complexity of implementing a game. As it turns out, you can squeeze about 90% of the core appeal of a game into around 5% of the codebase. It's easy for this perspective to be lost when working on a protracted project, where efforts have shifted more towards invisible "engine work", where no amount of code changes seem to push the project forward at all.
+
+However, if you're having a lot of fun working on your project and it exceeds 1000 lines of code, don't stress out about it.
+
+Certain otherwise bad practices can be useful for reducing code count and building 1k prototypes more quickly. These include:
+
+- Having overly-general base classes, to facilitate homogenous update loops, and pushing as much functionality as possible into this base class, even if that functionality is not used by most subclasses.
+- Using conditional toggles to control the behavior of state machines, rather than just making more states, because different states will usually redundantly copy at least some parts of their functionality.
+
+## A 1K Real-Time Strategy
+
+
+
+## Clone It
+
+## Play It
 
 <div id="unity-container" class="unity-desktop">
   <div id="unity-canvas-scaler">

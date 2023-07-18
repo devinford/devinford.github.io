@@ -1,11 +1,12 @@
 ---
 layout: article_list
-title: "Dev Info R&D"
-first_index: /index
-secondary_index_prefix: /index
-current: 1
-count: 10
+title: "Dev Info R&D: Articles: Programming"
+first_index: /programming/index
+secondary_index_prefix: /programming/page
+current: 0
+count: 3
 ---
+
 <div class="option-picker">
   <div class="option-item"><a href="#0">Option 1</a></div>
   <div class="option-item"><a href="#0">Option 2</a></div>
@@ -26,3 +27,5 @@ count: 10
   <div class="option-item"><a href="#0">Option 17</a></div>
   <div class="option-item"><a href="#0">Option 18</a></div>
 </div>
+
+
