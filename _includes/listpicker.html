@@ -51,7 +51,7 @@
     {% if include.current == include.count %}
       <strong>{{ include.count }}</strong>
     {% else %}
-      <a href="{{ include.secondary_index_prefix }}{{ count }}.html">{{ include.count }}</a>
+      <a href="{{ include.secondary_index_prefix }}{{ include.count }}.html">{{ include.count }}</a>
     {% endif %}
   {% endif %}
 </div>

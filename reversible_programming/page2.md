@@ -4,7 +4,7 @@ title: "Dev Info R&D: Articles: Reversible Programming"
 first_index: /reversible_programming/
 secondary_index_prefix: /reversible_programming/page
 current: 2
-current: 2
+count: 2
 ---
 
 <div class="option-picker">
