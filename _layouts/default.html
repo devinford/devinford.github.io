@@ -106,7 +106,9 @@
         }
 
         var sound_index = get_random_int(0, scribble_sounds.length);
-        new Audio(scribble_sounds[sound_index]).play();
+        var audio = new Audio(scribble_sounds[sound_index]);
+        audio.volume = 0.5;
+        audio.play();
       }
 
       replace_css(document.cookie.split('; ').find(row => row.startsWith('selected-style='))?.split('=')?.[1]);
@@ -114,7 +116,7 @@
     <div id="grid">
       <header id="header">
         <div class="title-strip">
-          <div class="title-text"><a href="/index.html">Dev Info R&amp;D</a></div>
+          <div class="title-text"><a href="/">Dev Info R&amp;D</a></div>
           <div class="logo-container" onclick="toggle_logo()">
             <div id="logo-1"></div>
             <div id="logo-2"></div>
