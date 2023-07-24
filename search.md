@@ -16,15 +16,15 @@ layout: default
     }
 
     // Find articles that match every keyword.
-    let matching_pages = [];
-    for (var i = 0; i < pages.length; ++i) {
-      var article_keywords = pages[i].keywords;
+    let matching_articles = [];
+    for (var i = 0; i < articles.length; ++i) {
+      var article_keywords = articles[i].keywords;
       if (search_words.every(word => article_keywords.some(keyword => keyword.includes(word)))) {
-        matching_pages.push(pages[i]);
+        matching_articles.push(articles[i]);
       }
     }
 
-    return matching_pages;
+    return matching_articles;
   }
 
   window.onload = function() {
@@ -34,15 +34,15 @@ layout: default
         var urlParams = new URLSearchParams(window.location.search);
         var q = urlParams.get('q');
         if (q) {
-          let matching_pages = find_matching_articles(q, articles);
+          let matching_articles = find_matching_articles(q, articles);
 
           // Set Search Results
           var search_results = document.getElementById('search-results');
-          if(matching_pages.length == 0) {
+          if(matching_articles.length == 0) {
             search_results.innerHTML = 'No results found';
           } else {
-            for (var i = 0; i < matching_pages.length; ++i) {
-              search_results.innerHTML += `<div class="search-item"><a href="${matching_pages[i].page}">${matching_pages[i].title}</a></div>`;
+            for (var i = 0; i < matching_articles.length; ++i) {
+              search_results.innerHTML += `<div class="search-item"><a href="${matching_articles[i].page}">${matching_articles[i].title}</a></div>`;
             }
           }
         }
