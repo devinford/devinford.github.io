@@ -36,7 +36,11 @@ layout: default
         if (q) {
           let matching_articles = find_matching_articles(q, articles);
 
-          // Set Search Results
+          // Set search header
+          var search_header = document.getElementById('search-results');
+          search_header.innerHTML = `Search Results for '${q}'`;
+
+          // Set search results
           var search_results = document.getElementById('search-results');
           if(matching_articles.length == 0) {
             search_results.innerHTML = 'No results found';
@@ -50,5 +54,5 @@ layout: default
   };
 </script>
 
-<h1>Search Results</h1>
+<h1 id="search-header">Search Results</h1>
 <div id="search-results"></div>

@@ -12,13 +12,15 @@
     "icon":"",
     "date":"2023-09-02",
     "page":"/article/unity_test.html",
-    "categories": ["game development"]
+    "categories": ["game development"],
+    "keywords": ["rpgmaker", "game", "prototype", "rpg"]
   },
   {
     "title":"Article Test",
     "icon":"",
     "date":"2023-09-03",
     "page":"/article/article_test.html",
-    "categories": ["programming"]
+    "categories": ["programming"],
+    "keywords": ["article"]
   }
 ]
