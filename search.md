@@ -28,7 +28,7 @@ layout: default
   }
 
   window.onload = function() {
-    fetch('/_articles.json')
+    fetch('/articles.json')
       .then(response => response.json())
       .then(articles => {
         var urlParams = new URLSearchParams(window.location.search);
