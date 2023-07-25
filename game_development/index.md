@@ -6,5 +6,4 @@ secondary_index_prefix: /game_development/page
 current: 1
 current: 1
 ---
-
-
+Nothing here.

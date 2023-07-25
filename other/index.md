@@ -6,5 +6,4 @@ secondary_index_prefix: /other/page
 current: 1
 count: 1
 ---
-
-
+Nothing here.

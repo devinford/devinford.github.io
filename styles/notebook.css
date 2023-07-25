@@ -29,6 +29,8 @@ main {
 }
 
 footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
   box-shadow: 3px 3px var(--bg-shadow-color), -1em 0 .4em var(--bg-shadow-color);
 }
 
@@ -129,4 +131,32 @@ footer {
 
 .option-item-name {
   background-color: var(--content-link-bg-color);
+}
+
+input[type=text], textarea, button {
+  background-color: var(--footer-bg-color);
+  font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
+}
+
+input[type=text]::placeholder {
+  color: var(--footer-fg-color); /* Change the placeholder text color to grey */
+  opacity: 1; /* Firefox needs this to change the color */
+  font-style: italic;
+  font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
+}
+
+button {
+  border: solid 2px black;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--footer-bg-color);
+  text-decoration: underline;
+}
+
+button:active {
+  background-color: var(--footer-bg-color);
+  outline: solid 2px black;
+  text-decoration: underline;
 }
