@@ -87,11 +87,6 @@ footer {
   opacity: 0;
 }
 
-.option-item-icon {
-  width: 180px;
-  height: 180px;
-}
-
 .nav-item {
   background-color: var(--tab-bg-color);
   border-radius:  0px 0px 10px 10px;

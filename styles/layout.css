@@ -88,10 +88,14 @@ main {
 }
 
 .option-item {
-  width: 200px;
-  height: 200px;
-  flex: 200px;
-  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option-item-icon {
+  width: 256px;
+  height: 256px;
 }
 
 .aspect-ratio {
