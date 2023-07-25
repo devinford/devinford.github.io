@@ -5,10 +5,15 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    {% if page.current %}
+    {% assign current_plus_1 = page.current | plus: 1 %}
+    <title>{{page.title | escape }}{% if page.current > 0 %} Page {{ current_plus_1 }}{% endif %}</title>
+    {% else %}
     <title>{{page.title | escape }}</title>
+    {% endif %}
 
     <link href="/styles/layout-mobile.css" rel="stylesheet" type="text/css" />
-    <link href="/styles/layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
+    <link href="/styles/layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" /> <!-- todo: 795 is the smallest where all of the tabs can be seen -->
     <link href="/styles/notebook.css" rel="stylesheet" type="text/css" />
     <link href="/styles/notebook-override-layout-mobile.css" rel="stylesheet" type="text/css" />
     <link href="/styles/notebook-override-layout.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 600px)" />
