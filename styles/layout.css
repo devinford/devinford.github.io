@@ -100,7 +100,7 @@ main {
 }
 
 .option-item-name {
-  display: inline-block;
+  width: fit-content;
 }
 
 .aspect-ratio {
