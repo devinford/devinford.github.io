@@ -122,3 +122,11 @@ footer {
   background-color: var(--content-link-bg-color);
   color: var(--content-link-fg-color);
 }
+
+.option-item a {
+  background-color: transparent;
+}
+
+.option-item-name {
+  background-color: var(--content-link-bg-color);
+}
