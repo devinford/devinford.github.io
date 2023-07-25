@@ -37,7 +37,7 @@ layout: default
           let matching_articles = find_matching_articles(q, articles);
 
           // Set search header
-          var search_header = document.getElementById('search-results');
+          var search_header = document.getElementById('search-header');
           search_header.innerHTML = `Search Results for '${q}'`;
 
           // Set search results
@@ -46,7 +46,7 @@ layout: default
             search_results.innerHTML = 'No results found';
           } else {
             for (var i = 0; i < matching_articles.length; ++i) {
-              search_results.innerHTML += `<div class="search-item"><a href="${matching_articles[i].page}">${matching_articles[i].title}</a></div>`;
+              search_results.innerHTML += `<div class="option-item"><a href="${matching_articles[i].page}"><img class="option-item-icon" src="${matching_articles[i].icon}" alt="${matching_articles[i].title}" /><div class="search-item-name">${matching_articles[i].title}</div></a></div>`;
             }
           }
         }
@@ -55,4 +55,4 @@ layout: default
 </script>
 
 <h1 id="search-header">Search Results</h1>
-<div id="search-results"></div>
+<div id="search-results" class="option-picker"></div>

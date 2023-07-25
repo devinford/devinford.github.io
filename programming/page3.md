@@ -8,22 +8,22 @@ count: 3
 ---
 
 <div class="option-picker">
-  <div class="option-item"><a href="#0">Option 1</a></div>
-  <div class="option-item"><a href="#0">Option 2</a></div>
-  <div class="option-item"><a href="#0">Option 3</a></div>
-  <div class="option-item"><a href="#0">Option 4</a></div>
-  <div class="option-item"><a href="#0">Option 5</a></div>
-  <div class="option-item"><a href="#0">Option 6</a></div>
-  <div class="option-item"><a href="#0">Option 7</a></div>
-  <div class="option-item"><a href="#0">Option 8</a></div>
-  <div class="option-item"><a href="#0">Option 9</a></div>
-  <div class="option-item"><a href="#0">Option 10</a></div>
-  <div class="option-item"><a href="#0">Option 11</a></div>
-  <div class="option-item"><a href="#0">Option 12</a></div>
-  <div class="option-item"><a href="#0">Option 13</a></div>
-  <div class="option-item"><a href="#0">Option 14</a></div>
-  <div class="option-item"><a href="#0">Option 15</a></div>
-  <div class="option-item"><a href="#0">Option 16</a></div>
-  <div class="option-item"><a href="#0">Option 17</a></div>
-  <div class="option-item"><a href="#0">Option 18</a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 1" /><div>Option 1</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 2" /><div>Option 2</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 3" /><div>Option 3</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 4" /><div>Option 4</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 5" /><div>Option 5</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 6" /><div>Option 6</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 7" /><div>Option 7</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 8" /><div>Option 8</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 9" /><div>Option 9</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 10" /><div>Option 10</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 11" /><div>Option 11</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 12" /><div>Option 12</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 13" /><div>Option 13</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 14" /><div>Option 14</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 15" /><div>Option 15</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 16" /><div>Option 16</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 17" /><div>Option 17</div></a></div>
+  <div class="option-item"><a href="#0"><img class="option-item-icon" src="/media/icon-default.png" alt="Option 18" /><div>Option 18</div></a></div>
 </div>

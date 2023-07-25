@@ -1,7 +1,7 @@
 [
   {
     "title":"Unity Test",
-    "icon":"",
+    "icon":"/media/icon-default.png",
     "date":"2023-09-01",
     "page":"/article/unity_test.html",
     "categories": ["game development"],
@@ -9,7 +9,7 @@
   },
   {
     "title":"RPG Test",
-    "icon":"",
+    "icon":"/media/icon-default.png",
     "date":"2023-09-02",
     "page":"/article/unity_test.html",
     "categories": ["game development"],
@@ -17,7 +17,7 @@
   },
   {
     "title":"Article Test",
-    "icon":"",
+    "icon":"/media/icon-default.png",
     "date":"2023-09-03",
     "page":"/article/article_test.html",
     "categories": ["programming"],

@@ -87,6 +87,10 @@ footer {
   opacity: 0;
 }
 
+.option-item-icon {
+  filter: invert(0%) sepia(90%) saturate(7500%) hue-rotate(146deg) brightness(107%) contrast(109%);
+}
+
 .nav-item {
   background-color: var(--tab-bg-color);
   border-radius:  0px 0px 10px 10px;

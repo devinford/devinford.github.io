@@ -24,57 +24,11 @@
   </head>
   <body>
     <script>
-      var style_content = {
-        "notebook": {
-          themeColor: "#ffffff"
-        },
-        "spacefrog": {
-          themeColor: "#55aaff"
-        },
-        "pumpkincoach": {
-          themeColor: "#efd000"
-        },
-      };
-
+      // Logo Toggle Logic
       var scribble_sounds = [
         "/media/scribble.wav",
         "/media/scribble2.wav",
-      ]
-
-      function replace_link(index, href, media) {
-        var oldlink = document.getElementsByTagName("link").item(index);
-
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", href);
-        if(media) {
-          newlink.setAttribute("media", media);
-        }
-
-        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-      }
-
-      function replace_css(path) {
-        if(!(path in style_content)) return false;
-
-        // Update Theme Colors
-        document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]["themeColor"]);
-        document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]["themeColor"]);
-
-        // Replace Style-Specific Sheets
-        replace_link(2, "/styles/" + path + ".css");
-        replace_link(3, "/styles/" + path + "-override-layout-mobile.css");
-        replace_link(4, "/styles/" + path + "-override-layout.css", "only screen and (min-width: 600px)");
-
-        return true;
-      }
-
-      function update_style_cookie(path) {
-        if(replace_css(path)) {
-          document.cookie = "selected-style=" + path + "; path=/";
-        }
-      }
+      ];
 
       function get_random_int(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -109,6 +63,54 @@
         var audio = new Audio(scribble_sounds[sound_index]);
         audio.volume = 0.5;
         audio.play();
+      }
+
+      // Style Change Logic
+      var style_content = {
+        "notebook": {
+          themeColor: "#ffffff"
+        },
+        "spacefrog": {
+          themeColor: "#55aaff"
+        },
+        "pumpkincoach": {
+          themeColor: "#efd000"
+        },
+      };
+
+      function replace_link(index, href, media) {
+        var oldlink = document.getElementsByTagName("link").item(index);
+
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", href);
+        if(media) {
+          newlink.setAttribute("media", media);
+        }
+
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+      }
+
+      function replace_css(path) {
+        if(!(path in style_content)) return false;
+
+        // Update Theme Colors
+        document.querySelector("meta[name=msapplication-TileColor]").setAttribute("content", style_content[path]["themeColor"]);
+        document.querySelector("meta[name=theme-color]").setAttribute("content", style_content[path]["themeColor"]);
+
+        // Replace Style-Specific Sheets
+        replace_link(2, "/styles/" + path + ".css");
+        replace_link(3, "/styles/" + path + "-override-layout-mobile.css");
+        replace_link(4, "/styles/" + path + "-override-layout.css", "only screen and (min-width: 600px)");
+
+        return true;
+      }
+
+      function update_style_cookie(path) {
+        if(replace_css(path)) {
+          document.cookie = "selected-style=" + path + "; path=/";
+        }
       }
 
       replace_css(document.cookie.split('; ').find(row => row.startsWith('selected-style='))?.split('=')?.[1]);
