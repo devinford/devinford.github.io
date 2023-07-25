@@ -99,6 +99,10 @@ main {
   height: 256px;
 }
 
+.option-item-name {
+  display: inline-block;
+}
+
 .aspect-ratio {
   position: relative;
   width: 100%;
