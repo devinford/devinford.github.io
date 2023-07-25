@@ -133,9 +133,20 @@ footer {
   background-color: var(--content-link-bg-color);
 }
 
-input[type=text], textarea, button {
+input[type=text], textarea, input[type=submit] {
   background-color: var(--footer-bg-color);
   font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
+}
+
+input[type=text] {
+  border: solid 3px black;
+  /* top right bottom left */
+  margin: 7px 5px 3px 5px;
+}
+
+input[type=text]:focus {
+  border: double 8px black;
+  margin: 0px;
 }
 
 input[type=text]::placeholder {
@@ -145,18 +156,21 @@ input[type=text]::placeholder {
   font-family : "Architects Daughter", Candara, Rosario, Lumanosimo, sans-serif;
 }
 
-button {
-  border: solid 2px black;
+input[type=submit] {
+  border: solid 3px black;
+  /* top right bottom left */
+  margin: 7px 5px 3px 5px;
   transition: all 0.3s ease;
 }
 
-button:hover {
+input[type=submit]:hover {
   background-color: var(--footer-bg-color);
   text-decoration: underline;
 }
 
-button:active {
+input[type=submit]:active {
   background-color: var(--footer-bg-color);
-  outline: solid 2px black;
+  border: double 8px black;
+  margin: 0px;
   text-decoration: underline;
 }
