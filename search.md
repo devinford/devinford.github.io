@@ -46,7 +46,7 @@ layout: default
             search_results.innerHTML = 'No results found';
           } else {
             for (var i = 0; i < matching_articles.length; ++i) {
-              search_results.innerHTML += `<div class="option-item"><a href="${matching_articles[i].page}"><img class="option-item-icon" src="${matching_articles[i].icon}" alt="${matching_articles[i].title}" /><div class="search-item-name">${matching_articles[i].title}</div></a></div>`;
+              search_results.innerHTML += `<div class="option-item"><a href="${matching_articles[i].page}"><img class="option-item-icon" src="${matching_articles[i].icon}" alt="${matching_articles[i].title}" /><div class="option-item-name">${matching_articles[i].title}</div></a></div>`;
             }
           }
         }

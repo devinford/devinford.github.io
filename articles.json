@@ -11,7 +11,7 @@
     "title":"RPG Test",
     "icon":"/media/icon-default.png",
     "date":"2023-09-02",
-    "page":"/article/unity_test.html",
+    "page":"/article/rpg_test.html",
     "categories": ["game development"],
     "keywords": ["rpgmaker", "game", "prototype", "rpg"]
   },

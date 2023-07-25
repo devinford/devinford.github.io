@@ -21,6 +21,18 @@ Certain otherwise bad practices can be useful for reducing code count and buildi
 ## A 1K Real-Time Strategy
 
 
+### Defining Units
+
+One approach to creating multiple units would be to define a base "Unit" class, and define multiple subclasses specializing the behavior of the units. However, defining lots of subclasses with different behaviors would take up a lot of space, so, instead, I took the approach of differentiating units only by stats. In fact, not just units, but both units and buildings are all instances of the same class, with differing stats controlling their behaviors.
+
+This single general-purpose unit class has commands for path-finding and includes logic for automatically firing at nearby enemy units. There is also some specialized logic that is turned on by certain stats
+
+- Units can be commanded to enter a mining mode if they have a mining capacity greater than 0.
+- Units can be clicked to open a build menu if they have build options populated.
+- Units can only be selected for commands if they have a movement speed greater than 0; units with a movement speed of 0 are considered buildings-- for example, turrets are effectively just regular combat units with a speed of 0.
+
+This is where implementation of a game can inspire gameplay ideas-- for instance, this codebase makes it possible to create a mobile barracks unit that can spawn other units on-demand, or some sort of engineer who can build buildings at any location. I haven't explored any of those ideas in this prototype for the sake of keeping things simple
+
 ### Path-Finding
 
 
@@ -32,6 +44,11 @@ So, instead, I subsituted list with sorted insertions, which is a fairly naive i
 ### UI
 
 
+#### Build Menu
+
+#### Tutorializing
+
+The first response I got when showing this prototype to someone is that they didn't really understand how to play. So, the final touch
 
 ### Final Code Count
 
@@ -43,131 +60,4 @@ The full Unity project for this game can be found on github [here](todo).
 
 ## Play It
 
-<div id="unity-container" class="unity-desktop">
-  <div id="unity-canvas-scaler">
-    <canvas id="unity-canvas"></canvas>
-  </div>
-  <div id="unity-loading-bar">
-    <div id="unity-logo"></div>
-    <div id="unity-progress-bar-empty">
-      <div id="unity-progress-bar-full"></div>
-    </div>
-  </div>
-  <div id="unity-warning"> </div>
-  <div id="unity-footer">
-    <div id="unity-webgl-logo"></div>
-    <div id="unity-fullscreen-button"></div>
-    <div id="unity-build-title">1K RTS</div>
-  </div>
-</div>
-<script>
-  var container = document.querySelector("#unity-container");
-  var canvas = document.querySelector("#unity-canvas");
-  var loadingBar = document.querySelector("#unity-loading-bar");
-  var progressBarFull = document.querySelector("#unity-progress-bar-full");
-  var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-  var warningBanner = document.querySelector("#unity-warning");
-
-  // Shows a temporary message banner/ribbon for a few seconds, or
-  // a permanent error message on top of the canvas if type=='error'.
-  // If type=='warning', a yellow highlight color is used.
-  // Modify or remove this function to customize the visually presented
-  // way that non-critical warnings and error messages are presented to the
-  // user.
-  function unityShowBanner(msg, type) {
-    function updateBannerVisibility() {
-      warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-    }
-    var div = document.createElement('div');
-    div.innerHTML = msg;
-    warningBanner.appendChild(div);
-    if (type == 'error') div.style = 'background: red; padding: 10px;';
-    else {
-      if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-      setTimeout(function() {
-        warningBanner.removeChild(div);
-        updateBannerVisibility();
-      }, 5000);
-    }
-    updateBannerVisibility();
-  }
-  function resizeCanvas() {
-    var inverse_aspect_ratio = 600.0 / 960.0;
-
-    var canvas_scaler = document.getElementById('unity-canvas-scaler');
-    var canvas = document.getElementById('unity-canvas');
-    var width = canvas_scaler.clientWidth;
-    var height = width * inverse_aspect_ratio;
-
-    canvas.setAttribute('width', width);
-    canvas.setAttribute('height', height);
-    // Unity's rendering is driven off of these specific style
-    // attributes, rather than the actual size of the canvas.
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-  }
-
-  var project_identifier = "rts_webgl";
-  var project_name = "1K RTS";
-  var company_name = "Dev Info R&amp;D";
-
-  var buildUrl = `/players/unity_${project_identifier}`;
-  var loaderUrl = buildUrl + `/${project_identifier}.loader.js`;
-  var config = {
-    dataUrl: buildUrl + `/${project_identifier}.data`,
-    frameworkUrl: buildUrl + `/${project_identifier}.framework.js`,
-    codeUrl: buildUrl + `/${project_identifier}.wasm`,
-    streamingAssetsUrl: "StreamingAssets",
-    companyName: "Dev Info R&D",
-    productName: project_name,
-    productVersion: "0.1",
-    showBanner: unityShowBanner,
-  };
-
-  // By default Unity keeps WebGL canvas render target size matched with
-  // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-  // Set this to false if you want to decouple this synchronization from
-  // happening inside the engine, and you would instead like to size up
-  // the canvas DOM size and WebGL render target sizes yourself.
-  // config.matchWebGLToCanvasSize = false;
-
-  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-    // Mobile device style: fill the whole browser client area with the game canvas:
-
-    var meta = document.createElement('meta');
-    meta.name = 'viewport';
-    meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-    document.getElementsByTagName('head')[0].appendChild(meta);
-    container.className = "unity-mobile";
-    canvas.className = "unity-mobile";
-
-    // To lower canvas resolution on mobile devices to gain some
-    // performance, uncomment the following line:
-    // config.devicePixelRatio = 1;
-
-    unityShowBanner('WebGL builds are not supported on mobile devices.');
-  } else {
-    // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-    resizeCanvas();
-  }
-
-  loadingBar.style.display = "block";
-
-  var script = document.createElement("script");
-  script.src = loaderUrl;
-  script.onload = () => {
-    createUnityInstance(canvas, config, (progress) => {
-      progressBarFull.style.width = 100 * progress + "%";
-    }).then((unityInstance) => {
-      loadingBar.style.display = "none";
-      fullscreenButton.onclick = () => {
-        unityInstance.SetFullscreen(1);
-      };
-    }).catch((message) => {
-      alert(message);
-    });
-  };
-  document.body.appendChild(script);
-  window.addEventListener('resize', resizeCanvas);
-</script>
+{% include player_unity.html title="1K RTS" identifier="rts_webgl" aspect_width=600 aspect_height=960 %}
