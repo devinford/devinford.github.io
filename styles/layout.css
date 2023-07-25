@@ -85,9 +85,10 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center; /* optional: to center all items in the row */
 }
 
-.option-item {
+.option-item a { /* apply flex container properties to the anchor tag */
   display: flex;
   flex-direction: column;
   align-items: center;
