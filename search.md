@@ -28,7 +28,7 @@ layout: default
   }
 
   window.onload = function() {
-    fetch('/articles.json?v={% include article_list_version.html %}')
+    fetch('/articles.json?v={{ site.time | date: '%s' }}')
       .then(response => response.json())
       .then(articles => {
         var urlParams = new URLSearchParams(window.location.search);

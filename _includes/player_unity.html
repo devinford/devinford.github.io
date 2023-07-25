@@ -48,7 +48,7 @@
     updateBannerVisibility();
   }
   function resizeCanvas() {
-    var inverse_aspect_ratio = {{ include.inverse_aspect_ratio }} / {{ include.aspect_height }};
+    var inverse_aspect_ratio = {{ include.aspect_width }} / {{ include.aspect_height }};
 
     var canvas_scaler = document.getElementById('unity-canvas-scaler');
     var canvas = document.getElementById('unity-canvas');
