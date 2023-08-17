@@ -29,8 +29,6 @@ main {
 }
 
 footer {
-  padding-top: 5px;
-  padding-bottom: 5px;
   box-shadow: 3px 3px var(--bg-shadow-color), -1em 0 .4em var(--bg-shadow-color);
 }
 
@@ -57,7 +55,7 @@ footer {
 }
 
 #logo-1 {
-  background-image: url('/media/logo-notebook.png');
+  background-image: url('/media/logo-notebook1.png');
   position: absolute;
   height: 100%;
   width: 100%;
@@ -89,6 +87,28 @@ footer {
   opacity: 0;
 }
 
+#logo-4 {
+  background-image: url('/media/logo-notebook4.png');
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+#logo-5 {
+  background-image: url('/media/logo-notebook5.png');
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
 .nav-item {
   background-color: var(--tab-bg-color);
   border-radius:  0px 0px 10px 10px;
@@ -111,6 +131,8 @@ footer {
 }
 
 .footer-stripe {
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: var(--footer-bg-color);
   color: var(--footer-fg-color);
 }
@@ -141,7 +163,7 @@ input[type=text], textarea, input[type=submit] {
 input[type=text] {
   border: solid 3px black;
   /* top right bottom left */
-  margin: 7px 5px 3px 5px;
+  margin: 7px 5px 7px 5px;
 }
 
 input[type=text]:focus {
@@ -160,8 +182,8 @@ input[type=text]::placeholder {
 input[type=submit] {
   border: solid 3px black;
   /* top right bottom left */
-  margin: 10px 5px 10px 5px;
-  transition: all 0.3s ease;
+  margin: 7px 5px 7px 5px;
+/*  transition: all 0.3s ease;*/
 }
 
 input[type=submit]:hover {
@@ -171,7 +193,7 @@ input[type=submit]:hover {
 
 input[type=submit]:active {
   background-color: var(--footer-bg-color);
+  text-decoration: underline;
   border: double 8px black;
   margin: 0px;
-  text-decoration: underline;
 }

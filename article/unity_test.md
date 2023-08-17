@@ -33,9 +33,25 @@ This single general-purpose unit class has commands for path-finding and include
 
 This is where implementation of a game can inspire gameplay ideas-- for instance, this codebase makes it possible to create a mobile barracks unit that can spawn other units on-demand, or some sort of engineer who can build buildings at any location. I haven't explored any of those ideas in this prototype for the sake of keeping things simple
 
+#### Designing Units
+
+I tried to design the units such that, even without enemy AI, the player had to think out the order that they wanted to attack the enemy units.
+
+The player's strongest unit is a gunship that deals huge damage and has a lot of health. However, the enemy base has anti-aircraft guns that out-range the gunship and do a lot of damage, so they will take it out before it ever gets close. However, the anti-aircraft guns cannot shoot units on the ground, so the player can send in ground soldiers to disable the anti-aircraft guns. Technically, you can destroy the enemy base with foot soldiers, but it has such high health that it would take an extremely long time, so clearing a route for the gunship is the fastest option.
+
+Among the foot soldiers, infantry have higher damage, are cheaper and have more health, but have shorter range, whereas snipers are longer-ranged, but are more expensive and have less health. Ideally, the player will use snipers to pick off enemy infantry, before sending in their own higher-damage infantry to take out enemy anti-aircraft guns.
+
+The engineer is a unit I threw in just to play around with the purely data-driven nature of unit definitions. If a turret is like an immobile combat unit, then an Engineer is like a mobile building. He can't fight, but he can build turrets on demand anywhere on the map, assuming you can get him there. Because he has so little health, you need other units to clear a path for him; however, his turrets are high-damage enough to quickly take out buildings and infantry-- if the enemy had any sentries, you would need use a sniper to out-range them. You can use turrets to clear out anti aircraft cannons, or just use them to attack the enemy base directly. If you build an engineer, just try clicking on him like you would a building to open his build menu.
+
 ### Path-Finding
 
 
+
+#### Choosing a Heuristic
+
+
+
+#### Implementing the "Priority Queue"
 
 These sorts of heuristic-based search algorithms generally use a [priority queue](https://en.wikipedia.org/wiki/Priority_queue). Unfortunately, the version of C# used in Unity currently doesn't include a priority queue in its standard library. Writing a priority queue from scratch is kind of annoying ([I've done it already anyways](todo), but...), but the bigger issue is that a proper priority queue implementation is going to take up a lot of our line count, and moreover, it's going to take up a lot of the time that we would prefer to spend on just quickly implementing the RTS's gameplay.
 
@@ -46,9 +62,15 @@ So, instead, I subsituted list with sorted insertions, which is a fairly naive i
 
 #### Build Menu
 
-#### Tutorializing
+#### Communicating Mechanics
 
-The first response I got when showing this prototype to someone is that they didn't really understand how to play. So, the final touch
+The first response I got when showing this prototype to someone is that they didn't really understand how to play. That was understandable, since I sent it to them after
+
+### Assets
+
+The visual assets in the prototype were effectively thrown together with the basic geometric primitives built into Unity.
+
+The sound effects were all sounds that I made with my own microphone, with the exception of the unit command voice lines, which I clipped out of this [Jerma video](https://www.youtube.com/watch?v=CVhKYfZm8qI&t=32s).
 
 ### Final Code Count
 
