@@ -1,1 +1,9 @@
+
+title: "Dev Info R&D"
+description: "Project and Development Log Site"
+
+url: "https://blog.dev-info-r-d.com"
+exclude:
+  - CNAME
+
 theme: minima

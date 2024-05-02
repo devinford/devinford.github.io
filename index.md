@@ -1,2 +1,4 @@
-
-# Coming Eventually
+---
+layout: home
+title: "Coming Eventually"
+---
