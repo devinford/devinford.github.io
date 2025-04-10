@@ -38,7 +38,6 @@ namespace :generate do
     # @@ Delete Old Category Indexes
     categories_directory = 'category'
     if Dir.exist?(categories_directory)
-      puts Dir.glob("#{categories_directory}/*")
       FileUtils.rm_rf(Dir.glob("#{categories_directory}/*"))
     else
       # Create the "categories" directory if it doesn't exist
@@ -57,14 +56,17 @@ title: "Posts by Category"
 
 CONTENT
       tag_configurations.each do |tag_configuration|
-        file.puts "- [#{tag_configuration['name']}](#{tag_configuration['tag']})"
+        posts_for_tag = tags[tag_configuration['tag']] || []
+        if posts_for_tag.count > 0
+          file.puts "- [#{tag_configuration['name']}](#{tag_configuration['tag']})"
+        end
       end
     end
 
     # @@ Write new Category Indexes
     tag_configurations.each do |tag_configuration|
-      all_posts = tags[tag_configuration['tag']] || []
-      pages = (all_posts.count + articles_per_page - 1) / articles_per_page
+      posts_for_tag = tags[tag_configuration['tag']] || []
+      pages = (posts_for_tag.count + articles_per_page - 1) / articles_per_page
 
       tag_subdirectory = tag_configuration['path_stub']
       pages.times do |i|
