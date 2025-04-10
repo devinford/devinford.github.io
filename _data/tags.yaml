@@ -1,2 +1,13 @@
 ---
-[]
+- tag: game_development
+  name: "Game Development"
+  path_stub: category/game_development
+- tag: mathematics
+  name: "Mathematics"
+  path_stub: category/mathematics
+- tag: programming
+  name: "Programming"
+  path_stub: category/programming
+- tag: reversible_programming
+  name: "Reversible Programming"
+  path_stub: category/reversible_programming
