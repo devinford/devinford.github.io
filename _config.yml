@@ -19,8 +19,8 @@ plugins:
 remote_theme: devinford/minima
 
 header_pages:
-  - about.md
   - category/index.markdown
+  - about.md
 
 show_excerpts: true
 
