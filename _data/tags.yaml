@@ -11,3 +11,11 @@
 - tag: reversible_programming
   name: "Reversible Programming"
   path_stub: category/reversible_programming
+- tag: reversible_primer
+  name: "Reversible Primer"
+  path_stub: category/reversible_primer
+  page_sort: asc
+  text: |
+    This series of posts introduces the important concepts of reversible
+    programming, using diagrams and analogies, and building the concepts up from
+    basic primitives.

@@ -19,9 +19,6 @@ namespace :generate do
     site.reset
     site.read
 
-    # @@@ Get Markdown-To-HTML Converter
-    converter = site.find_converter_instance(Jekyll::Converters::Markdown)
-
     # @@@ Get Configured Articles Per Page
     articles_per_page = site.config['paginate']
 
@@ -57,7 +54,7 @@ title: "Posts by Category"
 CONTENT
       tag_configurations.each do |tag_configuration|
         posts_for_tag = tags[tag_configuration['tag']] || []
-        if posts_for_tag.count > 0
+        if posts_for_tag.count > 0 || tag_configuration['text'] != nil
           file.puts "- [#{tag_configuration['name']}](#{tag_configuration['tag']})"
         end
       end
@@ -65,8 +62,8 @@ CONTENT
 
     # @@ Write new Category Indexes
     tag_configurations.each do |tag_configuration|
-      posts_for_tag = tags[tag_configuration['tag']] || []
-      pages = (posts_for_tag.count + articles_per_page - 1) / articles_per_page
+      all_posts = tags[tag_configuration['tag']] || []
+      pages = (all_posts.count + articles_per_page - 1) / articles_per_page
 
       tag_subdirectory = tag_configuration['path_stub']
       pages.times do |i|
@@ -87,7 +84,7 @@ CONTENT
 ---
 layout: paged_posts_by_tag
 title: '"#{tag_configuration['name']}" Posts'
-listed_tag: #{tag_configuration['tag']}
+listed_tag: #{tag_configuration['tag']}#{tag_configuration['page_sort'] != nil ? "\npage_sort: #{tag_configuration['page_sort']}" : ""}
 post_offset: #{i * articles_per_page}
 post_count: #{articles_per_page}
 paginator:
@@ -97,7 +94,11 @@ paginator:
   next_page: #{(i < pages - 1 ? i + 2 : nil)}
   next_page_path: #{"/#{tag_configuration['path_stub']}/#{i + 2}"}
 ---
+
 CONTENT
+          if tag_configuration['text'] != nil
+            file.puts tag_configuration['text']
+          end
         end
       end
     end
