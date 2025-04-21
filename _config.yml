@@ -20,7 +20,7 @@ remote_theme: devinford/minima
 
 header_pages:
   - category/index.markdown
-  - about.md
+  - about.markdown
 
 show_excerpts: true
 
