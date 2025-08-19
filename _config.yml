@@ -27,6 +27,10 @@ show_excerpts: true
 paginate: 10
 paginate_path: "/page/:num/"
 
+kramdown:
+  typographic_symbols:
+      ndash: --
+
 minima:
   # Minima skin selection.
   # Available skins are:
