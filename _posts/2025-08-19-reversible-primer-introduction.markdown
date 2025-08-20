@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reversible Programming Primer: Introduction"
-date: "2025-07-19 11:00:00 -0400"
+date: "2025-08-19 11:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
