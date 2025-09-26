@@ -7,13 +7,14 @@ tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
 ---
 
-Assignment as it generally understood cannot exist in a reversible programming
-language. However, assignment as a form of initialization is essential for
-writing computer programs in general. And so, reversible programming languages
-will need to introduce new concepts of initialization to serve the role of
-assignment operators, which could be called "reversible assignment" operators.
-In this second post on reversible programming, I will be going over some of the
-most useful types of reversible assignment operators that can be defined.
+Assignment as it is generally understood cannot exist in a reversible
+programming language. However, assignment as a form of initialization is
+essential for writing computer programs in general. And so, reversible
+programming languages will need to introduce new concepts of initialization to
+serve the role of assignment operators, which could be called "reversible
+assignment" operators. In this second post on reversible programming, I will be
+going over some of the most useful types of reversible assignment operators that
+can be defined.
 <!--more-->
 
 #### A Disclaimer on Syntax
