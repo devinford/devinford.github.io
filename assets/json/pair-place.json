@@ -1,0 +1,106 @@
+{
+  "text": {
+    "promptTutorialEnter": "<p>If you'd like an introduction to the game's rules, you can <a href=\"#tutorial\">try the tutorial puzzles</a>.</p>",
+    "promptTutorialNext": "<p>You've completed this step of the tutorial. Move on to the <a href=\"#tutorial\">next step</a> for more tips.</p>",
+    "promptTutorialLeave": "<p>You've completed the tutorial puzzles. If you'd like more challenging puzzles to solve, you can <a href=\"#\">play the latest puzzles</a>.</p>"
+  },
+  "theme": {
+    "style": [
+      { "background": "#3F3F3F", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+      { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" }
+    ],
+    "styleHeader": 0,
+    "styleCell": 1,
+    "styleHighlight": 2,
+    "styleError": 3,
+    "colorGridline": "#000000",
+    "colorCompletionStripe": "#87CEFAB0",
+    "colorCompletionText": "#ffffff"
+  },
+  "puzzle": [
+    {
+      "date": "2025-10-01",
+      "id": "tutorial-1",
+      "title": "Tutorial Part 1",
+      "description": "<p>Fill in squares by pressing down on an empty square, and dragging to another empty square in the same row.</p><img src=\"../../assets/images/tutorial-drag.gif\"><p>Each square will be filled with the header letter of the other square.</p>",
+      "tutorial": true,
+      "grid": [
+        ["A", "B", "C", "D"],
+        ["B", "A", "d", "c"],
+        ["C", "D", "A", "B"],
+        ["D", "C", "B", "A"]
+      ]
+    },
+    {
+      "date": "2025-10-01",
+      "id": "tutorial-2",
+      "title": "Tutorial Part 2",
+      "description": "<p>When you have multiple options for how to fill in a square, you can use logical rules to deduce how to fill it in.</p><p>The main rule of the puzzle is: <b>each letter may only appear once in each column</b>.</p><p>You can use this fact to figure out how to fill in the squares below.</p><p>If you fill in a square incorrectly, you can switch to &quot;Erase&quot; and press the square to clear it.</p>",
+      "tutorial": true,
+      "grid": [
+        ["A", "B", "C", "D"],
+        ["B", "A", "D", "C"],
+        ["C", "D", "A", "B"],
+        ["d", "c", "b", "a"]
+      ]
+    },
+    {
+      "date": "2025-10-01",
+      "id": "tutorial-3",
+      "title": "Tutorial Part 3",
+      "description": "<p>There are a number of logical rules you can use. For example:</p><ul><li>If there are only two squares left in a row, they must be connected.</li><li>If there is only one empty square in a column, connect it to the letter missing from that column.</li><li>If a column is missing a letter and can only connect to that letter in a single row, connect it to that letter in that row.</li></ul><p>Try to apply these three rules to fill in the grid below.</p><p>These rules are all derived from the main rule that a letter may not appear more than once in a single column. You may discover even more types of logical rules as you solve more advanced puzzles.</p>",
+      "tutorial": true,
+      "grid": [
+        ["A","B","C","D","E","F"],
+        ["f","C","B","E","D","a"],
+        ["d","E","f","a","B","c"],
+        ["E","f","d","c","A","b"],
+        ["B","A","E","f","C","d"],
+        ["c","d","a","b","f","e"]
+      ]
+    },
+    {
+      "date": "2025-10-01",
+      "number": 1,
+      "candidate-id": "candidate-6",
+      "grid": [
+        ["A","B","C","D","E","F"],
+        [" ","D"," ","B"," "," "],
+        [" "," "," ","E","D"," "],
+        ["B","A"," "," "," "," "],
+        [" "," "," "," "," "," "],
+        [" "," ","E"," ","C"," "]
+      ]
+    },
+    {
+      "date": "2025-10-02",
+      "number": 2,
+      "candidate-id": "candidate-5",
+      "grid": [
+        ["A","B","C","D","E","F"],
+        [" "," "," "," "," "," "],
+        ["F","E"," "," ","B","A"],
+        ["C"," ","A"," "," "," "],
+        [" "," "," ","E","D"," "],
+        [" ","F"," "," "," ","B"]
+      ]
+    },
+    {
+      "date": "2025-10-03",
+      "number": 3,
+      "candidate-id": "candidate-12",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        ["B","A"," "," "," "," "," "," "],
+        [" "," "," ","G"," "," ","D"," "],
+        [" "," "," ","F"," ","D"," "," "],
+        [" "," ","G"," "," "," ","C"," "],
+        [" ","H","E"," ","C"," "," ","B"],
+        [" ","G"," "," "," ","H","B","F"],
+        ["F"," "," ","E","D","A"," "," "]
+      ]
+    }
+  ]
+}
