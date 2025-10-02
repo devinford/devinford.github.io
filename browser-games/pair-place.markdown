@@ -59,6 +59,9 @@ permalink: /browser-games/pair-place/
 #clear-puzzle:hover {
   background: #c82333 !important;
 }
+#game-canvas {
+  touch-action: none;
+}
 </style>
 
 <div id="puzzle-title"></div>
@@ -88,15 +91,16 @@ permalink: /browser-games/pair-place/
   <summary><b>How to Play</b></summary>
   <div class="details-content">
     <p>
-      In Pair Place, you must fill the grid with letters, placing two letters at
-      a time. To place letters in the grid, click on the first cell you want to
-      fill, then drag to another open space in the same row. This will fill each
-      cell with the the header letter of the other cell's column.
+      To complete the puzzle, you must fill the grid with letters, placing two
+      letters at a time. To place letters in the grid, press on the first square
+      you want to fill, then drag to another open square in the same row. This
+      will fill each square with the the header letter of the other square's
+      column.
     </p>
     <img src="../../assets/images/tutorial-drag.gif">
     <p>
-      You must completely fill the grid, such that each letter appears no more
-      than once in each column.
+      In your final grid, each letter must appear no more than a single time in
+      each column.
     </p>
   </div>
 </details>
