@@ -2,7 +2,7 @@
   "text": {
     "promptTutorialEnter": "<p>If you'd like an introduction to the game's rules, you can <a href=\"#tutorial\">try the tutorial puzzles</a>.</p>",
     "promptTutorialNext": "<p>You've completed this step of the tutorial. Move on to the <a href=\"#tutorial\">next step</a> for more tips.</p>",
-    "promptTutorialLeave": "<p>You've completed the tutorial puzzles. If you'd like more challenging puzzles to solve, you can <a href=\"#\">play the latest puzzles</a>.</p>"
+    "promptTutorialLeave": "<p>You've completed the tutorial puzzles. If you'd like more challenging puzzles to solve, you can <a href=\"#today\">play the latest puzzles</a>.</p>"
   },
   "theme": {
     "style": [

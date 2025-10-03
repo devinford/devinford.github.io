@@ -1056,6 +1056,7 @@ permalink: /browser-games/pair-place/
     return lastPuzzleIndexForDate;
   }
 
+  // @unused
   function findPuzzleIndexForEarliestIncompleteOrLatest() {
     let puzzleIndex = -1;
     for(let i = 0; i < puzzles.length; ++i) {
@@ -1130,7 +1131,7 @@ permalink: /browser-games/pair-place/
   function setPuzzleFromHash(fullUrlHash) {
     if(puzzles.length == 0) return;
 
-    if(fullUrlHash == '#latest') {
+    if(fullUrlHash == '#latest' || fullUrlHash == '#today') {
       if(currentPuzzleIndex != maxPuzzleIndex) setPuzzleIndex(maxPuzzleIndex);
     } else if(fullUrlHash == '#next') {
       moveToNextPuzzle();
@@ -1142,7 +1143,7 @@ permalink: /browser-games/pair-place/
         const hashContent = fullUrlHash.substring(1);
         puzzleIndex = findPuzzleIndexForHash(hashContent);
       }
-      puzzleIndex ??= findPuzzleIndexForEarliestIncompleteOrLatest();
+      puzzleIndex ??= maxPuzzleIndex;
 
       if(puzzleIndex >= 0) setPuzzleIndex(puzzleIndex);
       else setArrowVisibility();
