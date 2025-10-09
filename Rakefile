@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'jekyll'
 require 'yaml'
+require 'json'
 
 TagFilePath = '_data/tags.yaml'
 
@@ -100,6 +101,30 @@ CONTENT
             file.puts tag_configuration['text']
           end
         end
+      end
+    end
+  end
+end
+
+PuzzleFilePaths = [
+  'assets/json/pair-place.json'
+]
+
+namespace :puzzle do
+  desc "Check for end dates of current puzzle batches."
+  task :dates do
+    PuzzleFilePaths.each do |file_path|
+      content = JSON.parse(File.read(file_path))
+      last_date = content["puzzle"].map { |x| x["date"] }.sort.last
+      print "'#{file_path}' last puzzle on #{last_date}"
+
+      days = (Date.parse(last_date) - Date.today).to_i
+      if days > 0
+        print " (#{days} days remaining)"
+      elsif days < 0
+        print " (past due)"
+      else
+        print " (last puzzle today; next batch due)"
       end
     end
   end
