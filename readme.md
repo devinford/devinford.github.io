@@ -41,3 +41,12 @@ released after the date that the script is run, instead run:
 ```bash
 bundle exec rake generate:tags[true]
 ```
+
+### Check Remaining Runway for Puzzles
+
+The following rake task will check the remaining number of puzzles that have
+yet to launch.
+
+```bash
+bundle exec rake puzzle:dates
+```
