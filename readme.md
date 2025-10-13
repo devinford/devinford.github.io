@@ -16,14 +16,18 @@ todo
 ### Serve Locally
 
 1. `bundle install` to install dependencies.
-2. `bundle exec jekyll serve` to serve the site locally.
-    - Use `bundle exec jekyll serve --future` to serve the site locally including future-dated posts.
+2. `bundle exec jekyll serve --config _config.yml,_config.dev.yml` to serve the site locally.
+    - Use `bundle exec jekyll serve --config _config.yml,_config.dev.yml --future` to serve the site locally including future-dated posts.
+
+*Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`.*
 
 ### Build Site without Serving
 
 1. `bundle install` to install dependencies.
-2. `bundle exec jekyll build` to generate the site files in `_site`.
-    - Use `bundle exec jekyll build --future` to generate the site files including future-dated posts.
+2. `bundle exec jekyll build --config _config.yml,_config.dev.yml` to generate the site files in `_site`.
+    - Use `bundle exec jekyll build --config _config.yml,_config.dev.yml --future` to generate the site files including future-dated posts.
+
+*Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`. Remove this if building to upload the built static site to a hosting platform.*
 
 ### Regenerate Indexes
 
