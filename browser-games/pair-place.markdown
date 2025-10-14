@@ -1086,10 +1086,14 @@ permalink: /browser-games/pair-place/
 
     puzzleConfiguration = puzzles[currentPuzzleIndex];
 
-    const puzzleId = getPuzzleId(puzzleConfiguration);
-    const puzzleHash = `#${puzzleId}`;
-    if(window.location.hash !== puzzleHash) {
-      window.location.replace(puzzleHash);
+    if(currentPuzzleIndex === maxPuzzleIndex) {
+      history.replaceState("", document.title, window.location.pathname + window.location.search);
+    } else {
+      const puzzleId = getPuzzleId(puzzleConfiguration);
+      const puzzleHash = `#${puzzleId}`;
+      if(window.location.hash !== puzzleHash) {
+        window.location.replace(puzzleHash);
+      }
     }
     picker.setDate(dateParse(puzzleConfiguration.date));
 
