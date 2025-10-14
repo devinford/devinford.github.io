@@ -102,6 +102,12 @@ permalink: /browser-games/pair-place/
       In your final grid, each letter must appear no more than a single time in
       each column.
     </p>
+    <h3>Tips</h3>
+    <ul>
+      <li>If there are only two squares left in a row, they must be connected.</li>
+      <li>If there is only one empty square in a column, connect it to the letter missing from that column.</li>
+      <li>If a column is missing a letter and can only connect to that letter in a single row, connect it to that letter in that row.</li>
+    </ul>
   </div>
 </details>
 
