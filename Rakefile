@@ -126,6 +126,7 @@ namespace :puzzle do
       else
         print " (last puzzle today; next batch due)"
       end
+      puts
     end
   end
 end
