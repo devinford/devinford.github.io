@@ -34,7 +34,7 @@ programming languages for corresponding-but-not-equivalent concepts.
 ## The Building Blocks of Reversible Assignment
 
 When we assign a value to a variable, we inevitably erase whatever value it
-previously held, as in the example in the [introduction](/post/2025/08/19/reversible-primer-introduction/what-is-reversible-computing):
+previously held, as in the example in the [introduction](/post/2025/08/19/reversible-primer-introduction/#what-is-reversible-computing):
 
 ```rust
 int x = 5;
@@ -578,7 +578,7 @@ Since the operations in the second list are not bijections, it is not possible
 to use them with the `in-place` meta-operator, so using these operations will
 almost always result in the generation of junk data. We can see why
 multiplication fails, for example, by revisiting one of the first examples from
-the [introduction](/post/2025/08/19/reversible-primer-introduction/what-is-reversible-computing)
+the [introduction](/post/2025/08/19/reversible-primer-introduction/#what-is-reversible-computing)
 with this new syntax:
 
 ```rust
