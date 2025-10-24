@@ -94,8 +94,7 @@ permalink: /browser-games/pair-place/
       To complete the puzzle, you must fill the grid with letters, placing two
       letters at a time. To place letters in the grid, press on the first square
       you want to fill, then drag to another open square in the same row. This
-      will fill each square with the the header letter of the other square's
-      column.
+      will fill each square with the header letter of the other square's column.
     </p>
     <img src="../../assets/images/tutorial-drag.gif">
     <p>
