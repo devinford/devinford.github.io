@@ -582,7 +582,7 @@ the [introduction](/post/2025/08/19/reversible-primer-introduction/#what-is-reve
 with this new syntax:
 
 ```rust
-int x = 5;
+int x <- 5;
 x @* 0;
 ```
 
