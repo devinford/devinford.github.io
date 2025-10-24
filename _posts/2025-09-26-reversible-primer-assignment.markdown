@@ -677,7 +677,7 @@ to play in languages that have strict rules around nullability. Imagine that we
 have a variable storing a non-nullable pointer and we want to change the value
 of that pointer. We can't overwrite the value, so normally we would `uncopy` it
 to clear the value, then `copy` a new value into the variable. However, doing
-this would leave the pointer temporary invalid in between the `uncopy` and the
+this would leave the pointer temporarily invalid in between the `uncopy` and the
 `copy`, violating type safety. We would need a single assignment operation, like
 `replace` that does both of these operations atomically, at least from the
 perspective of the type system.
