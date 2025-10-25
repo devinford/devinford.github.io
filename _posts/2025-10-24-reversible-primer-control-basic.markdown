@@ -512,7 +512,7 @@ given(x <= 1) {
 }
 ```
 
-### Diodes
+### `Diode`s
 
 There are a number of inconvenient things about the control structures that
 we've examined so far. The fact that the condition of a `given` statement must
@@ -552,12 +552,13 @@ separate entry and exit conditions. Let's look at some examples of new control
 structures that use `Diode`s to address the limitations of the previous
 boolean-based control structures.
 
-### Diode-Based `for`
+### `Diode`-Based `for`
 
 Writing loops with a shared entry and exit condition was a major pain point, so
-introducing a new type of loop that uses diodes to specify those conditions
-separately should make looping a lot easier. We can implement a new diode-based
-loop in terms of the existing boolean-based `between` loop as follows:
+introducing a new type of loop that uses `Diode`s to specify those conditions
+separately should make looping a lot easier. We can implement a new
+`Diode`-based loop in terms of the existing boolean-based `between` loop as
+follows:
 
 ```rust
 for(entry_condition => exit_condition) {
@@ -587,13 +588,13 @@ end of the loop, we raise an error, regardless of if the `exit_condition` is
 
 I've used the keyword `for` here, which overlaps with the looping keyword in
 non-reversible programming languages that is traditionally used for looping over
-sequences or ranges of numbers. The use of the sequencing operator (`=>`) should
+sequences or ranges of numbers. The use of the before operator (`=>`) should
 make it clear whether a given `for` loop in the code examples is a traditional
 non-reversible `for` loop or the new reversible version. But, in this case, I
 think a shared name makes sense, because they are really used for very similar
 types of code and `for` loops have many different variations even within
-non-reversible programming languages. Traditional `for` loops can be rewritten
-with this new control structure in a straightforward way:
+non-reversible programming languages. Loops equivalent to traditional `for`
+loops can be rewritten with this new control structure in a straightforward way:
 
 ```rust
 for(int i = 0; i < count; i++) {
@@ -624,7 +625,7 @@ for(i == 1 => i == 101) {
   given(i % 3 == 5) {
     print("Buzz");
   }
-  given(i % 3 != 0 && i % 3 != 5) {
+  given(i % 3 != 0 && i % 5 != 0) {
     print(i);
   }
 
@@ -634,18 +635,18 @@ for(i == 1 => i == 101) {
 i -> 101;
 ```
 
-In practice, diode-based `for` loops are almost always preferable over
+In practice, `Diode`-based `for` loops are almost always preferable over
 `between` loops except in cases of very specific optimizations where there's a
 lot of redundancy between the `entry_condition` and `exit_condition`. However,
 having `between` loops as a primitive for building other control structures is
 very valuable for understanding how reversible programming as a whole works.
 
-### Diode-Based `given`
+### `Diode`-Based `given`
 
 With boolean-based `given`, we had some difficulty with writing conditional
 statements that modify the variables that determine the conditions for their own
-execution. Diode-based `given` statements can simplify these conditionals fairly
-substantially.
+execution. `Diode`-based `given` statements can simplify these conditionals
+fairly substantially.
 
 ```rust
 given(entry_condition => exit_condition) {
@@ -666,7 +667,7 @@ between(entry_condition || exit_condition) {
 Fittingly, in the case where the `entry_condition` and `exit_condition` are
 the same, this reduces to our original single-condition `given` statement.
 
-A diode-based `given` statement allows us to alter some of the variables that
+A `Diode`-based `given` statement allows us to alter some of the variables that
 determine our conditions without causing an error. One simple use case for this
 would be resizing the backing array for a dynamically-sized list:
 
@@ -705,9 +706,9 @@ this structure as: "given entry_condition before exit_condition". In this case,
 "given the list's count equals its capacity before the list's count times two
 equals its capacity".
 
-#### Diode-Based `given`/`else`
+#### `Diode`-Based `given`/`else`
 
-A diode-based `given`/`else` statement can be defined analogously. If the
+A `Diode`-based `given`/`else` statement can be defined analogously. If the
 `entry_condition` is not met, then the `else` block will be executed instead;
 however, the `else` block must assert that the `exit_condition` is not met when
 it exits (since the `exit_condition` *will* be met when the `given` block
@@ -749,7 +750,7 @@ expression evaluation in a future post.
 
 And, of course, because `else given` is just syntactic sugar for nested
 `given`/`else` statements, we can have `given`/`else` chains, and even include a
-mixture of boolean and diode-based conditions:
+mixture of boolean and `Diode`-based conditions:
 
 ```rust
 given(x <= 1) {
@@ -767,7 +768,7 @@ given(x <= 1) {
 
 With the introduction of basic control flow, we are official in the territory of
 being able to write practical algorithms in reversible programming languages. We
-have managed to define all of our primitives so far in terms of 3 reversible
+have managed to define all of our primitives so far in terms of three reversible
 primitives: bitwise XOR compound assignment, assertions and the `between` loop.
 
 The next post in this series will begin to explore some control structures that
@@ -825,8 +826,8 @@ printline("Whoops, only looped 4,294,967,296 times!");
 
 However, even this implementation has a problem: the basic integer types of most
 programming languages have a limited range, after which, they wrap around and
-return to being zero. If `int` is a 32-bit integer, then that means that this
-"infinite" loop would be executed exactly 4,294,967,296 times before exiting.
+return to being `0`. If `int` is a 32-bit integer, then that means that this
+"infinite" loop would be executed exactly `4,294,967,296` times before exiting.
 To get a truly infinite loop, we need an [arbitrary-precision integer](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic),
 colloquially known as a "big integer", which is a special data type that
 dynamically allocates more memory to represent arbitrarily large numbers.
@@ -868,23 +869,23 @@ memory generated by the sort. There is no way to get rid of it, except by
 rolling back the sort and unsorting the list.
 
 This information is effectively random and meaningless from the program's
-perspective, analogous to the information theory notion of "entropy" as
-uncertainty about the value of variables. This is also information which cannot
-be uncomputed without rolling back the algorithm that produced it, and would
+perspective, analogous to the [information theory notion of "entropy"](https://en.wikipedia.org/wiki/Entropy_(information_theory))
+as uncertainty about the value of variables. This information also cannot be
+uncomputed without rolling back the algorithm that produced it, and would
 otherwise need to be erased to clean up the program's memory, which-- as
 discussed in the [introduction to the series](/post/2025/08/19/reversible-primer-introduction/#what-is-reversible-computing)--
-would generate thermodynamic entropy; so, you could think of this data as
-"potential thermodynamic entropy". As a result, I like to think of this as the
-"entropy complexity" of an algorithm. "Entropy" feels like it fits right in along side
-"time" and "space".
+would generate [thermodynamic entropy](https://en.wikipedia.org/wiki/Entropy_(classical_thermodynamics));
+so, you could think of this data as "potential thermodynamic entropy". As a
+result, I like to think of this as the "entropy complexity" of an algorithm.
+"Entropy" feels like it fits right in along side "time" and "space".
 
-In the case of our infinite loop, the big integer counter is a piece of
-"entropy": its value is entirely meaningless to the program, but we need it to
-be able to write the loop in a reversible way. Because every bit added to an
-integer doubles the number of possible values that integer can assume, our
-example infinite loop here would have "logarithmic entropy complexity": the
-amount of memory rendered (semi-)permanently unusable is proportional to the
-logarithm of the number of iterations of the loop.
+In the case of our infinite loop, the big integer counter is a piece of this
+"potential entropy": its value is entirely meaningless to the program, but we
+need it to be able to write the loop in a reversible way. Because every bit
+added to an integer doubles the number of possible values that integer can
+assume, our example infinite loop here would have "logarithmic entropy
+complexity": the amount of memory rendered (semi-)permanently unusable is
+proportional to the logarithm of the number of iterations of the loop.
 
 #### Extra: The Lack of `continue` and `break`
 
@@ -970,15 +971,16 @@ while(true) {
 In either case, `break` statements introduce similar conceptual complications
 to `continue` statements, because they introduce additional entry points for
 the loop body during backtracking. We can approximate a `break` statement by
-using the same pattern as the `continue` simulation to skip the remainder of the
-body, and then use a temporary variable to control the early loop termination:
+using the same pattern as the `continue` statement simulation to skip the
+remainder of the body, and then use a temporary variable to control the early
+loop termination:
 
 ```rust
 bool should_break <- false;
 between(condition || should_break) {
   do_some_work();
 
-  given(other_condition) { should_break <- true; }
+  given(other_condition) { !@should_break; }
   if(!should_break) {
     do_some_more_work();
   }
@@ -1020,8 +1022,8 @@ while(list.count > 0) {
 }
 ```
 
-This code can be read as "while the count of items in the list is greater than
-zero, pop the next item off the list and add it into the sum."
+This code can be verbalized as "while the count of items in the list is greater
+than zero, pop the next item off the list and add it into the sum."
 
 However, "while" does not map semantically onto the behavior of the `between`
 loop. "While" means "for as long as the condition is true"-- which means it
@@ -1054,7 +1056,7 @@ control structures could coexist.
 
 #### Extra: Alternative `for` Loop Definition
 
-There is one behavior of the diode-based `for` loop that I think is arguably
+There is one behavior of the `Diode`-based `for` loop that I think is arguably
 not really justified by my prior explanation. To lay out the `for` loop's
 behavior again:
 
@@ -1165,7 +1167,7 @@ meaningfully define the "trigger" that causes the loop to exit, and generally
 makes it harder to reason about the behavior of the `foralt` loop when it's
 possible for the `entry_condition` and `exit_condition` to overlap.
 
-This is why the definition chosen for the diode-based `for` loop makes this case
+This is why the definition chosen for the `Diode`-based `for` loop makes this case
 an error instead of a continuation of the loop. However, this is simply one
 contrived example I've managed to put together. It might turn out that there
 *are* actually useful consequences of `foralt`'s behavior in certain
