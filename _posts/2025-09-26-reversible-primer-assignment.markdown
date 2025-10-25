@@ -364,7 +364,7 @@ variable on the narrow end of the funnel. The `swap` operator symbol can
 consequently also be seen as a "double-move", moving the values from each
 variable to the opposite variable.
 
-## `in-place` meta operator (`@`)
+## `in-place` meta operator (`@`) {#in-place-meta-operator}
 
 There is a particular kind of common assignment pattern in non-reversible
 programming languages that we haven't really fully addressed yet. Sometimes,
