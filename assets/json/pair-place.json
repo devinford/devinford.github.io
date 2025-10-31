@@ -526,7 +526,9 @@
           { "background": "#008919", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
           { "background": "#FFAA00", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
           { "background": "#C68400", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
-          { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" }
+          { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" },
+          { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+          { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" }
         ],
         "styleHeader": 0,
         "styleCell": 1,
@@ -536,12 +538,6 @@
         "colorCompletionStripe": "#000000C0",
         "colorCompletionText": "#FFAA00"
       },
-      "style": [
-        { "background": "#008919", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
-        { "background": "#FFAA00", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
-        { "background": "#C68400", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
-        { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" }
-      ],
       "gridColor": [
         [0, 0, 0, 0, 0, 0, 0, 0],
         [1, 3, 1, 1, 2, 3, 1, 2],
