@@ -506,6 +506,108 @@
         [" "," ","D","C"," ","G","F"," "],
         [" "," ","E"," ","C"," "," "," "]
       ]
+    },
+    {
+      "date": "2025-10-31",
+      "candidate-id": "candidate-110",
+      "title": "Happy Halloween!",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        ["H"," "," "," "," "," "," ","A"],
+        ["B","A"," "," "," "," "," "," "],
+        [" "," "," ","E","D"," "," "," "],
+        ["C","F","A"," "," ","B"," "," "],
+        [" "," ","E","H","C"," "," ","D"],
+        [" "," ","H"," "," "," "," ","C"],
+        [" ","E"," "," ","B"," "," "," "]
+      ],
+      "theme": {
+        "style": [
+          { "background": "#008919", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+          { "background": "#FFAA00", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
+          { "background": "#C68400", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
+          { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" }
+        ],
+        "styleHeader": 0,
+        "styleCell": 1,
+        "styleHighlight": 4,
+        "styleError": 5,
+        "colorGridline": "#000000",
+        "colorCompletionStripe": "#000000C0",
+        "colorCompletionText": "#FFAA00"
+      },
+      "style": [
+        { "background": "#008919", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+        { "background": "#FFAA00", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
+        { "background": "#C68400", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
+        { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" }
+      ],
+      "gridColor": [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 3, 1, 1, 2, 3, 1, 2],
+        [1, 3, 3, 1, 2, 3, 3, 2],
+        [1, 3, 3, 1, 3, 3, 3, 2],
+        [1, 2, 1, 1, 2, 1, 1, 2],
+        [1, 3, 1, 3, 2, 3, 1, 2],
+        [1, 3, 3, 3, 3, 3, 3, 2],
+        [1, 2, 3, 3, 3, 3, 1, 2]
+      ]
+    },
+    {
+      "date": "2025-11-01",
+      "candidate-id": "candidate-112",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        [" "," "," "," "," "," ","H","G"],
+        ["E"," "," "," ","A"," "," "," "],
+        ["C"," ","A"," ","G"," ","E"," "],
+        [" "," "," ","H"," "," "," ","D"],
+        ["F"," "," "," "," ","A"," "," "],
+        [" "," ","D","C"," "," "," "," "],
+        ["D","H"," ","A"," "," "," ","B"]
+      ]
+    },
+    {
+      "date": "2025-11-02",
+      "candidate-id": "candidate-113",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        ["F"," "," "," "," ","A"," "," "],
+        [" "," "," "," ","G"," ","E"," "],
+        [" "," "," ","G"," "," ","D"," "],
+        ["G"," "," "," ","H"," ","A","E"],
+        ["E"," "," ","H","A"," "," ","D"],
+        [" "," ","G"," "," "," ","C"," "],
+        [" ","F"," "," "," ","B"," "," "]
+      ]
+    },
+    {
+      "date": "2025-11-03",
+      "candidate-id": "candidate-114",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        [" ","E"," ","F","B","D"," "," "],
+        [" ","C","B"," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "],
+        ["F"," "," "," "," ","A"," "," "],
+        [" ","D","E","B","C"," "," "," "],
+        ["G","F"," "," "," ","B","A"," "],
+        [" "," "," "," ","H"," "," ","E"]
+      ]
+    },
+    {
+      "date": "2025-11-04",
+      "candidate-id": "candidate-117",
+      "grid": [
+        ["A","B","C","D","E","F","G","H"],
+        [" "," "," ","H","F","E"," ","D"],
+        [" ","F"," "," ","H","B"," ","E"],
+        [" "," ","G"," "," "," ","C"," "],
+        [" ","H"," "," "," "," "," ","B"],
+        [" "," ","H","E","D"," "," ","C"],
+        [" "," "," "," "," "," "," "," "],
+        [" "," ","E"," ","C","H"," ","F"]
+      ]
     }
   ]
 }
