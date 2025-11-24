@@ -129,7 +129,7 @@ double crossover turnout is a section of track that can allow train cars to
 switch between two parallel tracks. If we were to take one of those two parallel
 tracks and join the ends into a loop:
 
-![A double crossover turnout image with the two ends of the upper track joined into a loop](/assets/images/loop.png)
+![A double crossover turnout with the two ends of the upper track joined into a loop](/assets/images/loop.png)
 
 We get the railroad equivalent of a `between` statement. The loop of track is a
 stand-in for the body of the `between` loop. You can see that when the track is
