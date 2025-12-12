@@ -622,7 +622,7 @@ for(i == 1 => i == 101) {
   given(i % 3 == 0) {
     print("Fizz");
   }
-  given(i % 3 == 5) {
+  given(i % 5 == 0) {
     print("Buzz");
   }
   given(i % 3 != 0 && i % 5 != 0) {
