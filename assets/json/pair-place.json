@@ -1317,6 +1317,33 @@
         [" "," "," "," "," "," "," "," "],
         [" "," "," ","E","D"," "," "," "],
         [" ","F"," "," "," ","B"," "," "]
+      ],
+      "theme": {
+        "style": [
+          { "background": "#00A84E", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+          { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#3F3F3F" },
+          { "background": "#FF0000", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" },
+          { "background": "#383838", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#7F7F7F" },
+          { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+          { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" }
+        ],
+        "styleHeader": 0,
+        "styleCell": 1,
+        "styleHighlight": 4,
+        "styleError": 5,
+        "colorGridline": "#000000",
+        "colorCompletionStripe": "#000000C0",
+        "colorCompletionText": "#FFAA00"
+      },
+      "gridColor": [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 2, 1, 1, 2, 1, 1],
+        [2, 1, 1, 2, 1, 1, 2, 1],
+        [1, 2, 1, 1, 2, 1, 1, 2],
+        [1, 1, 2, 1, 1, 2, 1, 1],
+        [2, 1, 1, 2, 1, 1, 2, 1],
+        [1, 2, 1, 1, 2, 1, 1, 2],
+        [1, 1, 2, 1, 1, 2, 1, 1]
       ]
     },
     {
