@@ -1332,8 +1332,8 @@
         "styleHighlight": 4,
         "styleError": 5,
         "colorGridline": "#000000",
-        "colorCompletionStripe": "#000000C0",
-        "colorCompletionText": "#FFAA00"
+        "colorCompletionStripe": "#007f00",
+        "colorCompletionText": "#FF0000"
       },
       "gridColor": [
         [0, 0, 0, 0, 0, 0, 0, 0],
