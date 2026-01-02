@@ -19,7 +19,7 @@ plugins:
 remote_theme: devinford/minima
 
 header_pages:
-  - browser-games/pair-place.markdown
+  - browser-games/index.markdown
   - category/index.markdown
   - about.markdown
 
