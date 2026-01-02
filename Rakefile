@@ -107,7 +107,8 @@ CONTENT
 end
 
 PuzzleFilePaths = [
-  'assets/json/pair-place.json'
+  'assets/json/pair-place.json',
+  'assets/json/triple-place.json'
 ]
 
 namespace :puzzle do
