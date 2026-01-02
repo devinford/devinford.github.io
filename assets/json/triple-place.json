@@ -1,0 +1,61 @@
+{
+  "text": {
+    "promptTutorialEnter": "<p>If you'd like an introduction to the game's rules, you can <a href=\"#tutorial\">try the tutorial puzzles</a>.</p>",
+    "promptTutorialNext": "<p>You've completed this step of the tutorial. Move on to the <a href=\"#tutorial\">next step</a> for more tips.</p>",
+    "promptTutorialLeave": "<p>You've completed the tutorial puzzles. If you'd like more challenging puzzles to solve, you can <a href=\"#today\">play the latest puzzles</a>.</p>"
+  },
+  "theme": {
+    "style": [
+      { "background": "#3F3F3F", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+      { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+
+      { "background": "#BAFFC9", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#BAE1FF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#E1BAFF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" }
+    ],
+    "chain": [
+      [4, 5, 6],
+      [5, 6, 4],
+      [6, 4, 5]
+    ],
+    "styleHeader": 0,
+    "styleCell": 1,
+    "styleHighlight": 2,
+    "styleError": 3,
+    "colorGridline": "#000000",
+    "colorCompletionStripe": "#87CEFAB0",
+    "colorCompletionText": "#ffffff"
+  },
+  "puzzle": [
+    {
+      "date": "2026-01-01",
+      "grid": [
+        ["A","B","C","D","E","F","G","H","I"],
+        [" ","A"," "," ","G"," "," "," ","F"],
+        [" "," ","H"," "," "," ","E"," "," "],
+        [" "," "," "," "," "," ","A"," ","H"],
+        [" "," "," ","E","F","D","B"," ","C"],
+        ["G"," "," "," ","B"," "," ","C"," "],
+        [" "," "," "," ","H","I","D"," "," "],
+        ["H"," ","B","G","A"," "," ","E"," "],
+        [" "," ","I","A"," ","G"," "," "," "]
+      ]
+    },
+    {
+      "date": "2026-01-02",
+      "grid": [
+        ["A","B","C","D","E","F","G","H","I"],
+        [" "," "," ","C"," "," "," "," "," "],
+        [" "," "," "," ","C","B","H"," "," "],
+        ["H"," ","E","G"," "," "," "," "," "],
+        [" "," ","B","I","D","H"," "," ","E"],
+        ["G","E"," "," ","H"," "," ","B"," "],
+        ["D"," "," "," "," ","C","B"," "," "],
+        [" ","I","D","H"," ","G"," ","C"," "],
+        ["C","F"," "," "," "," "," ","E"," "]
+      ]
+    }
+  ]
+}
