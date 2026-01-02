@@ -85,8 +85,6 @@ permalink: /browser-games/pair-place/
   <button id="clear-puzzle" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Clear Puzzle</button>
 </div>
 
-*This puzzle uses your browser's local storage to store the completion state of each day's puzzles.*
-
 <details>
   <summary><b>How to Play</b></summary>
   <div class="details-content">
@@ -182,20 +180,20 @@ permalink: /browser-games/pair-place/
 
     // Check for duplicates in columns
     for(let column = 0; column < gridWidth; ++column) {
-      const colIndexPositions = new Map();
+      const columnIndexPositions = new Map();
 
       for(let row = 0; row < gridHeight; ++row) {
-        const colIndex = gameGrid[row][column];
-        if(colIndex >= 0) {
-          if(!colIndexPositions.has(colIndex)) {
-            colIndexPositions.set(colIndex, []);
+        const columnIndex = gameGrid[row][column];
+        if(columnIndex >= 0) {
+          if(!columnIndexPositions.has(columnIndex)) {
+            columnIndexPositions.set(columnIndex, []);
           }
-          colIndexPositions.get(colIndex).push(row);
+          columnIndexPositions.get(columnIndex).push(row);
         }
       }
 
       // Mark all duplicates as errors
-      for(const positions of colIndexPositions.values()) {
+      for(const positions of columnIndexPositions.values()) {
         if(positions.length > 1) {
           positions.forEach(row => {
             cachedErrors.add(`${row},${column}`);
@@ -520,13 +518,13 @@ permalink: /browser-games/pair-place/
     context.textAlign = 'center';
     context.textBaseline = 'middle';
 
-    noteArray.forEach(noteColumn => {
-      if(noteColumn >= 0 && noteColumn < gridWidth) {
+    noteArray.forEach(noteColumnIndex => {
+      if(noteColumnIndex >= 0 && noteColumnIndex < gridWidth) {
         // @todo Maybe balance the distribution to rows for very non-square column counts.
-        const letter = headerLetters[noteColumn];
-        const noteRow = Math.floor(noteColumn / notesPerRow);
-        const noteCol = noteColumn % notesPerRow;
-        const noteX = x + (noteCol + 1) * noteSize;
+        const letter = headerLetters[noteColumnIndex];
+        const noteRow = Math.floor(noteColumnIndex / notesPerRow);
+        const noteColumn = noteColumnIndex % notesPerRow;
+        const noteX = x + (noteColumn + 1) * noteSize;
         const noteY = y + (noteRow + 1) * noteSize;
         context.fillText(letter, noteX, noteY);
       }
