@@ -7,13 +7,13 @@
   "theme": {
     "style": [
       { "background": "#3F3F3F", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
-      { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
-      { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
-      { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
+      { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
 
-      { "background": "#BAFFC9", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
-      { "background": "#BAE1FF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" },
-      { "background": "#E1BAFF", "foregroundAnswer": "#000000", "foregroundHint": "#7F7F7F" }
+      { "background": "#BAFFC9", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#BAE1FF", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#E1BAFF", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" }
     ],
     "chain": [
       [4, 5, 6],

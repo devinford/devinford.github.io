@@ -817,7 +817,6 @@ permalink: /browser-games/triple-place/
     context.fillStyle = selectedStyle.background;
     context.fillRect(squareX, squareY, squareSize, squareSize);
 
-
     context.strokeStyle = selectedStyle.foregroundAnswer;
     context.lineWidth = 1;
     context.beginPath();
@@ -831,7 +830,7 @@ permalink: /browser-games/triple-place/
 
     if(backReferenceLetter) {
       context.fillStyle = selectedStyle.foregroundAnswer;
-      context.font = `${squareSize * 0.5}px Arial`;
+      context.font = `${squareSize * 0.7}px Arial`;
       context.textAlign = 'center';
       context.textBaseline = 'middle';
       context.fillText(backReferenceLetter, squareX + squareSize / 2, squareY + squareSize / 2);
