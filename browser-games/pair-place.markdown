@@ -62,6 +62,18 @@ permalink: /browser-games/pair-place/
 #game-canvas {
   touch-action: none;
 }
+
+#canvas-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  #canvas-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
 </style>
 
 <div id="puzzle-title"></div>
@@ -71,7 +83,7 @@ permalink: /browser-games/pair-place/
 
 <div id="puzzle-title"></div>
 <div>
-  <div style="width: 80%; margin: 0 auto;">
+  <div id="canvas-container">
     <canvas id="game-canvas" style="width: 100%; aspect-ratio: 1;"></canvas>
   </div>
   <div class="mode-buttons" style="width: 80%; margin: 0 auto;">
