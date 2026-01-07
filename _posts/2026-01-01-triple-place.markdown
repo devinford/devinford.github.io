@@ -89,7 +89,7 @@ And if we remove some of the hints, we end up with a puzzle:
 But, we don't have to stop here. We could instead partition the letters into
 groups of four and cyclically-shift. Or five. Or six. But I have a feeling that
 with that many straightforward variations, they would lose their novelty fast.
-How different would a 5-cycle puzzle even be from a 4-cycle puzzle. Or for that
+How different would a 5-cycle puzzle even be from a 4-cycle puzzle? Or for that
 matter: how different is this new 3-cycle puzzle from the existing 2-cycle
 puzzle?
 
@@ -127,9 +127,9 @@ rules listed for Pair Place, Triple Place adds the deduction rules that:
   letter B, column B cannot contain the letter A).
 - If you have two separate chains of 2 elements, you can't connect them, as that
   would result in an eventual cycle longer than 3 elements.
-- A column must contain each letter other letter, and each letter must appear
-  in each column (in Pair Place, these were equivalent, but in Triple Place, you
-  have to reason about both conditions separately).
+- A column must contain each letter, and each letter must appear in each column
+  (in Pair Place, these were equivalent, but in Triple Place, you have to reason
+  about both conditions separately).
 - If, within a particular row, column A contains the letter B, then the letter
   you fill into column B must be the letter of a column where it is valid to
   insert the letter A.
@@ -148,10 +148,11 @@ feels a little less rote.
 ## Modifying the UI for Triple Place
 
 There is a little bit more information to process now that you have to think
-about grouping the letters into triples, and now that reasoning about
-backreferences can be worthwhile for solving puzzles quickly. And the UI for
-Triple Place has been updated relative to Pair Place to expose some of this
-information in a more convenient way.
+about grouping the letters into triples, and now that it's not only important
+for your reasoning what letters a column has referenced, but also what other
+columns have already referenced it. The UI for Triple Place has been updated
+relative to Pair Place to expose some of this information in a more convenient
+way.
 
 ![An example partially-filled Triple Place puzzle](/assets/images/triple-place-example.png)
 
