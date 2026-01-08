@@ -354,6 +354,7 @@ permalink: /browser-games/triple-place/
   }
 
   function findParametersOfContainingChain(row, column) {
+    let maxCount = 3;
     let tail = column;
     let count = 1;
     while(true) {
@@ -366,6 +367,7 @@ permalink: /browser-games/triple-place/
       } else if(next >= 0) {
         tail = next;
         ++count;
+        if(count > maxCount) return { cycle: false, count: 0 };
       } else {
         break;
       }
