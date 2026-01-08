@@ -973,7 +973,7 @@ permalink: /browser-games/pair-place/
 
   function dateCompareAscending(date0, date1) {
     if(date0 > date1) return 1;
-    else if(date0 > date1) return -1;
+    else if(date0 < date1) return -1;
     else return 0;
   }
 
