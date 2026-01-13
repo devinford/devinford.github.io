@@ -101,22 +101,48 @@ permalink: /browser-games/pair-place/
   <summary><b>How to Play</b></summary>
   <div class="details-content">
     <p>
-      To complete the puzzle, you must fill the grid with letters, placing two
-      letters at a time. To place letters in the grid, press on the first square
-      you want to fill, then drag to another open square in the same row. This
-      will fill each square with the header letter of the other square's column.
+      A Pair Place puzzle is represented as a grid with a "header row" at the
+      top. To complete a Pair Place puzzle, you must fill in each square with
+      a letter while obeying two rules:
+    </p>
+    <ol>
+      <li>Each letter must appear once in each column.</li>
+      <li>Letters must be placed into squares two at a time, with each square being filled with the header letter of the other square.</li>
+    </ol>
+    <p>
+      To place letters in the grid, press on the first square you want to fill,
+      then drag to another open square in the same row. This will fill each
+      square with the other square's header letter.
     </p>
     <img src="../../assets/images/tutorial-drag.gif">
-    <p>
-      In your final grid, each letter must appear no more than a single time in
-      each column.
-    </p>
     <h3>Tips</h3>
+    <p>
+      Although there are only two explicit rules of the puzzle, it's possible to
+      derive additional rules of thumb that can be used as deduction shortcuts.
+      A few such rules of thumb are:
+    </p>
     <ul>
-      <li>If there are only two squares left in a row, they must be connected.</li>
-      <li>If there is only one empty square in a column, connect it to the letter missing from that column.</li>
-      <li>If a column is missing a letter and can only connect to that letter in a single row, connect it to that letter in that row.</li>
+      <li>
+        A square must not be filled with a letter if:
+        <ul>
+          <li>The letter already appears in the row.</li>
+          <li>The letter already appears in the column.</li>
+        </ul>
+      </li>
+      <li>
+        A square must be filled with a letter if:
+        <ul>
+          <li>Only two blank squares remain in the row; each must be filled with the other's header letter.</li>
+          <li>The square is the only blank square in the column, and that letter is the only unused letter in the column.</li>
+          <li>That letter does not appear in that square's column yet, but that square is the only blank square in the column in a row where the letter hasn't been used yet.</li>
+        </ul>
+      </li>
     </ul>
+    <p>
+      This is not a full list of deduction shortcuts and you may discover
+      additional shortcuts on your own, but these cover most of the basic cases
+      that you'll encounter.
+    </p>
   </div>
 </details>
 
