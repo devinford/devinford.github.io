@@ -13,7 +13,7 @@ capable of some very unique functionality that is simply impossible without
 imposing the constraint of reversibility. In this fourth post on reversible
 programming, we will finally be justifying the name "reversible computing" by
 exploring how reversible programming languages can allow programmers to "run
-code backwards" and all of the unique things this feature allows you to
+code in reverse" and all of the unique things this feature allows you to
 accomplish.
 <!--more-->
 
@@ -33,7 +33,7 @@ programming languages for corresponding-but-not-equivalent concepts.
 
 ### `undo`
 
-Let's start off with the most direct possible method of running code backwards,
+Let's start off with the most direct possible method of running code in reverse,
 which you could call an `undo` statement.
 
 ```rust
@@ -43,8 +43,8 @@ undo {
 ```
 
 Whereas `given` executes a block of conditionally, and `between` executes a
-block of code in a loop, `undo` executes a block of code "backwards". When code
-is "executing backwards", the program executes the reversed version of each
+block of code in a loop, `undo` executes a block of code "in reverse". When code
+is "executing in reverse", the program executes the reversed version of each
 statement in reverse order.
 
 For example, consider the following code:
@@ -111,9 +111,9 @@ printline("a = {}, b = {}", a, b);
 What would you imagine that this program prints?
 
 The answer is: `"a = 1, b = 1"`. True to its name, running the same code
-backwards with `undo` "undoes" the result of applying it forward.
+in reverse with `undo` "undoes" the result of applying it forward.
 
-This core capability to "run code backwards" is the foundation of the unique
+This core capability to "run code in reverse" is the foundation of the unique
 capabilities of reversible programming languages. Plain `undo` statements are
 not likely to be used frequently on their own, but they make up half of the
 behavior of one of the most mind-bending control structures in reversible
@@ -212,7 +212,7 @@ of the track switching while we are on the loop of track. So, what happens...?
 
 We exit the `turn` statement traveling in the opposite direction that we
 initially entered it. In other words, the "`turn`" statement not only allows us
-to execute code backwards, it also allows us to "turn" around and start
+to execute code in reverse, it also allows us to "turn" around and start
 traveling backwards through the code that we were executing *before* the `turn`
 statement.
 
@@ -248,7 +248,7 @@ exiting the turntable in the opposite direction.
 
 The applications of this may not be immediately obvious-- it's fairly alien to
 any ordinary understanding of control flow. However, it turns out that the
-ability "turn around" and start executing code backwards is an extremely
+ability "turn around" and start executing code in reverse is an extremely
 powerful programming primitive with a number of applications.
 
 #### Toggle Reflectors and Backtracking
@@ -846,8 +846,8 @@ and provides a coherent method to clean up temporary variables without manually
 writing out tedious and brittle uninitialization statements.
 
 However, now that we have backtracking, we have some new questions to ask. When
-we "backtrack", we "run code backwards", but what does it *really* mean to "run
-code backwards"? The next post in this series will explore the unexpectedly
+we "backtrack", we "run code in reverse", but what does it *really* mean to "run
+code in reverse"? The next post in this series will explore the unexpectedly
 interesting answer to this question, and how accepting a slightly less-intuitive
 answer can add entirely new capabilities to reversible programming languages.
 

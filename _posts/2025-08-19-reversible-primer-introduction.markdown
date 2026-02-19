@@ -263,7 +263,7 @@ concept as "Bennett's Trick".
 
 However, many of those sources define the scope of this operation differently.
 In some sources, "Bennett's Trick" doesn't just involve running a computation
-backwards to clean up memory, but rather also includes a specific method of
+in reverse to clean up memory, but rather also includes a specific method of
 simulating non-reversible computations by generating a "trace" explicitly
 recording the history of the computation-- with the trace itself being
 "uncomputed" during the final step of the operation.

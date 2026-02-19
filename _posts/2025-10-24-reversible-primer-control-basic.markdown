@@ -215,7 +215,7 @@ if(condition) {
 Here, the `given` statement asserts that the condition has not changed before
 exiting the body. As long as the condition remains the same, we will always be
 able to backtrack through the `given` statement by using the same condition to
-decide whether or not to enter it while stepping through the code in reverse.
+decide whether or not to enter it while stepping through the code backwards.
 
 As described in the [disclaimer](#a-disclaimer-on-syntax), `given` is
 intentionally given a different name from normal `if` statements in this series
@@ -912,7 +912,7 @@ that item, so you might as well `continue` and skip to the next item.
 `continue` statements themselves would be complicated to reason about as
 elements of a reversible program, because, since you can `continue` out of the
 final iteration of a loop, they essentially represent an extra entry location
-for the loop that can only be accessed while running code backwards, and that
+for the loop that can only be accessed while running code in reverse, and that
 has complex conditions associated with jumping to it.
 
 We can get the majority of the benefit of `continue` statements without the
@@ -1069,7 +1069,7 @@ behavior again:
 7. If both conditions are met when a `for` loop is encountered, you do not enter the loop and skip it instead.
 8. If both conditions are met at the end of the block, an error is raised.
 
-There's very strong inside/outside and forward/backward symmetry of these rules,
+There's very strong inside/outside and forward/reverse symmetry of these rules,
 with one glaring exception in 7 and 8: both conditions being `true` only raises
 an error when it occurs *inside* of the loop.
 
