@@ -195,5 +195,5 @@ If you've tried the Pair Place puzzles on the site before but are looking for
 something with a little more meat to it, Triple Place might be what you're
 looking for. You can try out Triple Place [here](/browser-games/triple-place/).
 
-Now. If you'll excuse me. I have to get work on the blog posts for Quadruple
-Place, and Quintuple Place, and Hexuple Place, and...
+Now. If you'll excuse me. I have to get work on the posts for Quadruple Place,
+and Quintuple Place, and Hextuple Place, and...
