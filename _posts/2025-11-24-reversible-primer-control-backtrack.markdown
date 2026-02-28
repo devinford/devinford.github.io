@@ -679,12 +679,12 @@ This capability for nesting provides a lot of flexibility. But `flash`'s other
 friend provides even greater flexibility and an entire feature that is otherwise
 missing from reversible programming languages entirely.
 
-#### `done`
+#### `shut`
 
-`flash`'s second friend is `done`.
+`flash`'s second friend is `shut`.
 
 ```rust
-done;
+shut;
 
 // Is equivalent to:
 
@@ -697,11 +697,13 @@ This is essentially the "toggle reflector" discussed earlier, but toggling the
 `flash` statement's hidden variable.
 
 By reversing control flow and toggling the `flash` statement's hidden variable,
-`done` statements allow you to begin the cleanup step of the `flash` statement
-prematurely.
+`shut` statements allow you to begin the cleanup step of the `flash` statement
+prematurely. In the final of our trio of camera analogies, `shut` closes the
+shutter of the camera, allowing no additional exposure, completing the process
+of taking the photograph.
 
-Most commonly, `done` statements are used when a `flash` statement is enclosing
-a loop, where the `done` statement is used to terminate the loop prematurely
+Most commonly, `shut` statements are used when a `flash` statement is enclosing
+a loop, where the `shut` statement is used to terminate the loop prematurely
 if it can be determined that no further work needs to be performed. For example,
 if we want to find the first index of an element in a list:
 
@@ -723,7 +725,7 @@ flash {
         index <- i;
       }
       // start rolling back the loop.
-      done;
+      shut;
     }
 
     i @+ 1;
@@ -738,17 +740,17 @@ flash {
 ```
 
 When we find the first index where the search target is stored in the list, we
-store that index in the return value using `expose`, then use `done` to start
+store that index in the return value using `expose`, then use `shut` to start
 cleaning up the loop immediately. Since we've already found the index, no
 further iterations of the loop will be useful.
 
 In the [previous post](/post/2025/10/24/reversible-primer-control-basic/#extra-the-lack-of-continue-and-break),
 I mentioned that reversible programming languages couldn't include `break`
-statements for loops, but here we can see that `done` is kind of serving the
+statements for loops, but here we can see that `shut` is kind of serving the
 same role as a `break` statement, but in a cleaner, more obviously reversible
 way.
 
-The combination of `flash`, `expose` and `done` provides a powerful basis for
+The combination of `flash`, `expose` and `shut` provides a powerful basis for
 doing otherwise tedious or complicated cleanup automatically, which neatly
 resolves a lot of the major clunkiness of working with reversible programming
 languages.
@@ -926,11 +928,11 @@ will expand the primitive basis further.
 
 #### Extra: Labeled `flash` Blocks
 
-If we can call `expose` and `done` from inside of other control structures, then
+If we can call `expose` and `shut` from inside of other control structures, then
 can we call them from inside of *other `flash` blocks*? There's no reason why it
 wouldn't work logically-- each `flash` block gets its own hidden temporary
 variable-- but the obstacle is that we wouldn't have a clear, syntactical way of
-targeting the `expose` and `done` statements. But, we could work around this by
+targeting the `expose` and `shut` statements. But, we could work around this by
 introducing labels.
 
 ```rust
@@ -943,7 +945,7 @@ outer: flash {
 
 Here, `outer` is a label that can be used to target the outermost `flash`
 statement and `inner` is the label for the innermost `flash` statement. We can
-then target `expose` and `done` statements by passing the flash label as a
+then target `expose` and `shut` statements by passing the flash label as a
 parameter.
 
 ```rust
@@ -955,7 +957,7 @@ outer: flash {
     }
     // do some more work
     given(some_stopping_condition) {
-      done(outer);
+      shut(outer);
     }
   }
 }
@@ -992,7 +994,7 @@ minimum_found: flash {
           expose(smaller_found) {
             !@no_smaller_found;
           }
-          done(smaller_found);
+          shut(smaller_found);
         }
 
         j @+ 1;
@@ -1004,7 +1006,7 @@ minimum_found: flash {
         expose(minimum_found) {
           result <- i;
         }
-        done(minimum_found);
+        shut(minimum_found);
       }
     }
 
@@ -1131,7 +1133,7 @@ Thus, "inverted `flash` block".
 
 `using` statements have the potential to make code more concise, but might also
 be confusing if they are used alongside regular `flash` statements. For example,
-can `done` be used to terminate the implicit `flash` block early? I would expect
+can `shut` be used to terminate the implicit `flash` block early? I would expect
 that the answer would be "no", but that might not be immediately obvious.
 
 But, deep nesting is a real problem with reversible programs-- you can see in
