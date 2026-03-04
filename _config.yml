@@ -32,6 +32,9 @@ kramdown:
   typographic_symbols:
       ndash: --
 
+puzzle_api_base_url: 'https://api.dev-info-r-d.com/puzzle'
+environment_suffix: ''
+
 minima:
   # Minima skin selection.
   # Available skins are:

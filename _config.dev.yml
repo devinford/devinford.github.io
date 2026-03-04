@@ -1,0 +1,3 @@
+puzzle_api_base_url: 'https://localhost:7266/puzzle'
+environment_suffix: '-dev'
+debug: true
