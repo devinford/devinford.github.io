@@ -142,7 +142,7 @@ combinations of deduction rules until only one option remains.
 In practice, this makes solving Triple Place puzzles feel very different than
 solving Pair Place puzzles. You end up cross-referencing multiple different
 criteria for whether or not a particular letter is eligible to appear in each
-spot. While it's less a mathematically-relevant problem than Pair Place, it also
+spot. While it's a less mathematically-relevant problem than Pair Place, it also
 feels a little less rote.
 
 ## Modifying the UI for Triple Place
