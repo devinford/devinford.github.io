@@ -71,7 +71,7 @@ Generally speaking, if the condition is initially `false`, you skip the `while`
 loop entirely. If the condition is initially `true`, you enter the loop and
 repeat the body until the condition becomes `false`, at which point you exit the
 loop. Even though the condition determines which path you take, by the time you
-arrive the other side of the `while` loop, the condition can only have one
+arrive at the other side of the `while` loop, the condition can only have one
 possible value-- `false`-- meaning that the `while` loop itself erases the
 information that you would need to determine whether or not it ever executed.
 

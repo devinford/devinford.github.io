@@ -601,7 +601,7 @@ printline("The current value of `text` is: '{}'", text);
 ```
 
 Here, with the `readline` wrapped in `fdo`, it will not be executed during the
-rollback of the flash block, so its undefined reverse behavior will not be
+rollback of the `flash` block, so its undefined reverse behavior will not be
 invoked, and `text` will retain its value after the `flash` block completes.
 
 But, just doing nothing when executed backwards is neither the only nor the best
