@@ -790,6 +790,8 @@ for(i == 0 => i == list.count) {
       given(list[j] < list[smallest_index_stack.last()] => j == smallest_index_stack.last()) {
         smallest_index_stack.push(j);
       }
+
+      j @+ 1;
     }
 
     expose {

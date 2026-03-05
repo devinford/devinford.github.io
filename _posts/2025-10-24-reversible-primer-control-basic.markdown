@@ -139,7 +139,7 @@ entering it:
 ![The train skips entering the loop entirely because the track is not switched](/assets/images/betweenfalse.gif)
 
 The train will only enter the loop when the track is switched (the condition is
-`true`) However, once the train has entered the loop, the train will exit the
+`true`). However, once the train has entered the loop, the train will exit the
 loop the next time it passes the crossover while the crossover is switched (the
 condition is `true` again).
 

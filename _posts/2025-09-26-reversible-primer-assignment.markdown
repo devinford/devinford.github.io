@@ -325,10 +325,10 @@ b -> a;
 
 Whereas it takes a total of six `copy`/`uncopy` operations to implement a
 swap, we can implement a checked swap in only two operations. We implicitly
-assert that `a` is blank, then set it to the same value as `b` with the initial
-`copy`, and `uncopy` clear the value of `b`. This combination of operations has
-the effect of "moving" a value from `b` to `a`. So, we could call this the
-`move` assignment operator.
+assert that `a` is blank then set it to the same value as `b` with the initial
+`copy`, and then `uncopy` to clear the value of `b`. This combination of
+operations has the effect of "moving" a value from `b` to `a`. So, we could call
+this the `move` assignment operator.
 
 This core distinction between "copy assignment" and "move assignment" is a
 concept that already exists in many high-performance non-reversible programming
