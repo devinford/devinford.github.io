@@ -4,13 +4,13 @@ title: About
 permalink: /about/
 ---
 
-My name is Devin Ford. I am a programmer with 8 years of professional
-experience in game development and backend server development. This is a site
-where I plan to post and document some of my on-going hobby projects.
+My name is Devin Ford. I am a programmer, and this is a site where I plan to
+post and document some of my on-going hobby projects.
 
 I work on game development and recreational mathematics projects as hobbies. The
 posts on this site are most likely to be related to game development, reversible
-computing, or software development in general.
+computing (a specific area of focus in the last few years), or software
+development in general.
 
 The current ongoing major features on the site are:
 
