@@ -16,6 +16,7 @@ reversible programs, we discover that it's not always possible for this to be
 the case, and that, even when it's possible, it's not always desirable. In this
 fifth post on reversible programming, we will be examining the situations where
 our intuition regarding reverse execution fails.
+<!--more-->
 
 This is a bit of a difficult topic, and will be divided into two posts. In
 this post, we will be exploring a motivating example and introducing some new
@@ -23,7 +24,6 @@ core primitives to address that motivating example. In the follow-up, we will
 work towards establishing a more all-encompassing framework for these edgecases
 to better understand how to integrate them into our existing reversible
 programming patterns.
-<!--more-->
 
 #### A Disclaimer on Syntax
 
