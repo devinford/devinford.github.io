@@ -1,10 +1,12 @@
 ---
-layout: post
+layout: series-post
 title: "Reversible Programming Primer: Backtracking Control Flow"
 date: "2025-11-24 11:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
+series: reversible_primer
+series_name: "Reversible Programming Primer"
 ---
 
 So far in this series, reversible computation has introduced a lot of
@@ -854,6 +856,8 @@ we "backtrack", we "run code in reverse", but what does it *really* mean to "run
 code in reverse"? The next post in this series will explore the unexpectedly
 interesting answer to this question, and how accepting a slightly less-intuitive
 answer can add entirely new capabilities to reversible programming languages.
+
+<!--nav-->
 
 ---
 

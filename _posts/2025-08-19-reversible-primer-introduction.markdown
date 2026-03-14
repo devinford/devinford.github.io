@@ -1,10 +1,12 @@
 ---
-layout: post
+layout: series-post
 title: "Reversible Programming Primer: Introduction"
 date: "2025-08-19 11:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
+series: reversible_primer
+series_name: "Reversible Programming Primer"
 ---
 
 Over the past few years, I've been doing a lot of personal hobby research into
@@ -240,6 +242,8 @@ programming primitives that can be used to write arbitrary reversible programs
 in a more or less intuitive way. The next post in this series will cover the
 types of assignment operators that can be defined in reversible programming
 languages in extensive detail.
+
+<!--nav-->
 
 ---
 

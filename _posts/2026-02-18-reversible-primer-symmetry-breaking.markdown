@@ -1,11 +1,13 @@
 ---
-layout: post
+layout: series-post
 title: "Reversible Programming Primer: Symmetry-Breaking (Part 1)"
 date: "2026-02-18 11:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
 mermaid: true
+series: reversible_primer
+series_name: "Reversible Programming Primer"
 ---
 
 Reversible programming languages can run code "in reverse", but what does that
@@ -702,6 +704,8 @@ developing a more coherent mathematical model for symmetry-breaking code, and
 isolating a subcategory of symmetry-breaking code that gives us both
 symmetry-breaking functionality **and** compatibility with our existing
 symmetry-abiding assumptions-- the best of both worlds.
+
+<!--nav-->
 
 ---
 

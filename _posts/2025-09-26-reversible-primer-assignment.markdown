@@ -1,10 +1,12 @@
 ---
-layout: post
+layout: series-post
 title: "Reversible Programming Primer: Assignment"
 date: "2025-09-26 12:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
+series: reversible_primer
+series_name: "Reversible Programming Primer"
 ---
 
 Assignment as it is generally understood cannot exist in a reversible
@@ -650,6 +652,8 @@ programs. With both the initialization of variables and control flow, we will
 start to be able to write a little bit of actual code with real uses, such as
 basic algorithms, and dig more into how the considerations for reversible
 algorithms differ somewhat from their non-reversible counterparts.
+
+<!--nav-->
 
 ---
 

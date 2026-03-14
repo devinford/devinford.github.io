@@ -1,10 +1,12 @@
 ---
-layout: post
+layout: series-post
 title: "Reversible Programming Primer: Basic Control Flow"
 date: "2025-10-24 11:00:00 -0400"
 categories: post
 tags: programming reversible_programming reversible_primer
 excerpt_separator: <!--more-->
+series: reversible_primer
+series_name: "Reversible Programming Primer"
 ---
 
 In reversible programming languages, many of the fundamental concepts of control
@@ -779,6 +781,8 @@ and will displace the `between` loop as our third basic primitive. Up until this
 point, reversibility has largely been a restriction, but this will finally start
 to get into some of the new capabilities that reversibility grants to computer
 programs.
+
+<!--nav-->
 
 ---
 
