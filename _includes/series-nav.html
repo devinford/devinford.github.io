@@ -1,0 +1,62 @@
+{% assign series_tag = include.tag %}
+{% assign series_name = include.name %}
+{% assign series_posts = "" | split: "" %}
+
+{% for post in site.posts %}
+  {% if post.tags contains series_tag %}
+    {% assign series_posts = series_posts | push: post %}
+  {% endif %}
+{% endfor %}
+
+{% assign series_posts = series_posts | sort: "date" %}
+
+{% assign current_index = nil %}
+{% for post in series_posts %}
+  {% if post.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if current_index %}
+  {% assign prev_index = current_index | minus: 1 %}
+  {% assign next_index = current_index | plus: 1 %}
+  {% assign series_size = series_posts | size %}
+  {% assign first_post = series_posts[0] %}
+  {% assign last_index = series_size | minus: 1 %}
+  {% assign last_post = series_posts[last_index] %}
+
+  <nav class="series-navigation">
+    <div class="series-nav-controls">
+      {% if current_index > 0 %}
+        <a href="{{ first_post.url }}" class="nav-btn" title="First: {{ first_post.title }}">↞</a>
+      {% else %}
+        <span class="nav-btn disabled" title="First post">↞</span>
+      {% endif %}
+
+      {% if prev_index >= 0 %}
+        {% assign prev_post = series_posts[prev_index] %}
+        <a href="{{ prev_post.url }}" class="nav-btn" title="Previous: {{ prev_post.title }}">←</a>
+      {% else %}
+        <span class="nav-btn disabled" title="Previous">←</span>
+      {% endif %}
+
+      <a href="/category/{{ series_tag }}/" class="series-index">
+        {{ series_name }} ({{ current_index | plus: 1 }}/{{ series_size }})
+      </a>
+
+      {% if next_index < series_size %}
+        {% assign next_post = series_posts[next_index] %}
+        <a href="{{ next_post.url }}" class="nav-btn" title="Next: {{ next_post.title }}">→</a>
+      {% else %}
+        <span class="nav-btn disabled" title="Next">→</span>
+      {% endif %}
+
+      {% if current_index < last_index %}
+        <a href="{{ last_post.url }}" class="nav-btn" title="Last: {{ last_post.title }}">↠</a>
+      {% else %}
+        <span class="nav-btn disabled" title="Last post">↠</span>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}
