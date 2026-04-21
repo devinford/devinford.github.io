@@ -147,7 +147,9 @@ permalink: /browser-games/pair-place/
 </details>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
-<script>
+<script type="module">
+  import { apiAttemptPost, apiAttemptCompletionPut, apiAttemptCompletionGet } from '/assets/js/api-attempt.js';
+
   const canvas = document.getElementById('game-canvas');
   const context = canvas.getContext('2d');
 
