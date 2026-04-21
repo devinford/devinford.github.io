@@ -1330,15 +1330,6 @@ permalink: /browser-games/triple-place/
     return stateData ? JSON.parse(stateData) : null;
   }
 
-  function setPuzzleState(gameName, puzzleId, state) {
-    return localStorage.setItem(`${gameName}-${puzzleId}-state`, JSON.stringify(state));
-  }
-
-  function getPuzzleState(gameName, puzzleId) {
-    const stateData = localStorage.getItem(`${gameName}-${puzzleId}-state`);
-    return stateData ? JSON.parse(stateData) : null;
-  }
-
   function isTutorialComplete() {
     for(let i = 0; i < puzzles.length; ++i) {
       if(!puzzles[i].tutorial) continue;
