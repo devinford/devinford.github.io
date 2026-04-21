@@ -894,6 +894,8 @@ permalink: /browser-games/pair-place/
     gameStarted = false;
     startTime = null;
     completionTime = null;
+    puzzleScoreToken = null;
+    puzzleStats = null;
 
     theme = config.theme ? { ...defaultTheme, ...config.theme } : defaultTheme;
     gridColor = config.gridColor;
@@ -925,9 +927,13 @@ permalink: /browser-games/pair-place/
   const rightArrow = document.getElementById('right-arrow');
   const pickerField = document.getElementById('puzzle-date-picker');
 
+  let puzzleScoreToken = null;
+  let puzzleStats = null;
+
   // @@ Boilerplate
 
   let puzzleData;
+
   let puzzles = [];
 
   let minPuzzleIndex;
