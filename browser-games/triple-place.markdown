@@ -1469,20 +1469,6 @@ permalink: /browser-games/triple-place/
     return lastPuzzleIndexForDate;
   }
 
-  // @unused
-  function findPuzzleIndexForEarliestIncompleteOrLatest() {
-    let puzzleIndex = -1;
-    for(let i = 0; i < puzzles.length; ++i) {
-      if(puzzles[i].date > currentDate) continue;
-      const puzzleId = getPuzzleId(puzzles[i]);
-
-      puzzleIndex = i;
-      if(!getPuzzleCompletion(gameName, puzzleId)) return i;
-    }
-
-    return puzzleIndex;
-  }
-
   function dateHasPuzzle(date) {
     const dateText = dateFormat(date);
     return puzzles.some(puzzle => puzzle.date === dateText) && dateText <= currentDate;
