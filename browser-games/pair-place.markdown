@@ -447,17 +447,17 @@ permalink: /browser-games/pair-place/
       return;
     }
 
-    let elapsed;
-    if(completionTime) {
-      elapsed = Math.floor(completionTime / 1000);
-    } else {
-      elapsed = Math.floor((Date.now() - startTime) / 1000);
-    }
+    const elapsed = completionTime ?? (Date.now() - startTime);
 
-    const minutes = Math.floor(elapsed / 60);
-    const seconds = elapsed % 60;
+    timerElement.textContent = formatMillisecondsAsTimerString(elapsed);
+  }
 
-    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  function formatMillisecondsAsTimerString(milliseconds) {
+    const fullSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(fullSeconds / 60);
+    const seconds = fullSeconds % 60;
+
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
 
   // @@@ Rendering
