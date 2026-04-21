@@ -427,12 +427,10 @@ permalink: /browser-games/pair-place/
   const timerElement = document.getElementById('timer-display');
 
   function timerStart() {
-    if(gameStarted) return;
-    gameStarted = true;
-
     startTime = Date.now();
     saveGameState();
 
+    if(timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(timerUpdateDisplay, 1000);
   }
 
@@ -646,6 +644,13 @@ permalink: /browser-games/pair-place/
 
   // @@@ Event Handlers
 
+  function tryStartGame() {
+    if(gameStarted) return;
+    gameStarted = true;
+
+    timerStart();
+  }
+
   function getCellFromCoordinate(x, y) {
     const rect = canvas.getBoundingClientRect();
     const canvasX = x - rect.left;
@@ -733,7 +738,7 @@ permalink: /browser-games/pair-place/
     const cell = getCellFromCoordinate(e.clientX, e.clientY);
     if(!cell || cell.row == 0) return;
 
-    timerStart();
+    tryStartGame();
 
     if(currentMode === 'erase') {
       handleErase(cell.row, cell.column);
