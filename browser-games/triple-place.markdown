@@ -1286,6 +1286,7 @@ permalink: /browser-games/triple-place/
   }
 
   const gameName = 'triple-place';
+  const gameApiIdentifier = gameName + '{{ site.environment_suffix }}';
 
   const tags = [];
 

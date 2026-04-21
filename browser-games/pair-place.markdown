@@ -912,6 +912,7 @@ permalink: /browser-games/pair-place/
   }
 
   const gameName = 'pair-place';
+  const gameApiIdentifier = gameName + '{{ site.environment_suffix }}';
 
   const leftArrow = document.getElementById('left-arrow');
   const rightArrow = document.getElementById('right-arrow');
