@@ -642,7 +642,7 @@ permalink: /browser-games/pair-place/
 
   // @@@ Event Handlers
 
-  function getCellFromCoords(x, y) {
+  function getCellFromCoordinate(x, y) {
     const rect = canvas.getBoundingClientRect();
     const canvasX = x - rect.left;
     const canvasY = y - rect.top;
@@ -667,7 +667,7 @@ permalink: /browser-games/pair-place/
       return;
     }
 
-    const cell = getCellFromCoords(e.clientX, e.clientY);
+    const cell = getCellFromCoordinate(e.clientX, e.clientY);
 
     if(cell && cell.row != 0) {
       canvas.style.cursor = selectedCell ? 'grabbing' : 'grab';
@@ -694,7 +694,7 @@ permalink: /browser-games/pair-place/
 
     if(!selectedCell) return;
 
-    const cell = getCellFromCoords(e.clientX, e.clientY);
+    const cell = getCellFromCoordinate(e.clientX, e.clientY);
     if(cell) {
       if(cell.row != 0) {
         canvas.style.cursor = 'grab';
@@ -726,7 +726,7 @@ permalink: /browser-games/pair-place/
       return;
     }
 
-    const cell = getCellFromCoords(e.clientX, e.clientY);
+    const cell = getCellFromCoordinate(e.clientX, e.clientY);
     if(!cell || cell.row == 0) return;
 
     timerStart();
