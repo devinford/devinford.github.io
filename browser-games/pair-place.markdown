@@ -150,6 +150,8 @@ permalink: /browser-games/pair-place/
 <script type="module">
   import { apiAttemptPost, apiAttemptCompletionPut, apiAttemptCompletionGet } from '/assets/js/api-attempt.js';
 
+  const apiBaseUrl = "{{ site.puzzle_api_base_url }}";
+
   const canvas = document.getElementById('game-canvas');
   const context = canvas.getContext('2d');
 
