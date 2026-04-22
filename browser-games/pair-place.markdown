@@ -873,7 +873,10 @@ permalink: /browser-games/pair-place/
     if(puzzleState.puzzleScoreToken) {
       puzzleScoreToken = puzzleState.puzzleScoreToken;
       // @todo Maybe pull out side-effects.
-      apiAttemptCompletionGet(apiBaseUrl, puzzleScoreToken, setPuzzleAttemptStats);
+      if(puzzleState.completionTime) {
+        // @todo Maybe pull out side-effects.
+        apiAttemptCompletionGet(apiBaseUrl, puzzleScoreToken, setPuzzleAttemptStats);
+      }
     } else {
       // @todo Maybe trigger automatic registration of existing attempts (for older or offline attempts)
       puzzleScoreToken = null;
