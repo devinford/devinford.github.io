@@ -478,7 +478,10 @@ permalink: /browser-games/triple-place/
 
     gameGrid[row][column0] = column1;
 
-    autoComplete3Chain(row, column0);
+    let chain = findParametersOfContainingChain(row, column0);
+    if(!chain.cycle && chain.count == 3) {
+      gameGrid[row][chain.tail] = chain.head;
+    }
 
     notes[row][column0].clear();
     for(let column = 0; column < gridWidth; ++column) {
@@ -506,13 +509,6 @@ permalink: /browser-games/triple-place/
 
   function columnIndexFromHeaderLetter(letter) {
     return headerLetters.indexOf(letter);
-  }
-
-  function autoComplete3Chain(row, column) {
-    let chain = findParametersOfContainingChain(row, column);
-    if(!chain.cycle && chain.count == 3) {
-      handleWrite(row, chain.tail, chain.head);
-    }
   }
 
   function clearNotesForPlacement(row, column0, column1) {
