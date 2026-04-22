@@ -605,9 +605,11 @@ permalink: /browser-games/pair-place/
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
 
+    const centerY = canvasHeight * 0.2;
+
     if(completionAnimationStripeProgress > 0) {
       const stripeHeight = 60;
-      const stripeY = (canvasHeight - stripeHeight) / 2;
+      const stripeY = centerY - stripeHeight / 2;
 
       const stripeX = lerp(canvasWidth, 0, completionAnimationStripeProgress);
       const stripeWidth = canvasWidth - stripeX;
@@ -618,7 +620,6 @@ permalink: /browser-games/pair-place/
 
     if(completionAnimationTextProgress > 0) {
       const centerX = canvasWidth / 2;
-      const centerY = canvasHeight / 2;
 
       const fontSize = Math.min(48, canvasWidth / 12);
       context.font = `bold ${fontSize}px Arial`;

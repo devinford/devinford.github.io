@@ -968,7 +968,7 @@ permalink: /browser-games/triple-place/
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
 
-    const centerY = canvasHeight / 2;
+    const centerY = canvasHeight * 0.2;
 
     if(completionAnimationStripeProgress > 0) {
       const stripeHeight = 60;
