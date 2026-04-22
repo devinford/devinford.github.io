@@ -324,8 +324,7 @@ permalink: /browser-games/pair-place/
   }
 
   function handlePuzzleCompletion() {
-    const elapsedTime = Date.now() - startTime;
-    completionTime = elapsedTime;
+    completionTime = Date.now() - startTime;
 
     const puzzleId = getPuzzleId(puzzleConfiguration);
     setPuzzleCompletion(gameName, puzzleId, true);
@@ -416,7 +415,7 @@ permalink: /browser-games/pair-place/
   }
 
   function completionAnimationFrame(timestamp) {
-    completionAnimationUpdate(timestamp)
+    completionAnimationUpdate(timestamp);
 
     drawGame();
 
