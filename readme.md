@@ -13,44 +13,106 @@ Install Ruby with [Ruby Installer](https://rubyinstaller.org/).
 
 todo
 
-### Serve Locally
+## Install
 
-1. `bundle install` to install dependencies.
-2. `bundle exec jekyll serve --config _config.yml,_config.dev.yml` to serve the site locally.
-    - Use `bundle exec jekyll serve --config _config.yml,_config.dev.yml --future` to serve the site locally including future-dated posts.
+> Install necessary dependencies for running commands.
+
+```bash
+bundle install
+```
+
+```powershell
+bundle install
+```
+
+## Serve
+
+> Serves the site locally, not including future-dated posts.
 
 *Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`.*
 
-### Build Site without Serving
+```bash
+bundle exec jekyll serve --config _config.yml,_config.dev.yml
+```
 
-1. `bundle install` to install dependencies.
-2. `bundle exec jekyll build --config _config.yml,_config.dev.yml` to generate the site files in `_site`.
-    - Use `bundle exec jekyll build --config _config.yml,_config.dev.yml --future` to generate the site files including future-dated posts.
+```powershell
+bundle exec jekyll serve --config _config.yml,_config.dev.yml
+```
+
+## Serve Future
+
+> Serves the site locally, including future-dated posts.
+
+*Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`.*
+
+```bash
+bundle exec jekyll serve --config _config.yml,_config.dev.yml --future
+```
+
+```powershell
+bundle exec jekyll serve --config _config.yml,_config.dev.yml --future
+```
+
+## Build
+
+> Builds the site into the '\_site' directory without serving it, not including future-dated posts.
 
 *Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`. Remove this if building to upload the built static site to a hosting platform.*
 
-### Regenerate Indexes
+```bash
+bundle exec jekyll build --config _config.yml,_config.dev.yml
+```
 
-When a new article is added, the category indexes may need to be recreated. The
-category indexes can be regenerated automatically by running the following
-script:
+```powershell
+bundle exec jekyll build --config _config.yml,_config.dev.yml
+```
+
+## Build Future
+
+> Builds the site into the '\_site' directory without serving it, including future-dated posts.
+
+*Note, the `--config _config.yml,_config.dev.yml` option uses the development `_config.dev.yml`, which overrides corresponding fields of the default `_config.yml`. Remove this if building to upload the built static site to a hosting platform.*
+
+```bash
+bundle exec jekyll build --config _config.yml,_config.dev.yml --future
+```
+
+```powershell
+bundle exec jekyll build --config _config.yml,_config.dev.yml --future
+```
+
+## Regenerate Tags
+
+> Regenerates the posts-by-category pages to account for the current number of posts, not including future-dated posts.
 
 ```bash
 bundle exec rake generate:tags
 ```
 
-In order to generate tag indexes including "future" articles-- articles to be
-released after the date that the script is run, instead run:
+```powershell
+bundle exec rake generate:tags
+```
+
+## Regenerate Tags Future
+
+> Regenerates the posts-by-category pages to account for the current number of posts, including future-dated posts.
 
 ```bash
 bundle exec rake generate:tags[true]
 ```
 
-### Check Remaining Runway for Puzzles
+```powershell
+bundle exec rake generate:tags[true]
+```
 
-The following rake task will check the remaining number of puzzles that have
-yet to launch.
+## Runway
+
+> Checks the number of days of puzzles remaining for each
 
 ```bash
+bundle exec rake puzzle:dates
+```
+
+```powershell
 bundle exec rake puzzle:dates
 ```
