@@ -255,9 +255,10 @@ permalink: /browser-games/pair-place/
 
       clearNotesForPlacement(row, column0, column1);
 
+      // @todo this probably should not all be in the game logic.
       saveGameState();
-      drawGame();
       recalculateCachedErrors();
+      drawGame();
 
       if(isPuzzleComplete()) {
         handlePuzzleCompletion();
@@ -926,11 +927,13 @@ permalink: /browser-games/pair-place/
       initializeStartingGameState();
     }
 
-    resizeCanvas();
     recalculateCachedErrors();
-    drawGame();
     timerUpdateDisplay();
     updatePuzzlePrompt();
+
+    // @extract This probably should not happen here
+    resizeCanvas();
+    drawGame();
   }
 
   function initializeGamePlayer() {
