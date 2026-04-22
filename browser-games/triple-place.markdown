@@ -477,18 +477,12 @@ permalink: /browser-games/triple-place/
     if(column0 < 0 || column1 < 0) return;
 
     gameGrid[row][column0] = column1;
+    removeNotes(row, column0, column1);
 
     let chain = findParametersOfContainingChain(row, column0);
     if(!chain.cycle && chain.count == 3) {
       gameGrid[row][chain.tail] = chain.head;
-    }
-
-    notes[row][column0].clear();
-    for(let column = 0; column < gridWidth; ++column) {
-      notes[row][column].delete(column1);
-    }
-    for(let row0 = 0; row0 < gridHeight; ++row0) {
-      notes[row0][column0].delete(column1);
+      removeNotes(row, chain.tail, chain.head);
     }
 
     saveGameState();
@@ -497,6 +491,16 @@ permalink: /browser-games/triple-place/
 
     if(isPuzzleComplete()) {
       handlePuzzleCompletion();
+    }
+  }
+
+  function removeNotes(row, column0, column1) {
+    notes[row][column0].clear();
+    for(let column = 0; column < gridWidth; ++column) {
+      notes[row][column].delete(column1);
+    }
+    for(let row0 = 0; row0 < gridHeight; ++row0) {
+      notes[row0][column0].delete(column1);
     }
   }
 
