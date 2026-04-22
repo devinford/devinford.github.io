@@ -612,6 +612,9 @@ permalink: /browser-games/triple-place/
     timerUpdateDisplay();
 
     completionAnimationStart();
+    if(puzzleScoreToken !== null) {
+      apiAttemptCompletionPut(apiBaseUrl, puzzleScoreToken, completionTime, setPuzzleAttemptStats);
+    }
 
     updatePuzzlePrompt();
   }
@@ -1314,6 +1317,12 @@ permalink: /browser-games/triple-place/
       // be able to create multiple meaningfully different attempts for the same puzzle in a fraction of a second.
       puzzleScoreToken = puzzleToken;
       saveGameState();
+    }
+  }
+
+  function setPuzzleAttemptStats(stats) {
+    if(stats.puzzleName === getPuzzleId(puzzleConfiguration)) {
+      puzzleStats = stats;
     }
   }
 
