@@ -1191,7 +1191,8 @@ permalink: /browser-games/triple-place/
       notes: notes.map(row => row.map(cell => Array.from(cell))),
       startTime: startTime,
       gameStarted: gameStarted,
-      completionTime: completionTime
+      completionTime: completionTime,
+      puzzleScoreToken: puzzleScoreToken
     };
     const puzzleId = getPuzzleId(puzzleConfiguration);
     setPuzzleState(gameName, puzzleId, state);
@@ -1233,6 +1234,15 @@ permalink: /browser-games/triple-place/
       // @todo Maybe pull out side-effects.
       timerInterval = setInterval(timerUpdateDisplay, 1000);
       completionTime = null;
+    }
+
+    if(puzzleState.puzzleScoreToken) {
+      puzzleScoreToken = puzzleState.puzzleScoreToken;
+      // @todo Maybe pull out side-effects.
+      apiAttemptCompletionGet(apiBaseUrl, puzzleScoreToken, setPuzzleAttemptStats);
+    } else {
+      // @todo Maybe trigger automatic registration of existing attempts (for older or offline attempts)
+      puzzleScoreToken = null;
     }
 
     return true;
