@@ -648,6 +648,8 @@ permalink: /browser-games/pair-place/
     if(gameStarted) return;
     gameStarted = true;
 
+    apiAttemptPost(apiBaseUrl, getPuzzleId(puzzleConfiguration), gameApiIdentifier, setPuzzleAttemptToken);
+
     timerStart();
   }
 
@@ -929,6 +931,20 @@ permalink: /browser-games/pair-place/
 
   let puzzleScoreToken = null;
   let puzzleStats = null;
+
+  function setPuzzleAttemptToken(puzzleName, puzzleToken) {
+    if(puzzleName === getPuzzleId(puzzleConfiguration)) {
+      // @todo Known bug: if the user begins a puzzle and then swaps away BEFORE the response with their puzzle token returns,
+      // then their puzzle token will not be written to their saved puzzle state in local storage; this will result in a
+      // puzzle state that will not receive a score.
+      // Fixing this in an absolute way may be a little complex, since we would need to associate each puzzle token request
+      // with a particular instance of a puzzle attempt. Probably, given the time window, it would be safe to just patch the whatever
+      // puzzle token comes back into whatever attempt currently exists for that puzzle in local storage, since a user would not
+      // be able to create multiple meaningfully different attempts for the same puzzle in a fraction of a second.
+      puzzleScoreToken = puzzleToken;
+      saveGameState();
+    }
+  }
 
   // @@ Boilerplate
 
