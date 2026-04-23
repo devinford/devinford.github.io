@@ -4,7 +4,6 @@ export async function apiAttemptPost(apiBaseUrl, puzzleName, gameName, setPuzzle
     gameName: gameName,
     puzzleName: puzzleName,
   };
-  console.log("Hitting endpoint", endpoint, body);
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -34,7 +33,6 @@ export async function apiAttemptCompletionPut(apiBaseUrl, token, time, statsCall
     id: token,
     score: time,
   };
-  console.log("Hitting endpoint", endpoint, body);
   try {
     const response = await fetch(endpoint, {
       method: 'PUT',
@@ -63,7 +61,6 @@ export async function apiAttemptCompletionPut(apiBaseUrl, token, time, statsCall
 
 export async function apiAttemptCompletionGet(apiBaseUrl, token, statsCallback) {
   const endpoint = `${apiBaseUrl}/attempt/${token}/completion`;
-  console.log("Hitting endpoint", endpoint);
   try {
     const response = await fetch(endpoint, {
       headers: {
