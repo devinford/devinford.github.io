@@ -645,6 +645,7 @@ permalink: /browser-games/triple-place/
 
   const CompletionAnimation = 0;
   const TimeAnimation = 1;
+  const RankAnimation = 2;
 
   let animations = [];
 
@@ -765,6 +766,34 @@ permalink: /browser-games/triple-place/
   function timeAnimationInstant() {
     animations[TimeAnimation].running = true;
     animations[TimeAnimation].current = animations[CompletionAnimation].duration;
+  }
+
+  // @@@ Rank Animation
+
+  const RankAnimationStripeDuration = 400;
+  const RankAnimationTextDelay = 800;
+  const RankAnimationTextDuration = 600;
+  const RankAnimationTotalDuration = RankAnimationTextDelay + RankAnimationTextDuration;
+
+  animations.push({ duration: RankAnimationTotalDuration, current: 0, running: false, });
+
+  function rankAnimationStop() {
+    animations[RankAnimation].running = false;
+    animations[RankAnimation].current = 0;
+
+    stopAnimationTimerIfNoneAreRunning();
+  }
+
+  function rankAnimationStart() {
+    animations[RankAnimation].running = true;
+    animations[RankAnimation].current = 0;
+
+    startAnimationTimer();
+  }
+
+  function rankAnimationInstant() {
+    animations[RankAnimation].running = true;
+    animations[RankAnimation].current = animations[CompletionAnimation].duration;
   }
 
   // @@@ Timer Interval
@@ -905,6 +934,10 @@ permalink: /browser-games/triple-place/
 
     if(animations[TimeAnimation].running) {
       drawTimeAnimation();
+    }
+
+    if(animations[RankAnimation].running) {
+      drawRankAnimation();
     }
   }
 
@@ -1136,6 +1169,71 @@ permalink: /browser-games/triple-place/
       context.fillText(scoreText, completeCurrentX, centerY);
     }
   }
+
+  function drawRankAnimation() {
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    const stripeColor = theme.colorCompletionStripe;
+    const textColor = theme.colorCompletionText;
+
+    const centerY = [
+      canvasHeight * 0.6,
+      canvasHeight * 0.8,
+    ];
+
+    const textPairs = [
+      ["Average: ", formatMillisecondsAsTimerString(puzzleStats.averageScore)],
+      ["Rank: ", `${puzzleStats.rank}`],
+    ];
+
+    const animationCurrent = animations[RankAnimation].current;
+    const completionAnimationStripeProgress = Math.min(animationCurrent / completionAnimationStripeDuration, 1);
+    const completionAnimationTextProgress = Math.min(Math.max((animationCurrent - completionAnimationTextDelay) / completionAnimationTextDuration, 0), 1);
+
+    if(completionAnimationStripeProgress > 0) {
+      for(let i = 0; i < centerY.length; ++i) {
+        const stripeHeight = 60;
+        const stripeY = centerY[i] - stripeHeight / 2;
+
+        const stripeX = lerp(canvasWidth, 0, completionAnimationStripeProgress);
+        const stripeWidth = canvasWidth - stripeX;
+
+        context.fillStyle = stripeColor;
+        context.fillRect(stripeX, stripeY, stripeWidth, stripeHeight);
+      }
+    }
+
+    if(completionAnimationTextProgress > 0) {
+      for(let i = 0; i < textPairs.length; ++i) {
+        const centerX = canvasWidth / 2;
+
+        const fontSize = Math.min(48, canvasWidth / 12);
+        context.font = `bold ${fontSize}px Arial`;
+        context.textBaseline = 'middle';
+        context.fillStyle = textColor;
+        context.textAlign = 'center';
+
+        const spacing = 20;
+        const puzzleTextWidth = context.measureText(textPairs[i][0]).width;
+        const completeTextWidth = context.measureText(textPairs[i][1]).width;
+        const totalTextWidth = puzzleTextWidth + spacing + completeTextWidth;
+
+        const completionAnimationTextProgressEased = easeOutCubic(completionAnimationTextProgress);
+
+        const puzzleStartX = -puzzleTextWidth;
+        const puzzleFinalX = centerX - totalTextWidth / 2 + puzzleTextWidth / 2;
+        const puzzleCurrentX = lerp(puzzleStartX, puzzleFinalX, completionAnimationTextProgressEased);
+        context.fillText(textPairs[i][0], puzzleCurrentX, centerY[i]);
+
+        const completeStartX = canvasWidth + completeTextWidth;
+        const completeFinalX = centerX + totalTextWidth / 2 - completeTextWidth / 2;
+        const completeCurrentX = lerp(completeStartX, completeFinalX, completionAnimationTextProgressEased);
+        context.fillText(textPairs[i][1], completeCurrentX, centerY[i]);
+      }
+    }
+  }
+
 
   // @@@ Event Handlers
 
@@ -1404,6 +1502,7 @@ permalink: /browser-games/triple-place/
     timerStop();
     completionAnimationStop();
     timeAnimationStop();
+    rankAnimationStop();
     gameStarted = false;
     startTime = null;
     completionTime = null;
@@ -1465,6 +1564,8 @@ permalink: /browser-games/triple-place/
   function setPuzzleAttemptStats(stats) {
     if(stats.puzzleName === getPuzzleId(puzzleConfiguration)) {
       puzzleStats = stats;
+
+      rankAnimationStart();
     }
   }
 
