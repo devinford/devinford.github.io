@@ -243,12 +243,6 @@ permalink: /browser-games/triple-place/
 
   let defaultTheme = null;
 
-  let completionAnimationActive = false;
-  let completionAnimationStripeProgress = 0;
-  let completionAnimationTextProgress = 0;
-  let completionAnimationAnimationId = null;
-  let completionAnimationStartTime = null;
-
   // @@ Puzzle Logic
 
   function cellStatus(nonHeaderRow, column) {
@@ -648,6 +642,8 @@ permalink: /browser-games/triple-place/
 
   // @@@ Animations
 
+  const CompletionAnimation = 0;
+
   let animations = [];
 
   let animationTimerId;
@@ -718,55 +714,27 @@ permalink: /browser-games/triple-place/
   const completionAnimationStripeDuration = 400;
   const completionAnimationTextDelay = 800;
   const completionAnimationTextDuration = 600;
+  const completionAnimationTotalDuration = completionAnimationTextDelay + completionAnimationTextDuration;
+
+  animations.push({ duration: completionAnimationTotalDuration, current: 0, running: false, });
 
   function completionAnimationStop() {
-    if(completionAnimationAnimationId) {
-      cancelAnimationFrame(completionAnimationAnimationId);
-      completionAnimationAnimationId = null;
-    }
-    completionAnimationActive = false;
-    completionAnimationStripeProgress = 0;
-    completionAnimationTextProgress = 0;
-    completionAnimationStartTime = null;
+    animations[CompletionAnimation].running = false;
+    animations[CompletionAnimation].current = 0;
+
+    stopAnimationTimerIfNoneAreRunning();
   }
 
   function completionAnimationStart() {
-    completionAnimationStop();
+    animations[CompletionAnimation].running = true;
+    animations[CompletionAnimation].current = 0;
 
-    completionAnimationActive = true;
-    completionAnimationStripeProgress = 0;
-    completionAnimationTextProgress = 0;
-    completionAnimationStartTime = performance.now();
-    completionAnimationAnimationId = requestAnimationFrame(completionAnimationFrame);
+    startAnimationTimer();
   }
 
   function completionAnimationInstant() {
-    completionAnimationStop();
-
-    completionAnimationActive = true;
-    completionAnimationStripeProgress = 1;
-    completionAnimationTextProgress = 1;
-  }
-
-  function completionAnimationUpdate(timestamp) {
-    const elapsed = timestamp - completionAnimationStartTime;
-
-    completionAnimationStripeProgress = Math.min(elapsed / completionAnimationStripeDuration, 1);
-
-    if(elapsed > completionAnimationTextDelay) {
-      const textElapsed = elapsed - completionAnimationTextDelay;
-      completionAnimationTextProgress = Math.min(textElapsed / completionAnimationTextDuration, 1);
-    }
-  }
-
-  function completionAnimationFrame(timestamp) {
-    completionAnimationUpdate(timestamp);
-
-    drawGame();
-
-    if(completionAnimationStripeProgress < 1 || completionAnimationTextProgress < 1) {
-      completionAnimationAnimationId = requestAnimationFrame(completionAnimationFrame);
-    }
+    animations[CompletionAnimation].running = true;
+    animations[CompletionAnimation].current = animations[CompletionAnimation].duration;
   }
 
   // @@@ Timer Interval
@@ -901,7 +869,7 @@ permalink: /browser-games/triple-place/
 
     drawGridLines();
 
-    if(completionAnimationActive) {
+    if(animations[CompletionAnimation].running) {
       drawCompletionAnimation();
     }
   }
@@ -1036,6 +1004,10 @@ permalink: /browser-games/triple-place/
     const textColor = theme.colorCompletionText;
 
     const centerY = canvasHeight * 0.2;
+
+    const animationCurrent = animations[CompletionAnimation].current;
+    const completionAnimationStripeProgress = Math.min(animationCurrent / completionAnimationStripeDuration, 1);
+    const completionAnimationTextProgress = Math.min(Math.max((animationCurrent - completionAnimationTextDelay) / completionAnimationTextDuration, 0), 1);
 
     if(completionAnimationStripeProgress > 0) {
       const stripeHeight = 60;
