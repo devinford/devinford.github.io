@@ -329,6 +329,7 @@ permalink: /browser-games/pair-place/
     timerUpdateDisplay();
 
     completionAnimationStart();
+    timeAnimationStart();
     if(puzzleScoreToken !== null) {
       apiAttemptCompletionPut(apiBaseUrl, puzzleScoreToken, completionTime, setPuzzleAttemptStats);
     }
@@ -366,6 +367,7 @@ permalink: /browser-games/pair-place/
   // @@@ Animations
 
   const CompletionAnimation = 0;
+  const TimeAnimation = 1;
 
   let animations = [];
 
@@ -458,6 +460,34 @@ permalink: /browser-games/pair-place/
   function completionAnimationInstant() {
     animations[CompletionAnimation].running = true;
     animations[CompletionAnimation].current = animations[CompletionAnimation].duration;
+  }
+
+  // @@@ Time Animation
+
+  const TimeAnimationStripeDuration = 400;
+  const TimeAnimationTextDelay = 800;
+  const TimeAnimationTextDuration = 600;
+  const TimeAnimationTotalDuration = TimeAnimationTextDelay + TimeAnimationTextDuration;
+
+  animations.push({ duration: TimeAnimationTotalDuration, current: 0, running: false, });
+
+  function timeAnimationStop() {
+    animations[TimeAnimation].running = false;
+    animations[TimeAnimation].current = 0;
+
+    stopAnimationTimerIfNoneAreRunning();
+  }
+
+  function timeAnimationStart() {
+    animations[TimeAnimation].running = true;
+    animations[TimeAnimation].current = 0;
+
+    startAnimationTimer();
+  }
+
+  function timeAnimationInstant() {
+    animations[TimeAnimation].running = true;
+    animations[TimeAnimation].current = animations[CompletionAnimation].duration;
   }
 
   // @@@ Timer Interval
@@ -556,6 +586,10 @@ permalink: /browser-games/pair-place/
 
     if(animations[CompletionAnimation].running) {
       drawCompletionAnimation();
+    }
+
+    if(animations[TimeAnimation].running) {
+      drawTimeAnimation();
     }
   }
 
@@ -682,6 +716,61 @@ permalink: /browser-games/pair-place/
       const completeFinalX = centerX + totalTextWidth / 2 - completeTextWidth / 2;
       const completeCurrentX = lerp(completeStartX, completeFinalX, completionAnimationTextProgressEased);
       context.fillText(completionAnimationTextComplete, completeCurrentX, centerY);
+    }
+  }
+
+  const timeAnimationTextTime = "Your Time: ";
+
+  function drawTimeAnimation() {
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    const stripeColor = theme.colorCompletionStripe;
+    const textColor = theme.colorCompletionText;
+
+    const centerY = canvasHeight * 0.4;
+
+    const animationCurrent = animations[TimeAnimation].current;
+    const completionAnimationStripeProgress = Math.min(animationCurrent / completionAnimationStripeDuration, 1);
+    const completionAnimationTextProgress = Math.min(Math.max((animationCurrent - completionAnimationTextDelay) / completionAnimationTextDuration, 0), 1);
+
+    if(completionAnimationStripeProgress > 0) {
+      const stripeHeight = 60;
+      const stripeY = centerY - stripeHeight / 2;
+
+      const stripeX = lerp(canvasWidth, 0, completionAnimationStripeProgress);
+      const stripeWidth = canvasWidth - stripeX;
+
+      context.fillStyle = stripeColor;
+      context.fillRect(stripeX, stripeY, stripeWidth, stripeHeight);
+    }
+
+    if(completionAnimationTextProgress > 0) {
+      const scoreText = formatMillisecondsAsTimerString(completionTime);
+      const centerX = canvasWidth / 2;
+
+      const fontSize = Math.min(48, canvasWidth / 12);
+      context.font = `bold ${fontSize}px Arial`;
+      context.textBaseline = 'middle';
+      context.fillStyle = textColor;
+      context.textAlign = 'center';
+
+      const spacing = 20;
+      const puzzleTextWidth = context.measureText(timeAnimationTextTime).width;
+      const completeTextWidth = context.measureText(scoreText).width;
+      const totalTextWidth = puzzleTextWidth + spacing + completeTextWidth;
+
+      const completionAnimationTextProgressEased = easeOutCubic(completionAnimationTextProgress);
+
+      const puzzleStartX = -puzzleTextWidth;
+      const puzzleFinalX = centerX - totalTextWidth / 2 + puzzleTextWidth / 2;
+      const puzzleCurrentX = lerp(puzzleStartX, puzzleFinalX, completionAnimationTextProgressEased);
+      context.fillText(timeAnimationTextTime, puzzleCurrentX, centerY);
+
+      const completeStartX = canvasWidth + completeTextWidth;
+      const completeFinalX = centerX + totalTextWidth / 2 - completeTextWidth / 2;
+      const completeCurrentX = lerp(completeStartX, completeFinalX, completionAnimationTextProgressEased);
+      context.fillText(scoreText, completeCurrentX, centerY);
     }
   }
 
@@ -904,15 +993,17 @@ permalink: /browser-games/pair-place/
 
     if(puzzleState.completionTime) {
       completionTime = puzzleState.completionTime;
+      // @todo Maybe pull out side-effects.
       completionAnimationInstant();
+      timeAnimationInstant();
     } else {
+      // @todo Maybe pull out side-effects.
       timerInterval = setInterval(timerUpdateDisplay, 1000);
       completionTime = null;
     }
 
     if(puzzleState.puzzleScoreToken) {
       puzzleScoreToken = puzzleState.puzzleScoreToken;
-      // @todo Maybe pull out side-effects.
       if(puzzleState.completionTime) {
         // @todo Maybe pull out side-effects.
         apiAttemptCompletionGet(apiBaseUrl, puzzleScoreToken, setPuzzleAttemptStats);
@@ -949,6 +1040,7 @@ permalink: /browser-games/pair-place/
 
     timerStop();
     completionAnimationStop();
+    timeAnimationStop();
     gameStarted = false;
     startTime = null;
     completionTime = null;
