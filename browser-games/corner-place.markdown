@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Triple Place
-permalink: /browser-games/triple-place/
+title: Corner Place
+permalink: /browser-games/corner-place/
 ---
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css">
@@ -1535,7 +1535,7 @@ permalink: /browser-games/triple-place/
     setupClearButton();
   }
 
-  const gameName = 'triple-place';
+  const gameName = 'corner-place';
   const gameApiIdentifier = gameName + '{{ site.environment_suffix }}';
 
   const tags = [];
