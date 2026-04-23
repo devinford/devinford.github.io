@@ -646,6 +646,73 @@ permalink: /browser-games/triple-place/
     puzzlePrompt.innerHTML = promptContent;
   }
 
+  // @@@ Animations
+
+  let animations = [];
+
+  let animationTimerId;
+  let animationTimerRunning = false;
+  let animationTimerLastTime = null;
+
+  function stopAnimationTimerIfNoneAreRunning() {
+    let anyStillRunning = false;
+    for(let i = 0; i < animations.length; ++i) {
+      if(animations[i].running && animations[i].current < animations[i].duration) {
+        anyStillRunning = true;
+      }
+    }
+
+    if(!anyStillRunning) {
+      stopAnimationTimer();
+    }
+  }
+
+  function stopAnimationTimer() {
+    if(animationTimerId) {
+      cancelAnimationFrame(animationTimerId);
+      animationTimerId = null;
+      animationTimerRunning = false;
+    }
+  }
+
+  function startAnimationTimer() {
+    if(animationTimerRunning) return;
+
+    animationTimerLastTime = performance.now();
+    animationTimerId = requestAnimationFrame(animationTimerFrame);
+    animationTimerRunning = true;
+  }
+
+  function animationTimerUpdate(timestamp) {
+    const elapsed = timestamp - animationTimerLastTime;
+    animationTimerLastTime = performance.now();
+
+    let anyStillRunning = false;
+    for(let i = 0; i < animations.length; ++i) {
+      if(animations[i].running) {
+        animations[i].current = Math.min(animations[i].current + elapsed, animations[i].duration);
+
+        if(animations[i].current < animations[i].duration) {
+          anyStillRunning = true;
+        }
+      }
+    }
+
+    return anyStillRunning;
+  }
+
+  function animationTimerFrame(timestamp) {
+    const anyStillRunning = animationTimerUpdate(timestamp);
+
+    drawGame();
+
+    if(anyStillRunning) {
+      animationTimerId = requestAnimationFrame(animationTimerFrame);
+    } else {
+      stopAnimationTimer();
+    }
+  }
+
   // @@@ Completion Animation
 
   const completionAnimationStripeDuration = 400;
