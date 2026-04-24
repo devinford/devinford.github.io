@@ -19,11 +19,12 @@ After completing a puzzle, you will see a new addition to the puzzle completion
 animation. Your completion time, the completion average time for the puzzle, and
 the overall ranking of your attempt will now appear. If you later return to the
 page and refresh, the average completion time and your ranking will update if
-other players complete the puzzle since.
+other players have completed the puzzle since.
 
-You will not retroactively receive rankings for previous completions of existing
+You will not retroactively receive rankings for existing completions of existing
 puzzles; however, if you return to an old puzzle and complete it now, after the
-ranking server is in place, you will now receive a ranking for older puzzles.
+ranking server is in place, you will now receive a ranking for new completions
+of older puzzles.
 
 ## Implementation
 
