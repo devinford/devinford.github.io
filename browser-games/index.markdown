@@ -13,6 +13,7 @@ on hiatus and stop getting new puzzles during various periods as I get busy with
 other things, but the entire history of daily puzzles for each game will remain
 available.
 
+- [Corner Place](corner-place/) (<span class="puzzle-status" data-puzzle-file="../assets/json/corner-place.json">Loading...</span>) - A puzzle game that adds an additional "dimension" to the classic sudoku style of puzzle.
 - [Triple Place](triple-place/) (<span class="puzzle-status" data-puzzle-file="../assets/json/triple-place.json">Loading...</span>) - A puzzle game where letters must be put into three-element loops in each row.
 - [Pair Place](pair-place/) (<span class="puzzle-status" data-puzzle-file="../assets/json/pair-place.json">Loading...</span>) - A puzzle game where letters must be unique paired up in each row.
 
