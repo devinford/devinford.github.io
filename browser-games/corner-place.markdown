@@ -4,6 +4,8 @@ title: Corner Place
 permalink: /browser-games/corner-place/
 ---
 
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&family=Shizuru&family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css">
 <div class="puzzle-selector">
   <label for="puzzle-date-picker">Select a puzzle date:</label>
@@ -84,13 +86,11 @@ permalink: /browser-games/corner-place/
 <div id="puzzle-title"></div>
 <div>
   <div id="canvas-container">
-    <canvas id="game-canvas" style="width: 100%; aspect-ratio: 1;"></canvas>
+    <canvas id="game-canvas" style="width: 100%; aspect-ratio: 0.86;"></canvas>
   </div>
   <div class="mode-buttons" style="width: 80%; margin: 0 auto;">
     <button id="mode-write" class="mode-button active">Write</button>
-    <button id="mode-erase" class="mode-button">Erase</button>
     <button id="mode-note" class="mode-button">Note</button>
-    <button id="mode-note-erase" class="mode-button">Note Erase</button>
   </div>
 </div>
 <div style="text-align: center; margin: 10px 0;">
@@ -101,86 +101,103 @@ permalink: /browser-games/corner-place/
   <summary><b>How to Play</b></summary>
   <div class="details-content">
     <p>
-      A Triple Place puzzle is represented as a grid with a "header row" at the
-      top. To complete a Triple Place puzzle, you must fill in each square with
-      a letter while obeying two rules:
+      A Corner Place puzzle is a 5x5 grid of squares, which are each divided
+      into 4 quadrants. The goal is to fill one number from 1-5 into each
+      quadrant of each square while obeying three rules:
     </p>
     <ol>
-      <li>Each letter must appear once in each column.</li>
-      <li>The squares in each row must be grouped into "triples", groups of 3 squares that each contain one another's header letters in a cycle.</li>
+      <li>Each number must appear in each quadrant exactly once in each column.</li>
+      <li>Each number must appear in each quadrant exactly once in each row.</li>
+      <li>No two squares can share two quadrant numbers in common.</li>
     </ol>
     <p>
-      A "triple" will have a structure like this:
+      In the example below, we have two squares that both have 1 in their
+      northwest corner and both have 4 in their southeast corner.
     </p>
-    <img src="/assets/images/triple.png" style="width: 293px; height: auto;">
+    <img src="/assets/images/corner-place-rule-3.png" style="width: 350px; height: auto;">
     <p>
-      Here, column A contains letter C, column C contains letter B, and column
-      B contains letter A, in a 3-element loop.
+      In order to place a number into the grid, you simply press on the quadrant
+      of square you want to fill, then press the appropriate number button that
+      appears. For example, here, we fill in a 2 into a space in the grid:
     </p>
+    <img src="/assets/images/corner-place-placement.gif" style="width: 293px; height: auto;">
     <p>
-      To place letters in the grid, press on the square you want to fill, then
-      drag to the column of the letter that you want to fill into that square.
-    </p>
-    <img src="/assets/images/triple-place-drag-1.gif" style="width: 350px; height: auto;">
-    <p>
-      Once you fill in the second letter in a "chain", the third letter in
-      the triple can be automatically deduced. For convenience, the third letter
-      will be filled in automatically to complete the triple once the second
-      letter is placed:
-    </p>
-    <img src="/assets/images/triple-place-drag-2.gif" style="width: 350px; height: auto;">
-    <h3 id="backreference-help">Backreferences</h3>
-    <p>
-      Each square has a smaller square in its top-left corner; this is called a
-      "backreference box". When you fill in a square with a letter, the square
-      under that header letter will automatically be populated with a
-      "backreference".
-    </p>
-    <img src="/assets/images/triple-place-backreference.png" style="width: 350px; height: auto;">
-    <p>
-      The backreference for a square in a particular column tells you which
-      square in that row contains that column's header letter. Here, since the
-      square in column A contains B, the backreference of the square in column B
-      was populated with A. Backreferences help you look backwards through a
-      chain or cycle, and they can be very useful for quickly completing
-      puzzles.
+      <i>(If you are playing on PC, you also have the option of pressing the
+      corresponding numeric key on your keyboard.)</i>
     </p>
     <p>
-      For example, in this image, our square in column B has a backreference of
-      A. Since we need to create a 3-cycle, we need to fill our column B square
-      with some letter, and then fill the square in that letter's column with
-      the letter A. This means that we can immediately rule out filling the
-      column B square with the letter of any column that cannot accept the
-      letter A.
+      If you fill in a value incorrectly, you can remove it by simply pressing
+      the same number again <i>(On PC, you can also use the Delete or Backspace
+      keys to clear a value.)</i>
+    </p>
+    <h3 id="visual-aids">Visual Aids</h3>
+    <p>
+      There are a few visual aids that have been added to the game to help you
+      track the constraints based on quadrants within a row and based on pairs
+      of quadrants.
     </p>
     <p>
-      It takes a little getting used to, but it's a very useful deductive
-      shortcut. When trying to fill in a square that has a backreference, just
-      look at its backreference and ask "which square in this row could accept
-      this square's backreference as its contents?"
+      As you can see from some of the other examples, each quadrant uses a
+      distinctive font. This should make it easier to tell at a glance what
+      quadrant a number is in.
+    </p>
+    <img src="/assets/images/corner-place-fonts.png" style="width: 350px; height: auto;">
+    <p>
+      To aid in identifying the elements of a single quadrant across a row or
+      column, the game automatically highlights the shared quadrants of every
+      square in the same row or column whenever you mouse over or press down on
+      a quadrant of a square.
+    </p>
+    <img src="/assets/images/corner-place-hover.gif" style="width: 350px; height: auto;">
+    <p>
+      You can also see that when hovering directly over an already-filled
+      number, that number gets highlihgted in blue, and all instances of the
+      same number in the same quadrant are highlighted in blue. This can help in
+      determining whether or not that number has been
+    </p>
+    <p>
+      For cross-referencing quadrant pairs across different squares an extra
+      "press-and-hold" feature was introduced. This feature can be activated by
+      pressing on a quadrant and then dragging to another quadrant in the same
+      square.
+    </p>
+    <img src="/assets/images/corner-place-spread.gif" style="width: 350px; height: auto;">
+    <p>
+      As you can see, every square that shares the same value in the quadrant
+      you dragged to gets highlighted-- both the shared value (in blue), and the
+      quadrant corresponding to the one that you initially pressed down on (in
+      green, like the rows and columns). This makes it easy to get a visual read
+      on what squares can cause a conflict. In this example, 1, 2 and 5 are in
+      the same row or column, and the press-and-drag feature reveals a 3 that
+      has already been paired with the northeast 1, meaning that 4 is the only
+      valid option remaining.
     </p>
     <h3>Tips</h3>
     <p>
-      Although there are only two explicit rules of the puzzle, it's possible to
-      derive additional rules of thumb that can be used as deduction shortcuts.
+      Although there are only three explicit rules of the puzzle, it's possible
+      to derive additional rules of thumb that can be used as deduction
+      shortcuts.
     </p>
     <ul>
       <li>
-        A square must not be filled with a letter if:
+        A quadrant of a square must not be filled with a number if:
         <ul>
-          <li>The letter already appears in the row.</li>
-          <li>The letter already appears in the column.</li>
-          <li>Doing so would create a cycle of only 2 letters within the row.</li>
-          <li>Doing so would create a chain of 4 or more letters within the row.</li>
-          <li>The square has a backreference, but the column under the letter cannot accept the backreference letter (see: <a  style="cursor: pointer;" onclick="event.preventDefault(); document.getElementById('backreference-help').scrollIntoView({ behavior: 'smooth' });">the backreference help</a> for more details)</li>
+          <li>The number already appears in the same quadrant in the same row or column.</li>
+          <li>Doing so would create a pair of numbers in two quadrants that already appear together in the same quadrants of another square.</li>
+        </ul>
+        Cross-referencing these two rules can reveal required placements through process of elimination.
+      </li>
+      <li>
+        A quadrant of a square must be filled with a number if:
+        <ul>
+          <li>The square is the only square missing that quadrant in its row or column in the row, and that number is the only unused number for that quadrant in the row or column.</li>
+          <li>That number has already appeared in that quadrant of other squares 4 other times, and this is the only square that doesn't lie in the same row or column as the other instances.</li>
         </ul>
       </li>
       <li>
-        A square must be filled with a letter if:
+        Some special case scenarios:
         <ul>
-          <li>The square is the only blank square in the row, and that letter is the only unused letter in the row.</li>
-          <li>The square is the only blank square in the column, and that letter is the only unused letter in the column.</li>
-          <li>That letter does not appear in that square's column yet, but that square is the only blank square in the column in a row where the letter hasn't been used yet.</li>
+          <li>If a number has already appeared in a particular quadrant three times, then this narrows it down to only four possible locations for the last two instances, and these four locations will lie at the corners of a rectangle. If one of those four locations is already occupied, the two remaining instances must be the two locations that share a row and a column respectively with the occupied space.</li>
         </ul>
       </li>
     </ul>
@@ -217,10 +234,15 @@ permalink: /browser-games/corner-place/
 
   let gameGrid = [];
   let notes = [];
+  let hints = [];
+
+  let selectedQuadrant = null;
+  let hoveredSymbol = null;  // {quadrant, symbolIndex, row, col} or null
+  let lockedCross = null;    // {quadrant, row, col} or null
 
   let cachedErrors = new Set();
 
-  // 'write' | 'erase' | 'note' | 'note-erase'
+  // 'write' | 'note'
   let currentMode = 'write';
 
   let selectedCell = null;
@@ -264,203 +286,106 @@ permalink: /browser-games/corner-place/
   function recalculateCachedErrors() {
     cachedErrors.clear();
 
-    // Check for duplicates in columns
-    for(let column = 0; column < gridWidth; ++column) {
-      const columnIndexPositions = new Map();
+    // uniqueness in rows and columns
+    for(let q = 0; q < 4; ++q) {
+      for(let r = 0; r < 5; ++r) {
+        const seen = new Set();
+        for(let c = 0; c < 5; ++c) {
+          const value = gameGrid[r][c][q];
+          if(value !== -1) {
+            if(seen.has(value)) {
+              for(let c2 = 0; c2 < 5; ++c2) {
+                if(gameGrid[r][c2][q] === value) cachedErrors.add(`${r},${c2},${q}`);
+              }
+            }
 
-      for(let row = 0; row < gridHeight; ++row) {
-        const columnIndex = gameGrid[row][column];
-        if(columnIndex >= 0) {
-          if(!columnIndexPositions.has(columnIndex)) {
-            columnIndexPositions.set(columnIndex, []);
+            seen.add(value);
           }
-          columnIndexPositions.get(columnIndex).push(row);
         }
       }
 
-      // Mark all duplicates as errors
-      for(const positions of columnIndexPositions.values()) {
-        if(positions.length > 1) {
-          positions.forEach(row => {
-            cachedErrors.add(`${row},${column}`);
-          });
-        }
-      }
-    }
+      for(let c = 0; c < 5; ++c) {
+        const seen = new Set();
+        for(let r = 0; r < 5; ++r) {
+          const value = gameGrid[r][c][q];
+          if(value !== -1) {
+            if(seen.has(value)) {
+              for(let r2 = 0; r2 < 5; ++r2) {
+                if(gameGrid[r2][c][q] === value) cachedErrors.add(`${r2},${c},${q}`);
+              }
+            }
 
-    // Check for duplicates in rows
-    for(let row = 0; row < gridHeight; ++row) {
-      const rowIndexPositions = new Map();
-
-      for(let column = 0; column < gridWidth; ++column) {
-        const columnIndex = gameGrid[row][column];
-        if(columnIndex >= 0) {
-          if(!rowIndexPositions.has(columnIndex)) {
-            rowIndexPositions.set(columnIndex, []);
+            seen.add(value);
           }
-          rowIndexPositions.get(columnIndex).push(column);
-        }
-      }
-
-      // Mark all duplicates as errors
-      for(const positions of rowIndexPositions.values()) {
-        if(positions.length > 1) {
-          positions.forEach(column => {
-            cachedErrors.add(`${row},${column}`);
-          });
         }
       }
     }
 
-    // Check for 3-cycle errors
-    for(let row = 1; row < gridHeight; row++) {
-      const cycles = find3CycleErrors(row);
-      cycles.forEach(positions => {
-        positions.forEach(({row, column}) => {
-          cachedErrors.add(`${row},${column}`);
-        });
-      });
-    }
-  }
+    // orthogonality
+    for(let q1 = 0; q1 < 4; ++q1) {
+      for(let q2 = q1 + 1; q2 < 4; ++q2) {
+        const pairMap = new Map();
 
-  function find3CycleErrors(row) {
-    const violations = [];
-    const chains = findChainsInRow(row);
+        for(let r = 0; r < 5; ++r) {
+          for(let c = 0; c < 5; ++c) {
+            const v1 = gameGrid[r][c][q1];
+            const v2 = gameGrid[r][c][q2];
 
-    for(const chain of chains) {
-      const chainIsError = isChainAnError(row, chain);
+            if(v1 !== -1 && v2 !== -1) {
+              const key = `${v1},${v2}`;
+              if(!pairMap.has(key)) pairMap.set(key, []);
 
-      if(chainIsError) {
-        const violationCells = chain.map(column => ({row, column}));
-        violations.push(violationCells);
-      }
-    }
-
-    return violations;
-  }
-
-  const forwardReferenceLookup = new Map();
-  const backReferenceLookup = new Map();
-
-  function findChainsInRow(row) {
-    forwardReferenceLookup.clear();
-    backReferenceLookup.clear();
-
-    for(let column = 0; column < gridWidth; ++column) {
-      const targetColumn = gameGrid[row][column];
-      if(targetColumn >= 0 && targetColumn !== column) {
-        forwardReferenceLookup.set(column, targetColumn);
-        backReferenceLookup.set(targetColumn, column);
-      }
-    }
-
-    const visited = new Set();
-    const components = [];
-
-    for(let startColumn = 0; startColumn < gridWidth; ++startColumn) {
-      if(visited.has(startColumn)) continue;
-
-      const component = findComponent(startColumn, forwardReferenceLookup, backReferenceLookup, visited);
-      if(component.length > 1) {
-        components.push(component);
-      }
-    }
-
-    return components;
-  }
-
-  function findComponent(startColumn, forwardReferenceLookup, backReferenceLookup, globalVisited) {
-    const component = [];
-    const toVisit = [startColumn];
-    const localVisited = new Set();
-
-    while(toVisit.length > 0) {
-      const column = toVisit.pop();
-      if(localVisited.has(column)) continue;
-
-      localVisited.add(column);
-      globalVisited.add(column);
-      component.push(column);
-
-      if(forwardReferenceLookup.has(column)) {
-        const target = forwardReferenceLookup.get(column);
-        if(!localVisited.has(target)) {
-          toVisit.push(target);
+              pairMap.get(key).push({row: r, column: c});
+            }
+          }
         }
-      }
+        for(const [, cells] of pairMap) {
+          if(cells.length <= 1) continue;
 
-      if(backReferenceLookup.has(column)) {
-        const source = backReferenceLookup.get(column);
-        if(!localVisited.has(source)) {
-          toVisit.push(source);
+          for(const cell of cells) {
+            cachedErrors.add(`${cell.row},${cell.column},${q1}`);
+            cachedErrors.add(`${cell.row},${cell.column},${q2}`);
+          }
         }
       }
     }
-
-    return component;
   }
 
-  function isChainAnError(row, chain) {
-    const forwardReferenceLookup = new Map();
-    for(const column of chain) {
-      const targetColumn = gameGrid[row][column];
-      if(targetColumn >= 0 && chain.includes(targetColumn)) {
-        forwardReferenceLookup.set(column, targetColumn);
-      }
-    }
+  const quadrantKeys = ['nw', 'ne', 'sw', 'se'];
+  const quadrantNames = ['NW', 'NE', 'SW', 'SE'];
 
-    const isCycle = chain.every(column => forwardReferenceLookup.has(column));
+  function handleSymbolInput(symbolIndex) {
+    if(!selectedQuadrant) return;
+    const { row, col, quadrant } = selectedQuadrant;
+    if(hints[row][col][quadrant]) return;
 
-    if(isCycle) {
-      return chain.length !== 3;
-    } else {
-      return chain.length > 3;
-    }
-  }
+    const cell = gameGrid[row][col];
+    const qKey = quadrantKeys[quadrant];
 
-  function findParametersOfContainingChain(row, column) {
-    let maxCount = 3;
-    let tail = column;
-    let count = 1;
-    while(true) {
-      let next = gameGrid[row][tail];
-      if(next == column) {
-        return {
-          cycle: true,
-          count: count,
-        };
-      } else if(next >= 0) {
-        tail = next;
-        ++count;
-        if(count > maxCount) return { cycle: false, count: 0 };
+    if(currentMode === 'write') {
+      if(cell[quadrant] === symbolIndex) {
+        cell[quadrant] = -1;
+        notes[row][col][qKey].clear();
       } else {
-        break;
+        cell[quadrant] = symbolIndex;
+        notes[row][col][qKey].clear();
       }
+    } else if(currentMode === 'note') {
+      if(cell[quadrant] !== -1) return;
+      const noteSet = notes[row][col][qKey];
+
+      if(noteSet.has(symbolIndex)) noteSet.delete(symbolIndex);
+      else noteSet.add(symbolIndex);
     }
 
-    let head = column;
-    while(true) {
-      let backReference = findBackreferenceColumnIndex(row, head);
-      if(backReference == column) {
-        console.log("found cycle via head (should be impossible)");
-        return {
-          cycle: true,
-          count: count,
-        };
-      } else if(backReference >= 0) {
-        head = backReference;
-        ++count;
-      } else {
-        break;
-      }
+    saveGameState();
+
+    recalculateCachedErrors();
+    if(isPuzzleComplete()) {
+      handlePuzzleCompletion();
     }
 
-    return {
-      cycle: false,
-      count: count,
-      head: head,
-      tail: tail,
-    };
+    drawGame();
   }
 
   function handleWrite(row, column0, column1) {
@@ -473,15 +398,9 @@ permalink: /browser-games/corner-place/
     gameGrid[row][column0] = column1;
     removeNotes(row, column0, column1);
 
-    let chain = findParametersOfContainingChain(row, column0);
-    if(!chain.cycle && chain.count == 3) {
-      gameGrid[row][chain.tail] = chain.head;
-      removeNotes(row, chain.tail, chain.head);
-    }
-
     saveGameState();
-    drawGame();
     recalculateCachedErrors();
+    drawGame();
 
     if(isPuzzleComplete()) {
       handlePuzzleCompletion();
@@ -534,57 +453,11 @@ permalink: /browser-games/corner-place/
     }
   }
 
-  function handleNoteErase(row, column0, column1) {
-    notes[row][column0].delete(column1);
-    notes[row][column1].delete(column0);
-    saveGameState();
-  }
-
-  function handleErase(row, column) {
-    if(isHintCell(row, column)) return;
-
-    const letterIndex = gameGrid[row][column];
-    if(letterIndex >= 0) {
-      gameGrid[row][column] = -1;
-
-      eraseBackReferenceIfCycle(row, column);
-
-      recalculateCachedErrors();
-
-      saveGameState();
-    }
-  }
-
-  function eraseBackReferenceIfCycle(row, column) {
-    let backReferenceColumn = -1;
-    for(let checkColumn = 0; checkColumn < gridWidth; checkColumn++) {
-      if(gameGrid[row][checkColumn] === column) {
-        backReferenceColumn = checkColumn;
-        break;
-      }
-    }
-
-    if(backReferenceColumn >= 0) {
-      const backReferenceValue = gameGrid[row][backReferenceColumn];
-      if(backReferenceValue >= 0) {
-        const middleColumn = backReferenceValue;
-        if(middleColumn >= 0) {
-          const middleValue = gameGrid[row][middleColumn];
-          if(middleValue === column) {
-            if(!isHintCell(row, backReferenceColumn)) {
-              gameGrid[row][backReferenceColumn] = -1;
-            }
-          }
-        }
-      }
-    }
-  }
-
   function isPuzzleComplete() {
-    for(let row = 1; row < gridHeight; ++row) {
-      for(let column = 0; column < gridWidth; ++column) {
-        if(isBlankCell(row, column)) {
-          return false;
+    for(let r = 0; r < 5; ++r) {
+      for(let c = 0; c < 5; ++c) {
+        for(let q = 0; q < 4; ++q) {
+          if(gameGrid[r][c][q] === -1) return false;
         }
       }
     }
@@ -849,84 +722,285 @@ permalink: /browser-games/corner-place/
     return gridColor[row][column];
   }
 
+  function getSymbolForQuadrant(quadrant, index) {
+    if(index === -1) return null;
+    return theme.axis[quadrant][index];
+  }
+
+  function getQuadrantFont(q, size) {
+    const quadrantFont = theme.quadrantFonts && theme.quadrantFonts[q];
+    if(!quadrantFont) return `bold ${size}px "Roboto Mono", monospace`;
+    const style  = quadrantFont.style  || 'normal';
+    const weight = quadrantFont.weight || 'normal';
+    const family = quadrantFont.family || 'Roboto Mono';
+    return `${style} ${weight} ${size}px "${family}", monospace`;
+  }
+
+  function getQuadrantPosition(cx, cy, cellSize, quadrant) {
+    const halfSize = cellSize / 2;
+    if(quadrant === 0) return {x: cx, y: cy, w: halfSize, h: halfSize};
+    if(quadrant === 1) return {x: cx + halfSize, y: cy, w: halfSize, h: halfSize};
+    if(quadrant === 2) return {x: cx, y: cy + halfSize, w: halfSize, h: halfSize};
+
+    return { x: cx + halfSize, y: cy + halfSize, w: halfSize, h: halfSize, };
+  }
+
+  // Computes shared layout for the input UI button row.
+  function getButtonLayout() {
+    const { padding, gridWidth, cellSize, gridY } = getGridLayout();
+    const uiY = gridY + cellSize * 5 + padding;
+    const uiHeight = cellSize * 0.72;
+    const buttonSize = Math.min(uiHeight * 0.75, gridWidth / 6.5);
+    const spacing = buttonSize * 0.15;
+    const startX = padding + (gridWidth - (5 * buttonSize + 4 * spacing)) / 2;
+    const startY = uiY + uiHeight * 0.35;
+    return { startX, startY, buttonSize, spacing };
+  }
+
+  // Returns position of the i-th button given a precomputed layout.
+  function getButtonPosition(layout, i) {
+    return {
+      x: layout.startX + i * (layout.buttonSize + layout.spacing),
+      y: layout.startY,
+      size: layout.buttonSize
+    };
+  }
+
+  function drawInputUI(x, y, width, height) {
+    if(!selectedQuadrant) return;
+
+    const q = selectedQuadrant.quadrant;
+    const qKey = quadrantKeys[q];
+
+    // Label showing which quadrant is selected
+    context.fillStyle = '#555';
+    context.font = `bold ${height * 0.22}px "Roboto Mono", monospace`;
+    context.textAlign = 'center';
+    context.textBaseline = 'top';
+    context.fillText(quadrantNames[q], x + width / 2, y + height * 0.04);
+
+    // Draw 5 symbol buttons
+    const layout = getButtonLayout();
+    for(let i = 0; i < 5; ++i) {
+      const button = getButtonPosition(layout, i);
+
+      const isSelected = gameGrid[selectedQuadrant.row][selectedQuadrant.col][q] === i;
+      const isNote = notes[selectedQuadrant.row][selectedQuadrant.col][qKey].has(i);
+
+      if(isSelected && currentMode === 'write') {
+        context.fillStyle = '#4CAF50';
+      } else {
+        context.fillStyle = '#e0e0e0';
+      }
+      context.fillRect(button.x, button.y, button.size, button.size);
+
+      if(isNote && currentMode === 'note') {
+        context.strokeStyle = '#333';
+        context.lineWidth = 3;
+        context.strokeRect(button.x + 2, button.y + 2, button.size - 4, button.size - 4);
+      }
+
+      context.fillStyle = '#000';
+      context.font = getQuadrantFont(q, button.size * 0.55);
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(theme.axis[q][i], button.x + button.size / 2, button.y + button.size / 2);
+
+      context.strokeStyle = '#999';
+      context.lineWidth = 1;
+      context.strokeRect(button.x, button.y, button.size, button.size);
+    }
+  }
+
+  function getGridLayout() {
+    const rect = canvas.getBoundingClientRect();
+    const w = rect.width;
+    const padding = w * 0.04;
+    const gridWidth = w - 2 * padding;
+    const cellSize = gridWidth / 5;
+    return { padding, gridWidth, cellSize, gridX: padding, gridY: padding, };
+  }
+
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
-    const size = Math.min(rect.width, rect.height);
-    canvas.width = size;
-    canvas.height = size;
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
+    context.scale(window.devicePixelRatio, window.devicePixelRatio);
+    drawGame();
+  }
 
-    const padding = size * 0.01;
-    gridOffset = padding;
-    cellSize = (size - 2 * padding) / gridWidth;
+  window.addEventListener('resize', resizeCanvas);
 
-    noteOffset = cellSize * 0.2;
-    letterOffset = cellSize * 0.1;
+  function drawGrid(x, y, cellSize) {
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(x, y, cellSize * 5, cellSize * 5);
+
+    const quadrantCenters = (cx, cy) => [
+      { x: cx + cellSize * 0.25, y: cy + cellSize * 0.25, },
+      { x: cx + cellSize * 0.75, y: cy + cellSize * 0.25, },
+      { x: cx + cellSize * 0.25, y: cy + cellSize * 0.75, },
+      { x: cx + cellSize * 0.75, y: cy + cellSize * 0.75, },
+    ];
+
+    for(let r = 0; r < 5; ++r) {
+      for(let c = 0; c < 5; ++c) {
+        const cx = x + c * cellSize;
+        const cy = y + r * cellSize;
+
+        const cellHasSymbolMatch =
+          hoveredSymbol && hoveredSymbol.symbolIndex !== -1 &&
+          gameGrid[r][c][hoveredSymbol.quadrant] === hoveredSymbol.symbolIndex
+        ;
+
+        // Compute style for each quadrant
+        const quadrantStyles = [0, 0, 0, 0];
+        for(let q = 0; q < 4; ++q) {
+          let styleIndex = theme.styleCell;
+
+          if(
+            hoveredSymbol &&
+            hoveredSymbol.symbolIndex !== -1 &&
+            theme.styleHover !== undefined &&
+            gameGrid[r][c][q] === hoveredSymbol.symbolIndex &&
+            q === hoveredSymbol.quadrant
+          ) {
+            styleIndex = theme.styleHover;
+          } else if(
+            selectedQuadrant &&
+            selectedQuadrant.row === r &&
+            selectedQuadrant.col === c &&
+            selectedQuadrant.quadrant === q
+          ) {
+            styleIndex = theme.styleHighlight;
+          } else if(
+            lockedCross &&
+            cellHasSymbolMatch &&
+            theme.styleCross !== undefined &&
+            q === lockedCross.quadrant
+          ) {
+            styleIndex = theme.styleCross;
+          } else if(
+            lockedCross &&
+            theme.styleCross !== undefined &&
+            q === lockedCross.quadrant &&
+            (r === lockedCross.row || c === lockedCross.col)
+          ) {
+            styleIndex = theme.styleCross;
+          } else if(
+            !lockedCross &&
+            hoveredSymbol &&
+            theme.styleCross !== undefined &&
+            q === hoveredSymbol.quadrant &&
+            (r === hoveredSymbol.row || c === hoveredSymbol.col)
+          ) {
+            styleIndex = theme.styleCross;
+          }
+
+          if(cachedErrors.has(`${r},${c},${q}`)) {
+            styleIndex = theme.styleError;
+          }
+
+          quadrantStyles[q] = styleIndex;
+        }
+
+        // Draw quadrant backgrounds
+        for(let q = 0; q < 4; ++q) {
+          const qPos = getQuadrantPosition(cx, cy, cellSize, q);
+          context.fillStyle = theme.style[quadrantStyles[q]].background;
+          context.fillRect(qPos.x, qPos.y, qPos.w, qPos.h);
+        }
+
+        // Draw quadrant dividers (middle 2/3 of each inner edge segment)
+        context.strokeStyle = theme.colorGridline;
+        context.lineWidth = 2;
+        const centerX = cx + cellSize / 2;
+        const centerY = cy + cellSize / 2;
+        const halfCell = cellSize / 2;
+        const segLen = halfCell * 2 / 3;
+        const segStart = halfCell / 6;
+
+        context.beginPath();
+        context.moveTo(centerX, cy + segStart);
+        context.lineTo(centerX, cy + segStart + segLen);
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(centerX, cy + cellSize - segStart - segLen);
+        context.lineTo(centerX, cy + cellSize - segStart);
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(cx + segStart, centerY);
+        context.lineTo(cx + segStart + segLen, centerY);
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(cx + cellSize - segStart - segLen, centerY);
+        context.lineTo(cx + cellSize - segStart, centerY);
+        context.stroke();
+
+        // Draw symbols or notes
+        const centers = quadrantCenters(cx, cy);
+        for(let q = 0; q < 4; ++q) {
+          const val = gameGrid[r][c][q];
+          const isHint = hints[r][c][q];
+          const pos = centers[q];
+          const quadStyle = theme.style[quadrantStyles[q]];
+
+          if(val !== -1) {
+            const symbol = getSymbolForQuadrant(q, val);
+            context.fillStyle = isHint ? quadStyle.foregroundHint : quadStyle.foregroundAnswer;
+            context.font = getQuadrantFont(q, cellSize * 0.4);
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(symbol, pos.x, pos.y);
+          } else if(notes[r][c][quadrantKeys[q]].size > 0) {
+            drawNotes(notes[r][c][quadrantKeys[q]], pos.x, pos.y, cellSize * 0.4, q, quadStyle);
+          }
+        }
+
+        // Draw cell border
+        context.strokeStyle = theme.colorGridline;
+        context.lineWidth = 3;
+        context.strokeRect(cx, cy, cellSize, cellSize);
+      }
+    }
+  }
+
+  function drawNotes(noteSet, centerX, centerY, size, quadrant, quadStyle) {
+    const positions = [
+      { x: centerX - size * 0.3, y: centerY - size * 0.3, },
+      { x: centerX + size * 0.3, y: centerY - size * 0.3, },
+      { x: centerX, y: centerY, },
+      { x: centerX - size * 0.3, y: centerY + size * 0.3, },
+      { x: centerX + size * 0.3, y: centerY + size * 0.3, },
+    ];
+
+    context.fillStyle = quadStyle.foregroundAnswer;
+    context.font = getQuadrantFont(quadrant, size * 0.4);
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+
+    noteSet.forEach(symbolIndex => {
+      if(symbolIndex >= 0 && symbolIndex < 5) {
+        const symbol = getSymbolForQuadrant(quadrant, symbolIndex);
+        context.fillText(symbol, positions[symbolIndex].x, positions[symbolIndex].y);
+      }
+    });
   }
 
   function drawGame() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    if(!puzzleConfiguration || !theme) return;
 
-    const errorCells = cachedErrors;
+    const { padding, gridWidth, cellSize, gridX, gridY } = getGridLayout();
 
-    for(let row = 0; row < gridHeight; ++row) {
-      const chains = findChainsInRow(row);
-      const colorPalette = chainStyles[row % chainStyles.length];
+    context.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
-      for(let column = 0; column < gridWidth; ++column) {
-        let chainIndex = 0;
-        for(let i = 0; i < chains.length; ++i) {
-          if(chains[i].includes(column)) {
-            chainIndex = i % colorPalette.length;
-            break;
-          }
-        }
+    drawGrid(gridX, gridY, cellSize);
 
-        let chainStyleIndex = null;
-        let defaultCellStyle = getStyleIndexForCell(row, column, gridColor, theme);
-        let bodyStyleIndex = defaultCellStyle;
-        if(row !== 0) {
-          let belongsToChain = false;
-          let chainSize = 1;
-          for(let i = 0; i < chains.length; ++i) {
-            if(chains[i].includes(column)) {
-              belongsToChain = true;
-              chainSize = chains[i].length;
-              chainIndex = i % colorPalette.length;
-              break;
-            }
-          }
-
-          const valueInCell = gameGrid[row][column] >= 0;
-          chainStyleIndex = colorPalette[chainIndex];
-          if(valueInCell) bodyStyleIndex = chainStyleIndex;
-        }
-        let backreferenceStyleIndex = findBackreferenceColumnIndex(row, column) >= 0 ? chainStyleIndex : defaultCellStyle;
-
-        if(errorCells.has(`${row},${column}`)) {
-          bodyStyleIndex = theme.styleError;
-        }
-
-        if(selectedCell && selectedCell.row == row && gameGrid[selectedCell.row][selectedCell.column] < 0) {
-          if(selectedCell.column == column) {
-            bodyStyleIndex = theme.styleHighlight;
-          }
-
-          if(
-            dragTarget &&
-            dragTarget.row == row &&
-            dragTarget.column == column &&
-            dragTarget.column != selectedCell.column &&
-            findBackreferenceColumnIndex(dragTarget.row, dragTarget.column) < 0
-          ) {
-            backreferenceStyleIndex = theme.styleHighlight;
-          }
-        }
-
-        drawCellWithCustomBackground(row, column, bodyStyleIndex, backreferenceStyleIndex);
-      }
-    }
-
-    drawGridLines();
+    const uiY = gridY + cellSize * 5 + padding;
+    const uiHeight = cellSize * 0.72;
+    drawInputUI(gridX, uiY, gridWidth, uiHeight);
 
     if(animations[CompletionAnimation].running) {
       drawCompletionAnimation();
@@ -939,102 +1013,6 @@ permalink: /browser-games/corner-place/
     if(animations[RankAnimation].running) {
       drawRankAnimation();
     }
-  }
-
-  function drawCellWithCustomBackground(row, column, bodyStyleIndex, backreferenceStyleIndex) {
-    const x = gridOffset + column * cellSize;
-    const y = gridOffset + row * cellSize;
-
-    const selectedStyleIndex = bodyStyleIndex;
-    const selectedStyle = theme.style[selectedStyleIndex];
-
-    context.fillStyle = selectedStyle.background;
-    context.fillRect(x, y, cellSize, cellSize);
-
-    const originalLetter = puzzleConfiguration.grid[row][column];
-    const isHint = originalLetter !== ' ' && originalLetter === originalLetter.toUpperCase();
-
-    if(row > 0) {
-      drawBackReference(x, y, row, column, backreferenceStyleIndex);
-    }
-
-    const letterIndex = gameGrid[row][column];
-    if(letterIndex >= 0) {
-      const letter = headerLetters[letterIndex];
-      context.fillStyle = isHint ? selectedStyle.foregroundHint : selectedStyle.foregroundAnswer;
-      context.font = `${cellSize * 0.5}px Arial`;
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
-
-      const letterX = row > 0 ? x + cellSize / 2 + letterOffset / 2 : x + cellSize / 2;
-      context.fillText(letter, letterX, y + cellSize / 2);
-    }
-
-    if(notes[row][column] && notes[row][column].size > 0) {
-      const noteX = x + noteOffset;
-      const noteY = y + noteOffset;
-      drawNotes(noteX, noteY, notes[row][column], selectedStyle);
-    }
-  }
-
-  function drawBackReference(x, y, row, column, styleIndex) {
-    let backReferenceLetter = '';
-    for(let checkColumn = 0; checkColumn < gridWidth; ++checkColumn) {
-      if(gameGrid[row][checkColumn] === column) {
-        backReferenceLetter = headerLetters[checkColumn];
-        break;
-      }
-    }
-
-    const squareSize = cellSize * 0.3;
-    const squareX = x + 1;
-    const squareY = y + 1;
-
-    const selectedStyle = theme.style[styleIndex];
-
-    context.fillStyle = selectedStyle.background;
-    context.fillRect(squareX, squareY, squareSize, squareSize);
-
-    context.strokeStyle = selectedStyle.foregroundAnswer;
-    context.lineWidth = 1;
-    context.beginPath();
-
-    context.moveTo(squareX + squareSize, squareY);
-    context.lineTo(squareX + squareSize, squareY + squareSize);
-
-    context.moveTo(squareX, squareY + squareSize);
-    context.lineTo(squareX + squareSize, squareY + squareSize);
-    context.stroke();
-
-    if(backReferenceLetter) {
-      context.fillStyle = selectedStyle.foregroundAnswer;
-      context.font = `${squareSize * 0.7}px Arial`;
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
-      context.fillText(backReferenceLetter, squareX + squareSize / 2, squareY + squareSize / 2);
-    }
-  }
-
-  function drawNotes(x, y, noteSet, cellTheme) {
-    const noteArray = Array.from(noteSet).sort();
-    const notesPerRow = Math.ceil(Math.sqrt(gridWidth));
-    const noteSize = cellSize * 0.22;
-
-    context.fillStyle = cellTheme.foregroundAnswer;
-    context.font = `${noteSize * 1.2}px Arial`;
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-
-    noteArray.forEach(noteColumnIndex => {
-      if(noteColumnIndex >= 0 && noteColumnIndex < gridWidth) {
-        const letter = headerLetters[noteColumnIndex];
-        const noteRow = Math.floor(noteColumnIndex / notesPerRow);
-        const noteColumn = noteColumnIndex % notesPerRow;
-        const noteX = x + (noteColumn + 1) * noteSize;
-        const noteY = y + (noteRow + 1) * noteSize;
-        context.fillText(letter, noteX, noteY);
-      }
-    });
   }
 
   function drawGridLines() {
@@ -1265,99 +1243,183 @@ permalink: /browser-games/corner-place/
     return null;
   }
 
+  function getCellAndQuadrant(mouseX, mouseY) {
+    const { gridWidth, cellSize, gridX, gridY } = getGridLayout();
+    if(mouseX < gridX || mouseX >= gridX + gridWidth || mouseY < gridY || mouseY >= gridY + cellSize * 5) {
+      return null;
+    }
+
+    const col = Math.floor((mouseX - gridX) / cellSize);
+    const row = Math.floor((mouseY - gridY) / cellSize);
+    if(row < 0 || row >= 5 || col < 0 || col >= 5) return null;
+
+    const cellX = mouseX - (gridX + col * cellSize);
+    const cellY = mouseY - (gridY + row * cellSize);
+    const half = cellSize / 2;
+    const quadrant = (cellX < half ? 0 : 1) + (cellY < half ? 0 : 2);
+
+    return { row, col, quadrant, };
+  }
+
   function handlePointerMove(e) {
-    if(completionTime) {
-      canvas.style.cursor = 'default';
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    // Check grid hover
+    const hit = getCellAndQuadrant(mouseX, mouseY);
+    if(hit) {
+      const symbolIndex = gameGrid[hit.row][hit.col][hit.quadrant];
+      if(
+        !hoveredSymbol ||
+        hoveredSymbol.quadrant !== hit.quadrant ||
+        hoveredSymbol.symbolIndex !== symbolIndex ||
+        hoveredSymbol.row !== hit.row ||
+        hoveredSymbol.col !== hit.col
+      ) {
+        hoveredSymbol = { quadrant: hit.quadrant, symbolIndex, row: hit.row, col: hit.col };
+        drawGame();
+      }
       return;
     }
 
-    const cell = getCellFromCoordinate(e.clientX, e.clientY);
-
-    if(cell && cell.row != 0) {
-      canvas.style.cursor = selectedCell ? 'grabbing' : 'grab';
-    } else {
-      canvas.style.cursor = 'default';
+    // Check button hover
+    if(selectedQuadrant) {
+      const q = selectedQuadrant.quadrant;
+      const layout = getButtonLayout();
+      for(let i = 0; i < 5; ++i) {
+        const button = getButtonPosition(layout, i);
+        if(
+          mouseX >= button.x &&
+          mouseX < button.x + button.size &&
+          mouseY >= button.y &&
+          mouseY < button.y + button.size
+        ) {
+          if(
+            !hoveredSymbol ||
+            hoveredSymbol.quadrant !== q ||
+            hoveredSymbol.symbolIndex !== i ||
+            hoveredSymbol.row !== -1
+          ) {
+            hoveredSymbol = { quadrant: q, symbolIndex: i, row: -1, col: -1 };
+            drawGame();
+          }
+          return;
+        }
+      }
     }
 
-    if(!selectedCell) return;
-
-    if(!cell || cell.row !== selectedCell.row || (currentMode === 'write' && !isBlankCell(cell.row, cell.column))) {
-      dragTarget = null;
-    } else {
-      dragTarget = cell;
+    if(hoveredSymbol) {
+      hoveredSymbol = null;
+      drawGame();
     }
-
-    drawGame();
   }
 
   function handlePointerUp(e) {
-    if(completionTime) {
-      canvas.style.cursor = 'default';
-      return;
-    }
-
-    if(!selectedCell) return;
-
-    const cell = getCellFromCoordinate(e.clientX, e.clientY);
-    if(cell) {
-      if(cell.row != 0) {
-        canvas.style.cursor = 'grab';
-      } else {
-        canvas.style.cursor = 'default';
-      }
-
-      if(cell.row === selectedCell.row && cell.column !== selectedCell.column) {
-        if(currentMode === 'write') {
-          handleWrite(selectedCell.row, selectedCell.column, cell.column);
-        } else if(currentMode === 'note') {
-          handleNote(selectedCell.row, selectedCell.column, cell.column);
-        } else if(currentMode === 'note-erase') {
-          handleNoteErase(selectedCell.row, selectedCell.column, cell.column);
-        }
-      }
-    } else {
-      canvas.style.cursor = 'default';
-    }
-
-    selectedCell = null;
-    dragTarget = null;
+    lockedCross = null;
     drawGame();
   }
 
   function handlePointerDown(e) {
-    if(completionTime) {
-      canvas.style.cursor = 'default';
-      return;
-    }
-
-    const cell = getCellFromCoordinate(e.clientX, e.clientY);
-    if(!cell || cell.row == 0) return;
-
-    tryStartGame();
-
-    if(currentMode === 'erase') {
-      handleErase(cell.row, cell.column);
+    const rect = canvas.getBoundingClientRect();
+    const hit = getCellAndQuadrant(event.clientX - rect.left, event.clientY - rect.top);
+    if(hit) {
+      lockedCross = { quadrant: hit.quadrant, row: hit.row, col: hit.col, };
+      selectedQuadrant = hit;
+      tryStartGame();
       drawGame();
+    }
+  }
+
+  function handleCanvasClick(event) {
+    if(completionTime) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const clickY = event.clientY - rect.top;
+
+    if(selectedQuadrant) {
+      const layout = getButtonLayout();
+      for(let i = 0; i < 5; ++i) {
+        const button = getButtonPosition(layout, i);
+        if(
+          clickX >= button.x &&
+          clickX < button.x + button.size &&
+          clickY >= button.y &&
+          clickY < button.y + button.size
+        ) {
+          handleSymbolInput(i);
+          return;
+        }
+      }
+    }
+  }
+
+  function handleKeyPress(event) {
+    if(completionTime) return;
+    if(event.ctrlKey || event.metaKey || event.altKey) return;
+
+    if(event.key === 'Tab' && selectedQuadrant) {
+      const delta = event.shiftKey ? 3 : 1;
+      selectedQuadrant = { ...selectedQuadrant, quadrant: (selectedQuadrant.quadrant + delta) % 4 };
+      startTimer();
+      drawGame();
+      event.preventDefault();
       return;
     }
 
-    selectedCell = cell;
-    dragTarget = null;
+    if(selectedQuadrant) {
+      let { row, col, quadrant } = selectedQuadrant;
+      let moved = true;
 
-    drawGame();
+      if(event.key === 'ArrowUp' && row > 0) --row;
+      else if(event.key === 'ArrowDown' && row < 4) ++row;
+      else if(event.key === 'ArrowLeft' && col > 0) --col;
+      else if(event.key === 'ArrowRight' && col < 4) ++col;
+      else moved = false;
 
-    canvas.setPointerCapture(e.pointerId);
+      if(moved) {
+        selectedQuadrant = { row, col, quadrant };
+        startTimer();
+        drawGame();
+        event.preventDefault();
+        return;
+      }
+    }
 
-    if(cell.row != 0) {
-      canvas.style.cursor = selectedCell ? 'grabbing' : 'grab';
-    } else {
-      canvas.style.cursor = 'default';
+    if(!selectedQuadrant) return;
+
+    // Digit keys
+    if(event.key >= '1' && event.key <= '5') {
+      handleSymbolInput(parseInt(event.key) - 1);
+      event.preventDefault();
+      return;
+    }
+
+    // Backspace / Delete
+    if(event.key === 'Backspace' || event.key === 'Delete') {
+      const { row, col, quadrant } = selectedQuadrant;
+      if(!hints[row][col][quadrant] && gameGrid[row][col][quadrant] !== -1) {
+        gameGrid[row][col][quadrant] = -1;
+        notes[row][col][quadrantKeys[quadrant]].clear();
+        recalculateCachedErrors();
+        saveGameState();
+        drawGame();
+      }
+      event.preventDefault();
     }
   }
 
   canvas.addEventListener('pointerdown', handlePointerDown);
   canvas.addEventListener('pointermove', handlePointerMove);
   canvas.addEventListener('pointerup', handlePointerUp);
+  canvas.addEventListener('click', handleCanvasClick);
+  document.addEventListener('keydown', handleKeyPress);
+  canvas.addEventListener('mouseleave', () => {
+    hoveredSymbol = null;
+    lockedCross = null;
+    drawGame();
+  });
 
   window.addEventListener('resize', () => {
     if(gridWidth > 0) {
@@ -1369,9 +1431,7 @@ permalink: /browser-games/corner-place/
   function setupModeButtons() {
     const modeButtons = {
       'mode-write': 'write',
-      'mode-erase': 'erase',
-      'mode-note': 'note',
-      'mode-note-erase': 'note-erase'
+      'mode-note': 'note'
     };
 
     Object.entries(modeButtons).forEach(([buttonId, mode]) => {
@@ -1414,7 +1474,12 @@ permalink: /browser-games/corner-place/
     const state = {
       version: saveVersionCurrent,
       grid: gameGrid,
-      notes: notes.map(row => row.map(cell => Array.from(cell))),
+      notes: notes.map(row => row.map(cell => ({
+        nw: Array.from(cell.nw),
+        ne: Array.from(cell.ne),
+        sw: Array.from(cell.sw),
+        se: Array.from(cell.se)
+      }))),
       startTime: startTime,
       gameStarted: gameStarted,
       completionTime: completionTime,
@@ -1445,7 +1510,16 @@ permalink: /browser-games/corner-place/
     if(!puzzleState.grid || !puzzleState.notes) return false;
 
     gameGrid = puzzleState.grid;
-    notes = puzzleState.notes.map(row => row.map(cell => new Set(cell)));
+    notes = puzzleState.notes.map(
+      row => row.map(
+        cell => ({
+          nw: new Set(cell.nw),
+          ne: new Set(cell.ne),
+          sw: new Set(cell.sw),
+          se: new Set(cell.se),
+        })
+      )
+    );
 
     if(puzzleState.startTime) {
       startTime = puzzleState.startTime;
@@ -1477,21 +1551,39 @@ permalink: /browser-games/corner-place/
     return true;
   }
 
-  function initializeStartingGameState() {
-    gameGrid = [];
-    for(let row = 0; row < gridHeight; ++row) {
-      gameGrid[row] = [];
-      for(let column = 0; column < gridWidth; ++column) {
-        const cell = puzzleConfiguration.grid[row][column];
-        if(cell === cell.toUpperCase() && cell !== ' ') {
-          gameGrid[row][column] = headerLetters.indexOf(cell);
-        } else {
-          gameGrid[row][column] = -1;
+  function initializeHints() {
+    hints = [];
+    for(let r = 0; r < 5; ++r) {
+      hints[r] = [];
+      for(let c = 0; c < 5; ++c) {
+        const cell = puzzleConfiguration.grid[r][c];
+        hints[r][c] = [false, false, false, false];
+
+        for(let q = 0; q < 4; ++q) {
+          const symbol = cell[q];
+          hints[r][c][q] = symbol !== -1;
         }
       }
     }
+  }
 
-    notes = Array(gridHeight).fill().map(() => Array(gridWidth).fill().map(() => new Set()));
+  function initializeStartingGameState() {
+    gameGrid = [];
+    notes = [];
+    for(let r = 0; r < 5; ++r) {
+      gameGrid[r] = [];
+      notes[r] = [];
+      for(let c = 0; c < 5; ++c) {
+        const cell = puzzleConfiguration.grid[r][c];
+        gameGrid[r][c] = [-1, -1, -1, -1];
+        notes[r][c] = {nw: new Set(), ne: new Set(), sw: new Set(), se: new Set()};
+
+        for(let q = 0; q < 4; ++q) {
+          const symbol = cell[q];
+          gameGrid[r][c][q] = symbol;
+        }
+      }
+    }
   }
 
   // @@ Called From Boilerplate
@@ -1516,6 +1608,9 @@ permalink: /browser-games/corner-place/
     headerLetters = config.grid[0];
     gridWidth = headerLetters.length;
     gridHeight = config.grid.length;
+
+    selectedQuadrant = null;
+    initializeHints();
 
     if(!loadGameState()) {
       initializeStartingGameState();
@@ -1843,15 +1938,22 @@ permalink: /browser-games/corner-place/
   const puzzleFilePath = `../../assets/json/${gameName}.json`;
   const files = [`${puzzleFilePath}?v=${cacheBuster}`];
   Promise.all(
-    files.map(file =>
-      fetch(file)
-        .then(response => response.json())
-    )
+    [
+      document.fonts.load('400 1em "Roboto Mono"'),
+      document.fonts.load('700 1em "Roboto Mono"'),
+      document.fonts.load('1em "Ribeye Marrow"'),
+      document.fonts.load('1em "Shizuru"'),
+      document.fonts.load('1em "Pacifico"'),
+      ...files.map(file =>
+        fetch(file)
+          .then(response => response.json())
+      )
+    ]
   )
   .then(allData => {
-    puzzleData = allData[0];
+    puzzleData = allData[5];
 
-    for(let i = 1; i < allData.length; ++i) {
+    for(let i = 6; i < allData.length; ++i) {
       puzzleData.puzzle.push(...allData[i].puzzle);
     }
 
