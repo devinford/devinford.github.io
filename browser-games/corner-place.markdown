@@ -1042,8 +1042,8 @@ permalink: /browser-games/corner-place/
   const completionAnimationTextComplete = 'Complete!';
 
   function drawCompletionAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
@@ -1096,8 +1096,8 @@ permalink: /browser-games/corner-place/
   const timeAnimationTextTime = "Your Time: ";
 
   function drawTimeAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
@@ -1149,8 +1149,8 @@ permalink: /browser-games/corner-place/
   }
 
   function drawRankAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
