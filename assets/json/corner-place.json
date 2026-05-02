@@ -1,0 +1,60 @@
+{
+  "text": {
+    "promptTutorialEnter": "<p>If you'd like an introduction to the game's rules, you can <a href=\"#tutorial\">try the tutorial puzzles</a>.</p>",
+    "promptTutorialNext": "<p>You've completed this step of the tutorial. Move on to the <a href=\"#tutorial\">next step</a> for more tips.</p>",
+    "promptTutorialLeave": "<p>You've completed the tutorial puzzles. If you'd like more challenging puzzles to solve, you can <a href=\"#today\">play the latest puzzles</a>.</p>"
+  },
+  "theme": {
+    "style": [
+      { "background": "#3F3F3F", "foregroundAnswer": "#FFFFFF", "foregroundHint": "#FFFFFF" },
+      { "background": "#FFFFFF", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#FFFF00", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#FF0000", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#BAE1FF", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" },
+      { "background": "#BAFFC9", "foregroundAnswer": "#000000", "foregroundHint": "#5F5F5F" }
+    ],
+    "styleHeader": 0,
+    "styleCell": 1,
+    "styleHighlight": 2,
+    "styleError": 3,
+    "styleHover": 4,
+    "styleCross": 5,
+    "colorGridline": "#000000",
+    "colorCompletionStripe": "#87CEFAB0",
+    "colorCompletionText": "#ffffff",
+    "axis": [
+      ["1", "2", "3", "4", "5"],
+      ["1", "2", "3", "4", "5"],
+      ["1", "2", "3", "4", "5"],
+      ["1", "2", "3", "4", "5"]
+    ],
+    "quadrantFonts": [
+      { "family": "Roboto Mono", "weight": "normal", "style": "normal" },
+      { "family": "Ribeye Marrow","weight": "normal", "style": "normal" },
+      { "family": "Shizuru", "weight": "normal", "style": "normal" },
+      { "family": "Pacifico", "weight": "normal", "style": "normal" }
+    ]
+  },
+  "puzzle": [
+    {
+      "date": "2026-05-01",
+      "grid": [
+        [[-1,-1,0,3],[3,-1,-1,4],[2,-1,4,1],[1,1,-1,0],[4,-1,2,-1]],
+        [[-1,-1,-1,4],[-1,4,-1,-1],[0,1,1,2],[2,3,-1,3],[3,-1,4,-1]],
+        [[2,4,-1,0],[-1,-1,4,3],[-1,-1,-1,4],[-1,2,-1,-1],[-1,-1,-1,-1]],
+        [[-1,1,-1,-1],[-1,-1,-1,-1],[4,-1,0,-1],[0,-1,4,4],[-1,-1,1,3]],
+        [[1,3,4,-1],[0,-1,2,-1],[3,4,3,-1],[-1,0,-1,1],[2,-1,-1,4]]
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "grid": [
+        [[2,3,-1,3],[3,4,-1,-1],[-1,1,1,1],[0,-1,-1,2],[-1,-1,-1,0]],
+        [[3,-1,0,1],[4,3,-1,2],[-1,2,-1,-1],[2,1,-1,0],[1,4,4,-1]],
+        [[-1,-1,2,-1],[0,-1,0,3],[-1,-1,4,-1],[4,-1,-1,-1],[-1,-1,-1,4]],
+        [[0,4,-1,-1],[-1,-1,-1,1],[-1,-1,-1,-1],[-1,3,0,-1],[-1,1,-1,2]],
+        [[-1,1,-1,4],[1,-1,3,0],[2,-1,0,2],[3,2,-1,3],[-1,-1,-1,1]]
+      ]
+    }
+  ]
+}
