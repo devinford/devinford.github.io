@@ -1196,8 +1196,9 @@ true upper bound on the amount of garbage-data that must be generated. 32 bits
 is the same size as an `int` on 32-bit processors, so 32 bits per list element
 corresponds exactly to the amount of data that we were pushing into the
 `entropy_buffer` in the example sorting algorithm. So, while sorting has
-logarithmic entropy complexity, we could also say that it has linear
-transdichotomous entropy complexity.
+[log-linear](https://en.wikipedia.org/wiki/Time_complexity#Quasilinear_time)
+entropy complexity, we could also say that it has linear transdichotomous
+entropy complexity.
 
 To be clear, we are reducing the "entropy complexity", but not reducing the
 total "entropy". `wordsize * n` *is* an upper bound, but it is an incredibly
@@ -1205,4 +1206,4 @@ loose upper bound, and, following this method, our sorting entropy is taking up
 substantially more space than it needs to. However, in practice, tightly packing
 sorting entropy into as little memory as possible is actually fairly slow and
 inconvenient, especially for very large lists. Generating `O(n)` unpacked
-entropy buffers for sorting is easier to reason about.
+entropy buffers for sorting is significantly easier to reason about.
