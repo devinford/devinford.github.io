@@ -26,8 +26,8 @@ our existing patterns for use in symmetry-breaking code.
 
 The code examples in this series use C-like imperative pseudocode. New
 reversible programming primitives will be given distinct syntax and keywords
-from the non-reversible primitives that they displace-- even if their
-functionality is nearly identical-- because the existing non-reversible
+from the non-reversible primitives that they displace---even if their
+functionality is nearly identical---because the existing non-reversible
 primitives are still used throughout these posts to provide contrasting examples
 or to make the behavior of reversible primitives explicit by giving concrete
 implementations.
@@ -110,9 +110,9 @@ manually invert each piece of code to clean it up. The ability to automatically
 clean up after arbitrary code was what made Lecerf-Bennett Reversal so
 important, after all.
 
-Moreover, [the motivating example for symmetry-breaking](/post/2026/02/18/reversible-primer-symmetry-breaking/#reversible-user-input)--
-reading user input-- is an example of a type of code that outputs a result that
-we simply *cannot* clean up at all, by the nature of reversible programming
+Moreover, [the motivating example for symmetry-breaking](/post/2026/02/18/reversible-primer-symmetry-breaking/#reversible-user-input)---reading
+user input---is an example of a type of code that outputs a result that we
+simply *cannot* clean up at all, by the nature of reversible programming
 languages.
 
 This code example is a bit contrived, but it raises the question of how difficult
@@ -257,8 +257,8 @@ back the same cargo, it might even be accomplishing the inverse of the train
 headed right, but is clearly not being "rewound", as the train is facing the
 opposite direction.
 
-On the other hand, executing the inverse of $$f$$ by inverting the bifunction-- which truly
-undoes the behavior of $$f$$-- would be equivalent to **backing up**
+On the other hand, executing the inverse of $$f$$ by inverting the bifunction---which truly
+undoes the behavior of $$f$$---would be equivalent to **backing up**
 along the track, backing away from the destination that was reached by
 traveling forward.
 
@@ -271,7 +271,7 @@ $$
 This is a "true rewind" of the behavior of $$[f, r]()$$.
 
 And finally, we can combine the two, and execute the inverse of $$r$$ by both
-transposing and inverting the bifunction-- which truly undoes the behavior of
+transposing and inverting the bifunction---which truly undoes the behavior of
 $$r$$. This would be equivalent to backing away from the destination that was
 reached by traveling in in the opposite direction.
 
@@ -326,8 +326,8 @@ we cannot construct a bifunction $$[readline, readline^{-1}]$$. This means that
 there are restrictions on what kinds of functions are allowed to be part of a
 reversible bifunction.
 
-If that restriction excludes I/O functions-- or any other functions that are
-necessary for practical user-facing applications-- then we're going to have
+If that restriction excludes I/O functions---or any other functions that are
+necessary for practical user-facing applications---then we're going to have
 difficulty accomplishing much of value in a reversible programming language.
 
 Luckily, the constraint turns out to be fairly flexible, and offers enough
@@ -341,7 +341,7 @@ programming language as [injective functions](https://en.wikipedia.org/wiki/Inje
 over program states, that map in a 1:1 fashion from an input program state to
 an output program state. If we restrict ourselves to injective functions only,
 then reading user input is forbidden from the outset, because reading user input
-is non-injective-- it maps a single initial input state to one of several
+is non-injective---it maps a single initial input state to one of several
 possible resulting output states depending on what the user's input actually
 was. Luckily, we can make our criteria more lenient, by breaking "injectivity"
 down further into two constituent properties: "forward determinism" and
@@ -379,7 +379,7 @@ graph BT
 For the purpose of our bifunction model, our only criteria is that the two
 members of a bifunction must each be individually backward deterministic.
 Backward determinism is the minimum possible requirement for a function $$f$$,
-that ensures that $$f^{-1}(f(x)) = x$$-- or in other words, it is the minimum
+that ensures that $$f^{-1}(f(x)) = x$$---or in other words, it is the minimum
 property that ensures that, given the result of evaluating a function, it is
 always possible to recover the original input prior to the function being
 evaluated. This is because, if $$f$$ is a backward deterministic function,
@@ -404,7 +404,7 @@ $$
 
 As you may have guessed, reading user input (or any other form of I/O, for that
 matter) is not forward deterministic, because it can produce multiple possible
-values, but it *is* backward deterministic-- or at least, you can specify I/O
+values, but it *is* backward deterministic---or at least, you can specify I/O
 primitives in a backward deterministic way. For example, we can return to that
 [original motivating example for symmetry-breaking](/post/2026/02/18/reversible-primer-symmetry-breaking/#reversible-user-input):
 
@@ -532,7 +532,7 @@ given(error_encountered) {
 given(!handling_error) {
   do_some_work();
 
-  // Whoops, we encountered an error-- let's set the
+  // Whoops, we encountered an error---let's set the
   // `error_encountered` flag and initiate backtracking.
   given(some_error_condition) {
     turn(error_encountered) {
@@ -550,8 +550,8 @@ this error flag and recover from the backtracking.
 
 This is all well and good as long as you know ahead of time exactly what error
 flags the code you are calling into is going to set. However, what if you know
-that the code might initiate backtracking, but you do not know-- or do not have
-access to-- the error flags that the code is going to set? It seems like
+that the code might initiate backtracking, but you do not know---or do not have
+access to---the error flags that the code is going to set? It seems like
 interrupting the backtracking would become **impossible**.
 
 This is where a new control structure can come in clutch: the `clutch`
@@ -684,7 +684,7 @@ pseudosymmetric?
 
 The key insight here is that for any specific code snippet implemented using
 `clutch`, it is possible to write an exactly equivalent code snippet that does
-not use `clutch`-- or any symmetry-breaking primitive-- but only by modifying
+not use `clutch`---or any symmetry-breaking primitive---but only by modifying
 all of the locations within the block passed to the clutch statement that
 potentially initiate backtracking.
 
@@ -752,8 +752,8 @@ break symmetry at all. However, such a macro would be fairly complex, because it
 would also have to recursively write a new "signaling" version of every function
 that is called from the block. The power of the `clutch` statement is that by
 breaking symmetry, it is able to localize the concern of detecting backtracking
-to only the location where you actually care about it-- the invocation of the
-`clutch` statement itself-- without spreading that concern throughout the entire
+to only the location where you actually care about it---the invocation of the
+`clutch` statement itself---without spreading that concern throughout the entire
 codebase.
 
 Because every `clutch` statement has an exact equivalent implementation that
@@ -874,7 +874,7 @@ number of different simulated "levels" of symmetry-breaking that each have an
 associated proxy direction bit.
 
 When it comes to building a reversible instruction set, it could make sense to
-make reading the true direction bit-- or toggling it in isolation-- a privileged
+make reading the true direction bit---or toggling it in isolation---a privileged
 operation, so that the operating system would maintain the ability to perfectly
 rewind any executing process if necessary, and user-level symmetry-breaking
 would instead use one of the secondary direction bits that are always toggled in

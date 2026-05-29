@@ -23,8 +23,8 @@ basic, familiar programming patterns.
 
 The code examples in this series use C-like imperative pseudocode. New
 reversible programming primitives will be given distinct syntax and keywords
-from the non-reversible primitives that they displace-- even if their
-functionality is nearly identical-- because the existing non-reversible
+from the non-reversible primitives that they displace---even if their
+functionality is nearly identical---because the existing non-reversible
 primitives are still used throughout these posts to provide contrasting examples
 or to make the behavior of reversible primitives explicit by giving concrete
 implementations.
@@ -74,7 +74,7 @@ loop entirely. If the condition is initially `true`, you enter the loop and
 repeat the body until the condition becomes `false`, at which point you exit the
 loop. Even though the condition determines which path you take, by the time you
 arrive at the other side of the `while` loop, the condition can only have one
-possible value-- `false`-- meaning that the `while` loop itself erases the
+possible value---`false`---meaning that the `while` loop itself erases the
 information that you would need to determine whether or not it ever executed.
 
 This is a problem with virtually all traditional forms of control flow. They
@@ -579,7 +579,7 @@ between(entry_condition ^ exit_condition) {
 ```
 
 Here, we skip the loop if both conditions are `false` or both conditions are
-`true`. If only the `exit_condition` is true, then we raise an error-- that's
+`true`. If only the `exit_condition` is true, then we raise an error---that's
 the "conditions must become `true` in a particular order" rule. But, if only the
 `entry_condition` is true, then we enter the loop.
 
@@ -788,7 +788,7 @@ programs.
 
 #### Extra: Infinite Loops & "Entropy Complexity"
 
-It's very common-- especially user-facing software-- for a program to enter into
+It's very common---especially user-facing software---for a program to enter into
 an "infinite loop", in which it repeatedly presents its user interface to the
 user. However, reversible programming languages encounter some unique problems
 with the concept of infinite loops.
@@ -811,7 +811,7 @@ the program? The answer is: there is no way to know, and consequently,
 unconditionally entering an infinite loop erases information, which is not
 allowed in a reversible program.
 
-The simplest-- and often most-efficient-- method to work around this is to
+The simplest---and often most-efficient---method to work around this is to
 literally count the number of times that we have repeated the loop. When we
 rewind, we can then count backwards to make sure that we loop backwards the
 correct number of times before exiting. For example, we can count the number of
@@ -876,9 +876,9 @@ This information is effectively random and meaningless from the program's
 perspective, analogous to the [information theory notion of "entropy"](https://en.wikipedia.org/wiki/Entropy_(information_theory))
 as uncertainty about the value of variables. This information also cannot be
 uncomputed without rolling back the algorithm that produced it, and would
-otherwise need to be erased to clean up the program's memory, which-- as
-discussed in the [introduction to the series](/post/2025/08/19/reversible-primer-introduction/#what-is-reversible-computing)--
-would generate [thermodynamic entropy](https://en.wikipedia.org/wiki/Entropy_(classical_thermodynamics));
+otherwise need to be erased to clean up the program's memory, which---as
+discussed in the [introduction to the series](/post/2025/08/19/reversible-primer-introduction/#what-is-reversible-computing)---would
+generate [thermodynamic entropy](https://en.wikipedia.org/wiki/Entropy_(classical_thermodynamics));
 so, you could think of this data as "potential thermodynamic entropy". As a
 result, I like to think of this as the "entropy complexity" of an algorithm.
 "Entropy" feels like it fits right in along side "time" and "space".
@@ -955,8 +955,8 @@ while(condition) {
 Here, if the `break` statement is executed, the remainder of the loop is
 skipped, and the entire loop terminates prematurely, immediately jumping to the
 code following the loop. This is commonly-used when it's possible to determine
-that there is no more useful work to be done-- not just in the current iteration
-of a loop, but in all of the remaining iterations of the loop-- so you should
+that there is no more useful work to be done---not just in the current iteration
+of a loop, but in all of the remaining iterations of the loop---so you should
 stop looping entirely.
 
 Another common pattern is to make the loop unconditional, and then use `break`
@@ -1030,7 +1030,7 @@ This code can be verbalized as "while the count of items in the list is greater
 than zero, pop the next item off the list and add it into the sum."
 
 However, "while" does not map semantically onto the behavior of the `between`
-loop. "While" means "for as long as the condition is true"-- which means it
+loop. "While" means "for as long as the condition is true"---which means it
 should stop when the condition becomes `false`. However, `between` stops when
 its condition becomes `true`. We could negate the condition of the `between`
 loop, which would leave us with a loop that exits when its condition becomes
@@ -1053,8 +1053,8 @@ looping control structures.
 
 Additionally, unlike some control structures we will examine in future posts,
 `between` loops could exist without issue in normal, non-reversible programming
-languages-- an explicit implementation in terms of `if` statements and
-`do`/`while` loops was given earlier in this post-- so I think it makes sense to
+languages---an explicit implementation in terms of `if` statements and
+`do`/`while` loops was given earlier in this post---so I think it makes sense to
 give `between` statements a different syntax than `while` loops so that the
 control structures could coexist.
 

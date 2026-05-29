@@ -23,8 +23,8 @@ accomplish.
 
 The code examples in this series use C-like imperative pseudocode. New
 reversible programming primitives will be given distinct syntax and keywords
-from the non-reversible primitives that they displace-- even if their
-functionality is nearly identical-- because the existing non-reversible
+from the non-reversible primitives that they displace---even if their
+functionality is nearly identical---because the existing non-reversible
 primitives are still used throughout these posts to provide contrasting examples
 or to make the behavior of reversible primitives explicit by giving concrete
 implementations.
@@ -248,7 +248,7 @@ exiting the turntable in the opposite direction.
 
 ![A train rolls onto a turn table, then the turntable rotates 180 degrees; the train rolls off the turntable traveling backwards along the track it originally arrived from](/assets/images/turntablearound.gif)
 
-The applications of this may not be immediately obvious-- it's fairly alien to
+The applications of this may not be immediately obvious---it's fairly alien to
 any ordinary understanding of control flow. However, it turns out that the
 ability "turn around" and start executing code in reverse is an extremely
 powerful programming primitive with a number of applications.
@@ -300,7 +300,7 @@ given(error_encountered) {
 given(!handling_error) {
   do_some_work();
 
-  // Whoops, we encountered an error-- let's set the
+  // Whoops, we encountered an error---let's set the
   // `error_encountered` flag and initiate backtracking.
   given(some_error_condition) {
     turn(error_encountered) {
@@ -342,7 +342,7 @@ extremely fundamental control structures.
 
 #### Fundamentality
 
-`turn` statements turn out to be very fundamental-- even more fundamental than
+`turn` statements turn out to be very fundamental---even more fundamental than
 loops or conditionals, because they can be used to implement loops and
 conditionals.
 
@@ -499,7 +499,7 @@ flash {
   // body
 }
 
-// Is similar-- but not equivalent-- to:
+// Is similar---but not equivalent---to:
 
 bool cleanup_step <- false;
 
@@ -766,7 +766,7 @@ seems like a good time to start implementing some real, commonly-used
 algorithms, just to look at what they look like in a reversible programming
 language.
 
-Let's look at a sorting algorithm-- it's one of the first algorithms that new
+Let's look at a sorting algorithm---it's one of the first algorithms that new
 programmers generally learn how to write in ordinary programming languages.
 
 ```rust
@@ -806,7 +806,7 @@ for(i == 0 => i == list.count) {
   }
 
   // Swap the smallest element of the unsorted part of the list into place
-  // as the next element of the sorted part-- skip this if the smallest element
+  // as the next element of the sorted part---skip this if the smallest element
   // was already in the correct place.
   given(swap_index != i) {
     list[i] >-< list[swap_index];
@@ -936,8 +936,8 @@ will expand the primitive basis further.
 
 If we can call `expose` and `shut` from inside of other control structures, then
 can we call them from inside of *other `flash` blocks*? There's no reason why it
-wouldn't work logically-- each `flash` block gets its own hidden temporary
-variable-- but the obstacle is that we wouldn't have a clear, syntactical way of
+wouldn't work logically---each `flash` block gets its own hidden temporary
+variable---but the obstacle is that we wouldn't have a clear, syntactical way of
 targeting the `expose` and `shut` statements. But, we could work around this by
 introducing labels.
 
@@ -1044,7 +1044,7 @@ problem in reversible programming languages, due to the
 [lack of early `continue` and `break` statements](/post/2025/10/24/reversible-primer-control-basic/#extra-the-lack-of-continue-and-break).
 
 One possibility to address this would be to allow for "inverted `flash` blocks",
-where the initialization-- which is usually simpler-- is nested, and the
+where the initialization---which is usually simpler---is nested, and the
 potentially more complex storage logic is non-nested.
 
 We can call our inverted `flash` blocks "`using` blocks". A `using` block is a
@@ -1142,9 +1142,9 @@ be confusing if they are used alongside regular `flash` statements. For example,
 can `shut` be used to terminate the implicit `flash` block early? I would expect
 that the answer would be "no", but that might not be immediately obvious.
 
-But, deep nesting is a real problem with reversible programs-- you can see in
+But, deep nesting is a real problem with reversible programs---you can see in
 the code example above that flipping from `using` to `flash`/`expose` added two
-levels of nesting to our `storage` code-- so I think it's useful to spend time
+levels of nesting to our `storage` code---so I think it's useful to spend time
 thinking about different syntactical concepts that can mitigate that nesting.
 
 #### Extra: "Transdichotomous" Entropy Complexity
@@ -1177,20 +1177,20 @@ possible orders of the list, a reversible sorting algorithm needs to produce
 
 However, you might have noticed that the [example sorting algorithm](#practical-example-sorting-a-list)
 pushed a number of values into its `entropy_buffer` that was equal to length of
-the list it was sorting. This *should not be possible*-- the amount of data that
+the list it was sorting. This *should not be possible*---the amount of data that
 it has to push should be proportional to `n * log(n)`, not proportional to `n`
 (which is *smaller* than `n * log(n)`). The trick is that the algorithm is
 taking advantage of the fixed word size.
 
 Because processor words are used to address memory, a list cannot contain a
 number of elements greater than the number of distinct values that a processor
-word can store-- there simply wouldn't be anywhere to put all of the elements of
+word can store---there simply wouldn't be anywhere to put all of the elements of
 the list. So, on a 32-bit processor, for example, the maximum number of elements
 a list can contain is `2^32`. Let's assume that we're working with a 32-bit
 processor for the sake of the example.
 
-If `n`-- the number of elements in the list to be sorted-- is less than `2^32`--
-which it must be in order to fit inside the computer's memory-- then
+If `n`---the number of elements in the list to be sorted---is less than `2^32`---
+which it must be in order to fit inside the computer's memory---then
 `n * log(n)` is less than `n * log(2^32) = 32 * n`, meaning that `32 * n` is a
 true upper bound on the amount of garbage-data that must be generated. 32 bits
 is the same size as an `int` on 32-bit processors, so 32 bits per list element

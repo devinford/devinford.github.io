@@ -53,7 +53,7 @@ letters into groups of three and cyclically-shift the three elements.
 | D   | E   | B   | F   | C   | A   |
 | ... | ... | ... | ... | ... | ... |
 
-Here, in the first row, we cyclically shift A, E and D-- E is under header A,
+Here, in the first row, we cyclically shift A, E and D---E is under header A,
 D is under header E, and A is under header D. We also cyclically shift B, C and
 F in the same way. In the second row, we cyclically shift A, C and E, as well as
 B, F and D. In the third row, we cyclically shift A, D and F, as well as B, E

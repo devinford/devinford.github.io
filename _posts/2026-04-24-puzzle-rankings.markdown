@@ -7,7 +7,7 @@ tags: game_development
 excerpt_separator: <!--more-->
 ---
 
-The site currently has a few daily puzzle games running-- [Pair Place](/browser-games/pair-place/)
+The site currently has a few daily puzzle games running---[Pair Place](/browser-games/pair-place/)
 and [Triple Place](/browser-games/triple-place/). Today, I'm introducing a
 ranking server that will let you see how well you performed compared to other
 players on each daily puzzle.

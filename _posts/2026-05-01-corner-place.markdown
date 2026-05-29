@@ -340,7 +340,7 @@ another quadrant of the same square.
 ![The mouse presses down on a quadrant, then moves to another quadrant. A corresponding quadrant in another square that shares the same value becomes highlighted.](/assets/images/corner-place-spread.gif)
 
 Every square that shares the same value in the quadrant you dragged to gets
-highlighted-- both the shared value (in blue), and the quadrant corresponding to
+highlighted---both the shared value (in blue), and the quadrant corresponding to
 the one that you initially pressed down on (in green, like the rows and
 columns). This makes it easy to get a visual read on what squares can cause a
 conflict. In this example, 1, 2 and 5 are in the same row or column, and the
@@ -357,6 +357,6 @@ The more I worked on Corner Place, the more surprised I became that this wasn't
 an existing puzzle game. It has a very classic sort of feel to it. Maybe the
 information overload of having to cross-reference squares in such a strange way
 is a part of it, as it definitely took a lot of iteration to work it into
-something playable-- and I'll probably continue to tweak the UI as time goes on.
+something playable---and I'll probably continue to tweak the UI as time goes on.
 But if you'd like to try it out for yourself to see how well these little UI
 tweaks have come together, you can try playing the game [here](/browser-games/corner-place/).

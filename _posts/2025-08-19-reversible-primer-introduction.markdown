@@ -84,7 +84,7 @@ no information is lost, it is possible to return the program to any previous
 state (this is why the term "reversible" is commonly used, rather than just
 "non-destructive" or something similar). To put this in more familiar
 mathematical terms: each individual operation that a reversible computer can
-perform must have an "inverse"-- another operation that perfectly undoes the
+perform must have an "inverse"---another operation that perfectly undoes the
 effect that the original operation has on the program state.
 
 So, the NAND gate is no longer possible, but there are other *reversible* logic
@@ -148,7 +148,7 @@ reversible computer, you wouldn't be able to throw them away, so it would seem
 like they would pile up as "junk data", taking up space, even though their
 values are no longer useful. This was a major concern during the early
 investigations of reversible computing. However, two researchers in the 1960s
-and 1970s-- Yves Lecerf and Charles Bennett-- each independently came up
+and 1970s---Yves Lecerf and Charles Bennett---each independently came up
 with basically the same solution to this problem.
 
 As mentioned earlier, every operation that a reversible computer can perform is
@@ -177,8 +177,8 @@ This effectively "frees" the memory used during the calculation while preserving
 its result. We can refer to this concept as "Lecerf-Bennett Reversal", after the
 two researchers that discovered it.
 
-This idea-- of using inverse calculations or "uncomputation" to clean up
-memory-- is the cornerstone of reversible computing. Future posts will go into
+This idea---of using inverse calculations or "uncomputation" to clean up
+memory---is the cornerstone of reversible computing. Future posts will go into
 more detail about how Lecerf-Bennett Reversal not only appears as a valuable
 control structure in structured reversible programming languages, but also about
 how the concept is baked into the very structure of how nested expressions are
@@ -205,7 +205,7 @@ the same result.
 
 Physical reversibility is the property that a piece of computer hardware
 implements computation in a way that avoids invoking the ire of Landauer's
-Principle-- the hardware itself never erases information and thus never loses
+Principle---the hardware itself never erases information and thus never loses
 that information as heat. It's physically reversible computer hardware that
 delivers all of the energy efficiency benefits. However, both pieces are
 ultimately necessary, because while a physically non-reversible computer *is
@@ -226,7 +226,7 @@ be written.
 
 Despite existing since the 1960s, the field of reversible computing has been
 largely niche for nearly 70 years, and is only now starting to get wider
-attention given the ever-expanding demand for more efficient computers-- a more
+attention given the ever-expanding demand for more efficient computers---a more
 relevant concern than ever with the emergence of compute-hungry large language
 models. It remains to be seen whether or not computers can actually be built
 that realize the efficiency benefits that were predicted in the 1960s; however,
@@ -269,7 +269,7 @@ However, many of those sources define the scope of this operation differently.
 In some sources, "Bennett's Trick" doesn't just involve running a computation
 in reverse to clean up memory, but rather also includes a specific method of
 simulating non-reversible computations by generating a "trace" explicitly
-recording the history of the computation-- with the trace itself being
+recording the history of the computation---with the trace itself being
 "uncomputed" during the final step of the operation.
 
 For the purpose of this series of posts, the operation will be referred to as

@@ -23,8 +23,8 @@ can be defined.
 
 The code examples in this series use C-like imperative pseudocode. New
 reversible programming primitives will be given distinct syntax and keywords
-from the non-reversible primitives that they displace-- even if their
-functionality is nearly identical-- because the existing non-reversible
+from the non-reversible primitives that they displace---even if their
+functionality is nearly identical---because the existing non-reversible
 primitives are still used throughout these posts to provide contrasting examples
 or to make the behavior of reversible primitives explicit by giving concrete
 implementations.
@@ -74,7 +74,7 @@ applications in this post:
 1. Zero is the identity element of bitwise XOR.
   - `A ^ 0 = A`
   - `0 ^ A = A`
-2. Bitwise XOR is self-inverse-- and thus, invertible-- so we can use it as an
+2. Bitwise XOR is self-inverse---and thus, invertible---so we can use it as an
   operation in a reversible program.
   - `(A ^ B) ^ B = A`
 3. As a consequence of 1 and 2, performing bitwise XOR between two copies of the
@@ -111,8 +111,8 @@ do_something(x);
 In this case, we are assuming that the initial value of the variable `x` is
 implicitly `0`. This is an important assumption that programmers need to be able
 to make for both variables allocated on the stack and memory that is allocated
-on the heap in reversible programming languages. If this was not the case-- and
-memory could come pre-populated with existing junk data-- then a reversible
+on the heap in reversible programming languages. If this was not the case---and
+memory could come pre-populated with existing junk data---then a reversible
 program would have no way to dispose of that existing data and make use of the
 memory for any useful purpose.
 
@@ -204,7 +204,7 @@ This statement (`a <- b`) is the "`copy`" operator, which raises an error if the
 lefthand side variable is not blank, and then copies the value of its righthand
 side into its lefthand side variable.
 
-We can create a similar, inverse operation for uninitializing a variable-- an
+We can create a similar, inverse operation for uninitializing a variable---an
 "`uncopy`" operator:
 
 ```rust
@@ -257,8 +257,8 @@ a -= b;
 assert(a == 0);
 ```
 
-For remembering how this operator functions, you can remember that-- like most
-assignment operators-- it modifies the variable on its lefthand side, and use the
+For remembering how this operator functions, you can remember that---like most
+assignment operators---it modifies the variable on its lefthand side, and use the
 visual mnemonic that the operator somewhat resembles a pencil. The pointy end
 of a pencil can be used for writing things, whereas the flat end of a pencil can
 be used for erasing things.
@@ -302,7 +302,7 @@ a >-< b;
 ```
 
 Similar to the argument above, a dedicated operator allows the `swap` to be
-implemented in whatever way is contextually the fastest-- for example, multiple
+implemented in whatever way is contextually the fastest---for example, multiple
 `swap`s used in the same function might share the same temporary swap space, or
 in some cases it might be possible to optimize away a swap entirely.
 
@@ -378,8 +378,8 @@ x = x + 1;
 ```
 
 This particular assignment represents a valid reversible operation. However,
-these sorts of assignments-- where the lefthand side of the assignment also
-appears on the righthand side-- can potentially lead to issues with
+these sorts of assignments---where the lefthand side of the assignment also
+appears on the righthand side---can potentially lead to issues with
 reversibility. For example, consider something as simple as:
 
 ```rust

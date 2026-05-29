@@ -31,8 +31,8 @@ programming patterns.
 
 The code examples in this series use C-like imperative pseudocode. New
 reversible programming primitives will be given distinct syntax and keywords
-from the non-reversible primitives that they displace-- even if their
-functionality is nearly identical-- because the existing non-reversible
+from the non-reversible primitives that they displace---even if their
+functionality is nearly identical---because the existing non-reversible
 primitives are still used throughout these posts to provide contrasting examples
 or to make the behavior of reversible primitives explicit by giving concrete
 implementations.
@@ -116,7 +116,7 @@ Given all of this, it is not really clear what "should" happen when we run this
 `readline` statement in reverse, but the one thing that we know for sure is not
 going to happen is the inverse behavior of the original statement.
 
-This may seem somehow inherently wrong-- as if the most obvious principle for
+This may seem somehow inherently wrong---as if the most obvious principle for
 how reversible programming languages *should* work is being violated. How can
 running a function in reverse not undo its effects? Does such a function even
 still qualify as being reversible? Isn't that what "reversibility" means?
@@ -290,7 +290,7 @@ both break symmetry, it's also easy to see that they are both still reversible.
 The forward and reverse behaviors are not inverses of one another, but they are
 each *self-inverse*: the inverse of negation is negation, and the inverse of
 doing nothing is doing nothing. While our previous method of cleaning up
-after a function-- running the function a second time in reverse-- does not work
+after a function---running the function a second time in reverse---does not work
 for these functions, there is a method that does work: just run the function
 again:
 
@@ -678,7 +678,7 @@ little bit better.
 
 There are a lot of different decisions we could make as to how to what behavior
 to assign to reverse I/O, but the best choice is still really a topic of ongoing
-investigation-- there's not a whole lot of practical reversible code out there
+investigation---there's not a whole lot of practical reversible code out there
 exercising the options to see which one works best. But this is a topic that I
 plan to return to for a more extensive discussion in the future once I've had
 more time to test the options in a hands on way, and once future posts have
@@ -703,7 +703,7 @@ In the next post in this series, we will be getting to the bottom of all this by
 developing a more coherent mathematical model for symmetry-breaking code, and
 isolating a subcategory of symmetry-breaking code that gives us both
 symmetry-breaking functionality **and** compatibility with our existing
-symmetry-abiding assumptions-- the best of both worlds.
+symmetry-abiding assumptions---the best of both worlds.
 
 <!--nav-->
 
@@ -870,7 +870,7 @@ given(error_encountered) {
 given(!handling_error) {
   do_some_work();
 
-  // Whoops, we encountered an error-- let's set the
+  // Whoops, we encountered an error---let's set the
   // `error_encountered` flag and initiate backtracking.
   given(some_error_condition) {
     turn(error_encountered) {
@@ -901,7 +901,7 @@ given(error_encountered) {
 given(!handling_error) {
   do_some_work();
 
-  // Whoops, we encountered an error-- let's initiate backtracking without
+  // Whoops, we encountered an error---let's initiate backtracking without
   // setting a flag.
   given(some_error_condition) {
     reverse_half_toggle(&error_encountered);
@@ -949,7 +949,7 @@ reverse_half_toggle(&should_recover);
 given(!handling_error) {
   do_some_work();
 
-  // Whoops, we encountered an error-- let's initiate backtracking without
+  // Whoops, we encountered an error---let's initiate backtracking without
   // setting a flag.
   given(some_error_condition) {
     reverse_half_toggle(&error_encountered);
