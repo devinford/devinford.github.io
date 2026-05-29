@@ -267,22 +267,6 @@ permalink: /browser-games/corner-place/
 
   // @@ Puzzle Logic
 
-  function cellStatus(nonHeaderRow, column) {
-    const originalLetter = puzzleConfiguration.grid[nonHeaderRow + 1][column];
-    if(originalLetter !== ' ' && originalLetter === originalLetter.toUpperCase()) return CellHint;
-
-    return gameGrid[nonHeaderRow][column] === -1 ? CellBlank : CellOccupied;
-  }
-
-  function isHintCell(row, column) {
-    const originalLetter = puzzleConfiguration.grid[row][column];
-    return originalLetter !== ' ' && originalLetter === originalLetter.toUpperCase();
-  }
-
-  function isBlankCell(row, column) {
-    return gameGrid[row][column] === -1;
-  }
-
   function recalculateCachedErrors() {
     cachedErrors.clear();
 
@@ -386,71 +370,6 @@ permalink: /browser-games/corner-place/
     }
 
     drawGame();
-  }
-
-  function handleWrite(row, column0, column1) {
-    if(isHintCell(row, column0)) return;
-
-    if(!isBlankCell(row, column0)) return;
-
-    if(column0 < 0 || column1 < 0) return;
-
-    gameGrid[row][column0] = column1;
-    removeNotes(row, column0, column1);
-
-    saveGameState();
-    recalculateCachedErrors();
-    drawGame();
-
-    if(isPuzzleComplete()) {
-      handlePuzzleCompletion();
-    }
-  }
-
-  function removeNotes(row, column0, column1) {
-    notes[row][column0].clear();
-    for(let column = 0; column < gridWidth; ++column) {
-      notes[row][column].delete(column1);
-    }
-    for(let row0 = 0; row0 < gridHeight; ++row0) {
-      notes[row0][column0].delete(column1);
-    }
-  }
-
-  function findBackreferenceColumnIndex(row, column) {
-    for(let backreferenceColumn = 0; backreferenceColumn < gridWidth; ++backreferenceColumn) {
-      if(gameGrid[row][backreferenceColumn] === column) return backreferenceColumn;
-    }
-    return -1;
-  }
-
-  function columnIndexFromHeaderLetter(letter) {
-    return headerLetters.indexOf(letter);
-  }
-
-  function clearNotesForPlacement(row, column0, column1) {
-    notes[row][column0].clear();
-    notes[row][column1].clear();
-
-    for(let column = 0; column < gridWidth; ++column) {
-      notes[row][column].delete(column0);
-      notes[row][column].delete(column1);
-    }
-
-    for(let row = 0; row < gridHeight; ++row) {
-      notes[row][column0].delete(column1);
-      notes[row][column1].delete(column0);
-    }
-  }
-
-  function handleNote(row, column0, column1) {
-    if(!isBlankCell(row, column0)) return;
-    if(isHintCell(row, column0)) return;
-
-    if(column0 >= 0 && column1 >= 0) {
-      notes[row][column0].add(column1);
-      saveGameState();
-    }
   }
 
   function isPuzzleComplete() {
@@ -1358,34 +1277,6 @@ permalink: /browser-games/corner-place/
   function handleKeyPress(event) {
     if(completionTime) return;
     if(event.ctrlKey || event.metaKey || event.altKey) return;
-
-    if(event.key === 'Tab' && selectedQuadrant) {
-      const delta = event.shiftKey ? 3 : 1;
-      selectedQuadrant = { ...selectedQuadrant, quadrant: (selectedQuadrant.quadrant + delta) % 4 };
-      startTimer();
-      drawGame();
-      event.preventDefault();
-      return;
-    }
-
-    if(selectedQuadrant) {
-      let { row, col, quadrant } = selectedQuadrant;
-      let moved = true;
-
-      if(event.key === 'ArrowUp' && row > 0) --row;
-      else if(event.key === 'ArrowDown' && row < 4) ++row;
-      else if(event.key === 'ArrowLeft' && col > 0) --col;
-      else if(event.key === 'ArrowRight' && col < 4) ++col;
-      else moved = false;
-
-      if(moved) {
-        selectedQuadrant = { row, col, quadrant };
-        startTimer();
-        drawGame();
-        event.preventDefault();
-        return;
-      }
-    }
 
     if(!selectedQuadrant) return;
 
