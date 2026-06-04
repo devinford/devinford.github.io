@@ -574,17 +574,20 @@ permalink: /browser-games/pair-place/
 
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
-    const size = Math.min(rect.width, rect.height);
-    canvas.width = size;
-    canvas.height = size;
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
+    context.scale(window.devicePixelRatio, window.devicePixelRatio);
 
+    const size = Math.min(rect.width, rect.height);
     const padding = size * 0.01;
     gridOffset = padding;
     cellSize = (size - 2 * padding) / gridWidth;
+
+    drawGame();
   }
 
   function drawGame() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
     for(let row = 0; row < gridHeight; ++row) {
       for(let column = 0; column < gridWidth; ++column) {
@@ -701,8 +704,8 @@ permalink: /browser-games/pair-place/
   const completionAnimationTextComplete = 'Complete!';
 
   function drawCompletionAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
@@ -755,8 +758,8 @@ permalink: /browser-games/pair-place/
   const timeAnimationTextTime = "Your Time: ";
 
   function drawTimeAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
@@ -808,8 +811,8 @@ permalink: /browser-games/pair-place/
   }
 
   function drawRankAnimation() {
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const canvasWidth = canvas.width / window.devicePixelRatio;
+    const canvasHeight = canvas.height / window.devicePixelRatio;
 
     const stripeColor = theme.colorCompletionStripe;
     const textColor = theme.colorCompletionText;
@@ -887,8 +890,8 @@ permalink: /browser-games/pair-place/
     const canvasX = x - rect.left;
     const canvasY = y - rect.top;
 
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
+    const scaleX = 1;
+    const scaleY = 1;
     const scaledX = canvasX * scaleX;
     const scaledY = canvasY * scaleY;
 
