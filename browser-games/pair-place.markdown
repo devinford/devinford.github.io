@@ -890,13 +890,8 @@ permalink: /browser-games/pair-place/
     const canvasX = x - rect.left;
     const canvasY = y - rect.top;
 
-    const scaleX = 1;
-    const scaleY = 1;
-    const scaledX = canvasX * scaleX;
-    const scaledY = canvasY * scaleY;
-
-    const column = Math.floor((scaledX - gridOffset) / cellSize);
-    const row = Math.floor((scaledY - gridOffset) / cellSize);
+    const column = Math.floor((canvasX - gridOffset) / cellSize);
+    const row = Math.floor((canvasY - gridOffset) / cellSize);
 
     if(row >= 0 && row < gridHeight && column >= 0 && column < gridWidth) {
       return { row, column };
