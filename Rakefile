@@ -13,7 +13,7 @@ namespace :generate do
     tag_configurations = YAML.load_file(TagFilePath)
 
     config = {
-      'future' => args[:future]
+      'future' => args[:future] == 'true'
     }
     site_config = Jekyll.configuration(config)
     site = Jekyll::Site.new(site_config)
