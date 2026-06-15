@@ -3,7 +3,7 @@ layout: post
 title: "Triple Place"
 date: "2026-01-01 11:00:00 -0400"
 categories: post
-tags: game_development math
+tags: game_development mathematics
 excerpt_separator: <!--more-->
 ---
 

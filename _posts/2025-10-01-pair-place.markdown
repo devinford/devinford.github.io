@@ -3,7 +3,7 @@ layout: post
 title: "Pair Place"
 date: "2025-10-01 11:00:00 -0400"
 categories: post
-tags: programming game_development math reversible_programming
+tags: programming game_development mathematics reversible_programming
 excerpt_separator: <!--more-->
 ---
 
