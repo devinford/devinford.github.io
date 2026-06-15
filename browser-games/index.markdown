@@ -18,8 +18,16 @@ available.
 - [Pair Place](pair-place/) (<span class="puzzle-status" data-puzzle-file="../assets/json/pair-place.json">Loading...</span>) - A puzzle game where letters must be unique paired up in each row.
 
 <script>
+  function dateFormat(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date().toISOString().split('T')[0];
+    // const today = new Date().toISOString().split('T')[0];
+    const today = dateFormat(new Date());
     const cacheBuster = "{{ site.time | date: '%s' }}";
 
     const puzzleElements = document.querySelectorAll('.puzzle-status');
