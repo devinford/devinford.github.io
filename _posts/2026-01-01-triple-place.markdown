@@ -107,7 +107,7 @@ That's more or less the extent of it. I'm not the greatest puzzle solver in the
 world, so there may be more advanced moves that I'm not aware of, or that only
 become apparent on much larger grids, but these are your 4 basic moves, and
 there are no other special criteria that disqualify letters from being placed in
-particular locatons. However, you might notice something missing from these
+particular locations. However, you might notice something missing from these
 logical deduction rules.
 
 Although Pair Place was designed around the additional constraint that the

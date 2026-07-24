@@ -105,7 +105,7 @@ noticed that a lot of the logic I was using to to try to avoid dead-ends in my
 solutions felt very similar to the kinds of logic applied in [sudoku](https://en.wikipedia.org/wiki/Sudoku)
 puzzles, and that's not a coincidence. This type of problem is a graph-coloring
 problem where you color edges, and sudoku puzzles are a tidied up version of a
-graph-coloring problems where you color vertices. And so, the obvious question
+graph-coloring problem where you color vertices. And so, the obvious question
 arose of: can this edge-coloring problem be tidied up into a similar sort of
 pen and paper puzzle as well?
 
@@ -161,7 +161,7 @@ Through trial and error, I discovered that the more square the dimensions of the
 table are, the more hints you will be able to remove while leaving the puzzle
 with a single unique solution, so you can end up with much more challenging
 puzzles, and I pretty quickly abandoned everything but square grids. With square
-grid, you can get sparser grids that make for better puzzles, like:
+grids, you can get sparser grids that make for better puzzles, like:
 
 | A | B | C | D | E | F |
 | - | - | - | - | - | - |
