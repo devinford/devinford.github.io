@@ -432,6 +432,14 @@ permalink: /browser-games/triple-place/
       } else if(next >= 0) {
         tail = next;
         ++count;
+        // If the user has connected a space to an already existing cycle, then
+        // this forward search through the references will never terminate, as
+        // the cycle will repeat forever without ever returning to the original
+        // column. To avoid this, we simply immediately terminate the search
+        // when we have reached a chain of 4 or more.
+        // Properly coloring the connected pieces is handled elsewhere and
+        // properly addresses this structure, but this method is really just a
+        // fast check for where auto-closure of 3-chains needs to occur.
         if(count > maxCount) return { cycle: false, count: 0 };
       } else {
         break;
