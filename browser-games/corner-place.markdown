@@ -237,8 +237,10 @@ permalink: /browser-games/corner-place/
   let hints = [];
 
   let selectedQuadrant = null;
-  let hoveredSymbol = null;  // {quadrant, symbolIndex, row, col} or null
-  let lockedCross = null;    // {quadrant, row, col} or null
+  // {quadrant, symbolIndex, row, column} or null
+  let hoveredSymbol = null;
+  // {quadrant, row, column} or null
+  let lockedCross = null;
 
   let cachedErrors = new Set();
 
@@ -271,15 +273,15 @@ permalink: /browser-games/corner-place/
     cachedErrors.clear();
 
     // uniqueness in rows and columns
-    for(let q = 0; q < 4; ++q) {
-      for(let r = 0; r < 5; ++r) {
+    for(let quadrant = 0; quadrant < 4; ++quadrant) {
+      for(let row = 0; row < 5; ++row) {
         const seen = new Set();
-        for(let c = 0; c < 5; ++c) {
-          const value = gameGrid[r][c][q];
+        for(let column = 0; column < 5; ++column) {
+          const value = gameGrid[row][column][quadrant];
           if(value !== -1) {
             if(seen.has(value)) {
-              for(let c2 = 0; c2 < 5; ++c2) {
-                if(gameGrid[r][c2][q] === value) cachedErrors.add(`${r},${c2},${q}`);
+              for(let column2 = 0; column2 < 5; ++column2) {
+                if(gameGrid[row][column2][quadrant] === value) cachedErrors.add(`${row},${column2},${quadrant}`);
               }
             }
 
@@ -288,14 +290,14 @@ permalink: /browser-games/corner-place/
         }
       }
 
-      for(let c = 0; c < 5; ++c) {
+      for(let column = 0; column < 5; ++column) {
         const seen = new Set();
-        for(let r = 0; r < 5; ++r) {
-          const value = gameGrid[r][c][q];
+        for(let row = 0; row < 5; ++row) {
+          const value = gameGrid[row][column][quadrant];
           if(value !== -1) {
             if(seen.has(value)) {
-              for(let r2 = 0; r2 < 5; ++r2) {
-                if(gameGrid[r2][c][q] === value) cachedErrors.add(`${r2},${c},${q}`);
+              for(let row2 = 0; row2 < 5; ++row2) {
+                if(gameGrid[row2][column][quadrant] === value) cachedErrors.add(`${row2},${column},${quadrant}`);
               }
             }
 
@@ -306,20 +308,20 @@ permalink: /browser-games/corner-place/
     }
 
     // orthogonality
-    for(let q1 = 0; q1 < 4; ++q1) {
-      for(let q2 = q1 + 1; q2 < 4; ++q2) {
+    for(let quadrant1 = 0; quadrant1 < 4; ++quadrant1) {
+      for(let quadrant2 = quadrant1 + 1; quadrant2 < 4; ++quadrant2) {
         const pairMap = new Map();
 
-        for(let r = 0; r < 5; ++r) {
-          for(let c = 0; c < 5; ++c) {
-            const v1 = gameGrid[r][c][q1];
-            const v2 = gameGrid[r][c][q2];
+        for(let row = 0; row < 5; ++row) {
+          for(let column = 0; column < 5; ++column) {
+            const value1 = gameGrid[row][column][quadrant1];
+            const value2 = gameGrid[row][column][quadrant2];
 
-            if(v1 !== -1 && v2 !== -1) {
-              const key = `${v1},${v2}`;
+            if(value1 !== -1 && value2 !== -1) {
+              const key = `${value1},${value2}`;
               if(!pairMap.has(key)) pairMap.set(key, []);
 
-              pairMap.get(key).push({row: r, column: c});
+              pairMap.get(key).push({row: row, column: column});
             }
           }
         }
@@ -327,36 +329,32 @@ permalink: /browser-games/corner-place/
           if(cells.length <= 1) continue;
 
           for(const cell of cells) {
-            cachedErrors.add(`${cell.row},${cell.column},${q1}`);
-            cachedErrors.add(`${cell.row},${cell.column},${q2}`);
+            cachedErrors.add(`${cell.row},${cell.column},${quadrant1}`);
+            cachedErrors.add(`${cell.row},${cell.column},${quadrant2}`);
           }
         }
       }
     }
   }
 
-  const quadrantKeys = ['nw', 'ne', 'sw', 'se'];
-  const quadrantNames = ['NW', 'NE', 'SW', 'SE'];
-
   function handleSymbolInput(symbolIndex) {
     if(!selectedQuadrant) return;
-    const { row, col, quadrant } = selectedQuadrant;
-    if(hints[row][col][quadrant]) return;
+    const { row, column, quadrant } = selectedQuadrant;
+    if(hints[row][column][quadrant]) return;
 
-    const cell = gameGrid[row][col];
-    const qKey = quadrantKeys[quadrant];
+    const cell = gameGrid[row][column];
 
     if(currentMode === 'write') {
       if(cell[quadrant] === symbolIndex) {
         cell[quadrant] = -1;
-        notes[row][col][qKey].clear();
+        notes[row][column][quadrant].clear();
       } else {
         cell[quadrant] = symbolIndex;
-        notes[row][col][qKey].clear();
+        notes[row][column][quadrant].clear();
       }
     } else if(currentMode === 'note') {
       if(cell[quadrant] !== -1) return;
-      const noteSet = notes[row][col][qKey];
+      const noteSet = notes[row][column][quadrant];
 
       if(noteSet.has(symbolIndex)) noteSet.delete(symbolIndex);
       else noteSet.add(symbolIndex);
@@ -373,10 +371,10 @@ permalink: /browser-games/corner-place/
   }
 
   function isPuzzleComplete() {
-    for(let r = 0; r < 5; ++r) {
-      for(let c = 0; c < 5; ++c) {
-        for(let q = 0; q < 4; ++q) {
-          if(gameGrid[r][c][q] === -1) return false;
+    for(let row = 0; row < 5; ++row) {
+      for(let column = 0; column < 5; ++column) {
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
+          if(gameGrid[row][column][quadrant] === -1) return false;
         }
       }
     }
@@ -646,8 +644,8 @@ permalink: /browser-games/corner-place/
     return theme.axis[quadrant][index];
   }
 
-  function getQuadrantFont(q, size) {
-    const quadrantFont = theme.quadrantFonts && theme.quadrantFonts[q];
+  function getQuadrantFont(quadrant, size) {
+    const quadrantFont = theme.quadrantFonts && theme.quadrantFonts[quadrant];
     if(!quadrantFont) return `bold ${size}px "Roboto Mono", monospace`;
     const style  = quadrantFont.style  || 'normal';
     const weight = quadrantFont.weight || 'normal';
@@ -657,9 +655,9 @@ permalink: /browser-games/corner-place/
 
   function getQuadrantPosition(cx, cy, cellSize, quadrant) {
     const halfSize = cellSize / 2;
-    if(quadrant === 0) return {x: cx, y: cy, w: halfSize, h: halfSize};
-    if(quadrant === 1) return {x: cx + halfSize, y: cy, w: halfSize, h: halfSize};
-    if(quadrant === 2) return {x: cx, y: cy + halfSize, w: halfSize, h: halfSize};
+    if(quadrant === 0) return { x: cx, y: cy, w: halfSize, h: halfSize, };
+    if(quadrant === 1) return { x: cx + halfSize, y: cy, w: halfSize, h: halfSize, };
+    if(quadrant === 2) return { x: cx, y: cy + halfSize, w: halfSize, h: halfSize, };
 
     return { x: cx + halfSize, y: cy + halfSize, w: halfSize, h: halfSize, };
   }
@@ -672,7 +670,7 @@ permalink: /browser-games/corner-place/
     const buttonSize = Math.min(uiHeight * 0.75, gridWidth / 6.5);
     const spacing = buttonSize * 0.15;
     const startX = padding + (gridWidth - (5 * buttonSize + 4 * spacing)) / 2;
-    const startY = uiY + uiHeight * 0.35;
+    const startY = uiY + uiHeight * 0.1;
     return { startX, startY, buttonSize, spacing };
   }
 
@@ -688,23 +686,12 @@ permalink: /browser-games/corner-place/
   function drawInputUI(x, y, width, height) {
     if(!selectedQuadrant) return;
 
-    const q = selectedQuadrant.quadrant;
-    const qKey = quadrantKeys[q];
-
-    // Label showing which quadrant is selected
-    context.fillStyle = '#555';
-    context.font = `bold ${height * 0.22}px "Roboto Mono", monospace`;
-    context.textAlign = 'center';
-    context.textBaseline = 'top';
-    context.fillText(quadrantNames[q], x + width / 2, y + height * 0.04);
-
-    // Draw 5 symbol buttons
     const layout = getButtonLayout();
     for(let i = 0; i < 5; ++i) {
       const button = getButtonPosition(layout, i);
 
-      const isSelected = gameGrid[selectedQuadrant.row][selectedQuadrant.col][q] === i;
-      const isNote = notes[selectedQuadrant.row][selectedQuadrant.col][qKey].has(i);
+      const isSelected = gameGrid[selectedQuadrant.row][selectedQuadrant.column][selectedQuadrant.quadrant] === i;
+      const isNote = notes[selectedQuadrant.row][selectedQuadrant.column][selectedQuadrant.quadrant].has(i);
 
       if(isSelected && currentMode === 'write') {
         context.fillStyle = '#4CAF50';
@@ -720,10 +707,10 @@ permalink: /browser-games/corner-place/
       }
 
       context.fillStyle = '#000';
-      context.font = getQuadrantFont(q, button.size * 0.55);
+      context.font = getQuadrantFont(selectedQuadrant.quadrant, button.size * 0.8);
       context.textAlign = 'center';
       context.textBaseline = 'middle';
-      context.fillText(theme.axis[q][i], button.x + button.size / 2, button.y + button.size / 2);
+      context.fillText(theme.axis[selectedQuadrant.quadrant][i], button.x + button.size / 2, button.y + button.size / 2);
 
       context.strokeStyle = '#999';
       context.lineWidth = 1;
@@ -761,71 +748,71 @@ permalink: /browser-games/corner-place/
       { x: cx + cellSize * 0.75, y: cy + cellSize * 0.75, },
     ];
 
-    for(let r = 0; r < 5; ++r) {
-      for(let c = 0; c < 5; ++c) {
-        const cx = x + c * cellSize;
-        const cy = y + r * cellSize;
+    for(let row = 0; row < 5; ++row) {
+      for(let column = 0; column < 5; ++column) {
+        const cx = x + column * cellSize;
+        const cy = y + row * cellSize;
 
         const cellHasSymbolMatch =
           hoveredSymbol && hoveredSymbol.symbolIndex !== -1 &&
-          gameGrid[r][c][hoveredSymbol.quadrant] === hoveredSymbol.symbolIndex
+          gameGrid[row][column][hoveredSymbol.quadrant] === hoveredSymbol.symbolIndex
         ;
 
         // Compute style for each quadrant
         const quadrantStyles = [0, 0, 0, 0];
-        for(let q = 0; q < 4; ++q) {
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
           let styleIndex = theme.styleCell;
 
           if(
             hoveredSymbol &&
             hoveredSymbol.symbolIndex !== -1 &&
             theme.styleHover !== undefined &&
-            gameGrid[r][c][q] === hoveredSymbol.symbolIndex &&
-            q === hoveredSymbol.quadrant
+            gameGrid[row][column][quadrant] === hoveredSymbol.symbolIndex &&
+            quadrant === hoveredSymbol.quadrant
           ) {
             styleIndex = theme.styleHover;
           } else if(
             selectedQuadrant &&
-            selectedQuadrant.row === r &&
-            selectedQuadrant.col === c &&
-            selectedQuadrant.quadrant === q
+            selectedQuadrant.row === row &&
+            selectedQuadrant.column === column &&
+            selectedQuadrant.quadrant === quadrant
           ) {
             styleIndex = theme.styleHighlight;
           } else if(
             lockedCross &&
             cellHasSymbolMatch &&
             theme.styleCross !== undefined &&
-            q === lockedCross.quadrant
+            quadrant === lockedCross.quadrant
           ) {
             styleIndex = theme.styleCross;
           } else if(
             lockedCross &&
             theme.styleCross !== undefined &&
-            q === lockedCross.quadrant &&
-            (r === lockedCross.row || c === lockedCross.col)
+            quadrant === lockedCross.quadrant &&
+            (row === lockedCross.row || column === lockedCross.column)
           ) {
             styleIndex = theme.styleCross;
           } else if(
             !lockedCross &&
             hoveredSymbol &&
             theme.styleCross !== undefined &&
-            q === hoveredSymbol.quadrant &&
-            (r === hoveredSymbol.row || c === hoveredSymbol.col)
+            quadrant === hoveredSymbol.quadrant &&
+            (row === hoveredSymbol.row || column === hoveredSymbol.column)
           ) {
             styleIndex = theme.styleCross;
           }
 
-          if(cachedErrors.has(`${r},${c},${q}`)) {
+          if(cachedErrors.has(`${row},${column},${quadrant}`)) {
             styleIndex = theme.styleError;
           }
 
-          quadrantStyles[q] = styleIndex;
+          quadrantStyles[quadrant] = styleIndex;
         }
 
         // Draw quadrant backgrounds
-        for(let q = 0; q < 4; ++q) {
-          const qPos = getQuadrantPosition(cx, cy, cellSize, q);
-          context.fillStyle = theme.style[quadrantStyles[q]].background;
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
+          const qPos = getQuadrantPosition(cx, cy, cellSize, quadrant);
+          context.fillStyle = theme.style[quadrantStyles[quadrant]].background;
           context.fillRect(qPos.x, qPos.y, qPos.w, qPos.h);
         }
 
@@ -835,46 +822,46 @@ permalink: /browser-games/corner-place/
         const centerX = cx + cellSize / 2;
         const centerY = cy + cellSize / 2;
         const halfCell = cellSize / 2;
-        const segLen = halfCell * 2 / 3;
-        const segStart = halfCell / 6;
+        const segmentLength = halfCell * 2 / 3;
+        const segmentStart = halfCell / 6;
 
         context.beginPath();
-        context.moveTo(centerX, cy + segStart);
-        context.lineTo(centerX, cy + segStart + segLen);
+        context.moveTo(centerX, cy + segmentStart);
+        context.lineTo(centerX, cy + segmentStart + segmentLength);
         context.stroke();
 
         context.beginPath();
-        context.moveTo(centerX, cy + cellSize - segStart - segLen);
-        context.lineTo(centerX, cy + cellSize - segStart);
+        context.moveTo(centerX, cy + cellSize - segmentStart - segmentLength);
+        context.lineTo(centerX, cy + cellSize - segmentStart);
         context.stroke();
 
         context.beginPath();
-        context.moveTo(cx + segStart, centerY);
-        context.lineTo(cx + segStart + segLen, centerY);
+        context.moveTo(cx + segmentStart, centerY);
+        context.lineTo(cx + segmentStart + segmentLength, centerY);
         context.stroke();
 
         context.beginPath();
-        context.moveTo(cx + cellSize - segStart - segLen, centerY);
-        context.lineTo(cx + cellSize - segStart, centerY);
+        context.moveTo(cx + cellSize - segmentStart - segmentLength, centerY);
+        context.lineTo(cx + cellSize - segmentStart, centerY);
         context.stroke();
 
         // Draw symbols or notes
         const centers = quadrantCenters(cx, cy);
-        for(let q = 0; q < 4; ++q) {
-          const val = gameGrid[r][c][q];
-          const isHint = hints[r][c][q];
-          const pos = centers[q];
-          const quadStyle = theme.style[quadrantStyles[q]];
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
+          const val = gameGrid[row][column][quadrant];
+          const isHint = hints[row][column][quadrant];
+          const pos = centers[quadrant];
+          const quadStyle = theme.style[quadrantStyles[quadrant]];
 
           if(val !== -1) {
-            const symbol = getSymbolForQuadrant(q, val);
+            const symbol = getSymbolForQuadrant(quadrant, val);
             context.fillStyle = isHint ? quadStyle.foregroundHint : quadStyle.foregroundAnswer;
-            context.font = getQuadrantFont(q, cellSize * 0.4);
+            context.font = getQuadrantFont(quadrant, cellSize * 0.45);
             context.textAlign = 'center';
             context.textBaseline = 'middle';
             context.fillText(symbol, pos.x, pos.y);
-          } else if(notes[r][c][quadrantKeys[q]].size > 0) {
-            drawNotes(notes[r][c][quadrantKeys[q]], pos.x, pos.y, cellSize * 0.4, q, quadStyle);
+          } else if(notes[row][column][quadrant].size > 0) {
+            drawNotes(notes[row][column][quadrant], pos.x, pos.y, cellSize * 0.4, quadrant, quadStyle);
           }
         }
 
@@ -896,7 +883,7 @@ permalink: /browser-games/corner-place/
     ];
 
     context.fillStyle = quadStyle.foregroundAnswer;
-    context.font = getQuadrantFont(quadrant, size * 0.4);
+    context.font = getQuadrantFont(quadrant, size * 0.5);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
 
@@ -1168,16 +1155,16 @@ permalink: /browser-games/corner-place/
       return null;
     }
 
-    const col = Math.floor((mouseX - gridX) / cellSize);
+    const column = Math.floor((mouseX - gridX) / cellSize);
     const row = Math.floor((mouseY - gridY) / cellSize);
-    if(row < 0 || row >= 5 || col < 0 || col >= 5) return null;
+    if(row < 0 || row >= 5 || column < 0 || column >= 5) return null;
 
-    const cellX = mouseX - (gridX + col * cellSize);
+    const cellX = mouseX - (gridX + column * cellSize);
     const cellY = mouseY - (gridY + row * cellSize);
     const half = cellSize / 2;
     const quadrant = (cellX < half ? 0 : 1) + (cellY < half ? 0 : 2);
 
-    return { row, col, quadrant, };
+    return { row, column, quadrant, };
   }
 
   function handlePointerMove(e) {
@@ -1188,15 +1175,15 @@ permalink: /browser-games/corner-place/
     // Check grid hover
     const hit = getCellAndQuadrant(mouseX, mouseY);
     if(hit) {
-      const symbolIndex = gameGrid[hit.row][hit.col][hit.quadrant];
+      const symbolIndex = gameGrid[hit.row][hit.column][hit.quadrant];
       if(
         !hoveredSymbol ||
         hoveredSymbol.quadrant !== hit.quadrant ||
         hoveredSymbol.symbolIndex !== symbolIndex ||
         hoveredSymbol.row !== hit.row ||
-        hoveredSymbol.col !== hit.col
+        hoveredSymbol.column !== hit.column
       ) {
-        hoveredSymbol = { quadrant: hit.quadrant, symbolIndex, row: hit.row, col: hit.col };
+        hoveredSymbol = { quadrant: hit.quadrant, symbolIndex, row: hit.row, column: hit.column };
         drawGame();
       }
       return;
@@ -1204,7 +1191,7 @@ permalink: /browser-games/corner-place/
 
     // Check button hover
     if(selectedQuadrant) {
-      const q = selectedQuadrant.quadrant;
+      const quadrant = selectedQuadrant.quadrant;
       const layout = getButtonLayout();
       for(let i = 0; i < 5; ++i) {
         const button = getButtonPosition(layout, i);
@@ -1216,11 +1203,11 @@ permalink: /browser-games/corner-place/
         ) {
           if(
             !hoveredSymbol ||
-            hoveredSymbol.quadrant !== q ||
+            hoveredSymbol.quadrant !== quadrant ||
             hoveredSymbol.symbolIndex !== i ||
             hoveredSymbol.row !== -1
           ) {
-            hoveredSymbol = { quadrant: q, symbolIndex: i, row: -1, col: -1 };
+            hoveredSymbol = { quadrant: quadrant, symbolIndex: i, row: -1, column: -1 };
             drawGame();
           }
           return;
@@ -1243,7 +1230,7 @@ permalink: /browser-games/corner-place/
     const rect = canvas.getBoundingClientRect();
     const hit = getCellAndQuadrant(event.clientX - rect.left, event.clientY - rect.top);
     if(hit) {
-      lockedCross = { quadrant: hit.quadrant, row: hit.row, col: hit.col, };
+      lockedCross = { quadrant: hit.quadrant, row: hit.row, column: hit.column, };
       selectedQuadrant = hit;
       tryStartGame();
       drawGame();
@@ -1289,10 +1276,10 @@ permalink: /browser-games/corner-place/
 
     // Backspace / Delete
     if(event.key === 'Backspace' || event.key === 'Delete') {
-      const { row, col, quadrant } = selectedQuadrant;
-      if(!hints[row][col][quadrant] && gameGrid[row][col][quadrant] !== -1) {
-        gameGrid[row][col][quadrant] = -1;
-        notes[row][col][quadrantKeys[quadrant]].clear();
+      const { row, column, quadrant } = selectedQuadrant;
+      if(!hints[row][column][quadrant] && gameGrid[row][column][quadrant] !== -1) {
+        gameGrid[row][column][quadrant] = -1;
+        notes[row][column][quadrant].clear();
         recalculateCachedErrors();
         saveGameState();
         drawGame();
@@ -1365,12 +1352,7 @@ permalink: /browser-games/corner-place/
     const state = {
       version: saveVersionCurrent,
       grid: gameGrid,
-      notes: notes.map(row => row.map(cell => ({
-        nw: Array.from(cell.nw),
-        ne: Array.from(cell.ne),
-        sw: Array.from(cell.sw),
-        se: Array.from(cell.se)
-      }))),
+      notes: notes.map(row => row.map(cell => cell.map(note => Array.from(note)))),
       startTime: startTime,
       gameStarted: gameStarted,
       completionTime: completionTime,
@@ -1401,16 +1383,8 @@ permalink: /browser-games/corner-place/
     if(!puzzleState.grid || !puzzleState.notes) return false;
 
     gameGrid = puzzleState.grid;
-    notes = puzzleState.notes.map(
-      row => row.map(
-        cell => ({
-          nw: new Set(cell.nw),
-          ne: new Set(cell.ne),
-          sw: new Set(cell.sw),
-          se: new Set(cell.se),
-        })
-      )
-    );
+    notes = puzzleState.notes.map(row => row.map(cell => cell.map(note => Array.from(note)))),
+    notes = puzzleState.notes.map(row => row.map(cell => cell.map(note => new Set(note))));
 
     if(puzzleState.startTime) {
       startTime = puzzleState.startTime;
@@ -1444,15 +1418,15 @@ permalink: /browser-games/corner-place/
 
   function initializeHints() {
     hints = [];
-    for(let r = 0; r < 5; ++r) {
-      hints[r] = [];
-      for(let c = 0; c < 5; ++c) {
-        const cell = puzzleConfiguration.grid[r][c];
-        hints[r][c] = [false, false, false, false];
+    for(let row = 0; row < 5; ++row) {
+      hints[row] = [];
+      for(let column = 0; column < 5; ++column) {
+        const cell = puzzleConfiguration.grid[row][column];
+        hints[row][column] = [false, false, false, false];
 
-        for(let q = 0; q < 4; ++q) {
-          const symbol = cell[q];
-          hints[r][c][q] = symbol !== -1;
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
+          const symbol = cell[quadrant];
+          hints[row][column][quadrant] = symbol !== -1;
         }
       }
     }
@@ -1461,17 +1435,17 @@ permalink: /browser-games/corner-place/
   function initializeStartingGameState() {
     gameGrid = [];
     notes = [];
-    for(let r = 0; r < 5; ++r) {
-      gameGrid[r] = [];
-      notes[r] = [];
-      for(let c = 0; c < 5; ++c) {
-        const cell = puzzleConfiguration.grid[r][c];
-        gameGrid[r][c] = [-1, -1, -1, -1];
-        notes[r][c] = {nw: new Set(), ne: new Set(), sw: new Set(), se: new Set()};
+    for(let row = 0; row < 5; ++row) {
+      gameGrid[row] = [];
+      notes[row] = [];
+      for(let column = 0; column < 5; ++column) {
+        const cell = puzzleConfiguration.grid[row][column];
+        gameGrid[row][column] = [-1, -1, -1, -1];
+        notes[row][column] = [new Set(), new Set(), new Set(), new Set()];
 
-        for(let q = 0; q < 4; ++q) {
-          const symbol = cell[q];
-          gameGrid[r][c][q] = symbol;
+        for(let quadrant = 0; quadrant < 4; ++quadrant) {
+          const symbol = cell[quadrant];
+          gameGrid[row][column][quadrant] = symbol;
         }
       }
     }
