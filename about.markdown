@@ -15,4 +15,4 @@ development in general.
 The current ongoing major features on the site are:
 
 - [The Reversible Programming Primer series](/category/reversible_primer/) - An ongoing series breaking down reversible computing into a more digestable formfactor for programmers familiar with conventional programming languages.
-- Daily Puzzle Games - Two puzzle games, [Pair Place](/browser-games/pair-place/) and [Triple Place](/browser-games/triple-place/) are updated daily with new puzzles.
+- Daily Puzzle Games - Three puzzle games, [Pair Place](/browser-games/pair-place/), [Triple Place](/browser-games/triple-place/), [Corner Place](/browser-games/corner-place/) are updated daily with new puzzles.
