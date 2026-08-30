@@ -650,7 +650,7 @@ permalink: /browser-games/corner-place/
     const style  = quadrantFont.style  || 'normal';
     const weight = quadrantFont.weight || 'normal';
     const family = quadrantFont.family || 'Roboto Mono';
-    return `${style} ${weight} ${size}px "${family}", monospace`;
+    return `${style} ${weight} ${size * quadrantFont.fontScale}px "${family}", monospace`;
   }
 
   function getQuadrantPosition(cx, cy, cellSize, quadrant) {
@@ -856,7 +856,7 @@ permalink: /browser-games/corner-place/
           if(val !== -1) {
             const symbol = getSymbolForQuadrant(quadrant, val);
             context.fillStyle = isHint ? quadStyle.foregroundHint : quadStyle.foregroundAnswer;
-            context.font = getQuadrantFont(quadrant, cellSize * 0.45);
+            context.font = getQuadrantFont(quadrant, cellSize * 0.4);
             context.textAlign = 'center';
             context.textBaseline = 'middle';
             context.fillText(symbol, pos.x, pos.y);

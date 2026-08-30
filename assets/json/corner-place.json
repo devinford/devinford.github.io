@@ -29,10 +29,10 @@
       ["1", "2", "3", "4", "5"]
     ],
     "quadrantFonts": [
-      { "family": "Roboto Mono", "weight": "normal", "style": "normal" },
-      { "family": "Ribeye Marrow","weight": "normal", "style": "normal" },
-      { "family": "Shizuru", "weight": "normal", "style": "normal" },
-      { "family": "Pacifico", "weight": "normal", "style": "normal" }
+      { "family": "Roboto Mono", "weight": "normal", "style": "normal", "fontScale": 1 },
+      { "family": "Ribeye Marrow","weight": "normal", "style": "normal", "fontScale": 1 },
+      { "family": "Shizuru", "weight": "normal", "style": "normal", "fontScale": 1 },
+      { "family": "Pacifico", "weight": "normal", "style": "normal", "fontScale": 1.2 }
     ]
   },
   "puzzle": [
