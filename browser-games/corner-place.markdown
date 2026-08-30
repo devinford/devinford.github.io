@@ -1342,13 +1342,14 @@ permalink: /browser-games/corner-place/
   // @@ Game State Serialization
 
   const saveVersion1 = '1';
-  const saveVersionCurrent = saveVersion1;
+  const saveVersion2 = '2';
+  const saveVersionCurrent = saveVersion2;
 
   function saveGameState() {
-    saveGameStateV1();
+    saveGameStateV2();
   }
 
-  function saveGameStateV1() {
+  function saveGameStateV2() {
     const state = {
       version: saveVersionCurrent,
       grid: gameGrid,
@@ -1371,6 +1372,9 @@ permalink: /browser-games/corner-place/
         case saveVersion1: {
           return loadGameStateV1(puzzleState);
         }
+        case saveVersion2: {
+          return loadGameStateV2(puzzleState);
+        }
         default: {
           console.error(`Unknown puzzle save version ${JSON.stringify(puzzleState.version)}; reverting puzzle to initial state.`);
           return false;
@@ -1383,7 +1387,44 @@ permalink: /browser-games/corner-place/
     if(!puzzleState.grid || !puzzleState.notes) return false;
 
     gameGrid = puzzleState.grid;
-    notes = puzzleState.notes.map(row => row.map(cell => cell.map(note => Array.from(note)))),
+    notes = puzzleState.notes.map(
+      row => row.map(cell => [new Set(cell.nw), new Set(cell.ne), new Set(cell.sw), new Set(cell.se)])
+    );
+
+    if(puzzleState.startTime) {
+      startTime = puzzleState.startTime;
+      gameStarted = true;
+    }
+
+    if(puzzleState.completionTime) {
+      completionTime = puzzleState.completionTime;
+      // @todo Maybe pull out side-effects.
+      completionAnimationInstant();
+      timeAnimationInstant();
+    } else {
+      // @todo Maybe pull out side-effects.
+      timerInterval = setInterval(timerUpdateDisplay, 1000);
+      completionTime = null;
+    }
+
+    if(puzzleState.puzzleScoreToken) {
+      puzzleScoreToken = puzzleState.puzzleScoreToken;
+      if(puzzleState.completionTime) {
+        // @todo Maybe pull out side-effects.
+        apiAttemptCompletionGet(apiBaseUrl, puzzleScoreToken, setPuzzleAttemptStats);
+      }
+    } else {
+      // @todo Maybe trigger automatic registration of existing attempts (for older or offline attempts)
+      puzzleScoreToken = null;
+    }
+
+    return true;
+  }
+
+  function loadGameStateV2(puzzleState) {
+    if(!puzzleState.grid || !puzzleState.notes) return false;
+
+    gameGrid = puzzleState.grid;
     notes = puzzleState.notes.map(row => row.map(cell => cell.map(note => new Set(note))));
 
     if(puzzleState.startTime) {
