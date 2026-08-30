@@ -1370,7 +1370,14 @@ permalink: /browser-games/corner-place/
     if(puzzleState) {
       switch(puzzleState.version) {
         case saveVersion1: {
-          return loadGameStateV1(puzzleState);
+          try {
+            return loadGameStateV1(puzzleState);
+          } catch(error) {
+            // There was a brief period where v2 save files were being saved
+            // with v1 formatting; so, as a fallback, we will attempt to load
+            // with the v2 formatting if v1 raises an error due to bad formatting.
+            return loadGameStateV2(puzzleState);
+          }
         }
         case saveVersion2: {
           return loadGameStateV2(puzzleState);
