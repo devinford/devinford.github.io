@@ -11,6 +11,9 @@
 - tag: reversible_programming
   name: "Reversible Programming"
   path_stub: category/reversible_programming
+- tag: graphics_programming
+  name: "Graphics Programming"
+  path_stub: category/graphics_programming
 - tag: reversible_primer
   name: "Reversible Primer"
   path_stub: category/reversible_primer
