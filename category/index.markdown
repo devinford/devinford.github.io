@@ -9,4 +9,5 @@ title: "Posts by Category"
 - [Mathematics](mathematics)
 - [Programming](programming)
 - [Reversible Programming](reversible_programming)
+- [Graphics Programming](graphics_programming)
 - [Reversible Primer](reversible_primer)
