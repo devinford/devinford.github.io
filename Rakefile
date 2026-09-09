@@ -67,6 +67,7 @@ CONTENT
       pages = (all_posts.count + articles_per_page - 1) / articles_per_page
 
       tag_subdirectory = tag_configuration['path_stub']
+      title = tag_configuration['title'] || "\"#{tag_configuration['name']}\" Posts"
       pages.times do |i|
         file_path = nil
 
@@ -84,7 +85,7 @@ CONTENT
           file.puts <<-CONTENT
 ---
 layout: paged_posts_by_tag
-title: '"#{tag_configuration['name']}" Posts'
+title: #{title.to_json}
 listed_tag: #{tag_configuration['tag']}#{tag_configuration['page_sort'] != nil ? "\npage_sort: #{tag_configuration['page_sort']}" : ""}
 post_offset: #{i * articles_per_page}
 post_count: #{articles_per_page}
