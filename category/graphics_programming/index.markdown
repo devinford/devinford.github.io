@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Graphics Programming" Posts'
+title: "\"Graphics Programming\" Posts"
 listed_tag: graphics_programming
 post_offset: 0
 post_count: 10

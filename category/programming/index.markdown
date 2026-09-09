@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Programming" Posts'
+title: "\"Programming\" Posts"
 listed_tag: programming
 post_offset: 0
 post_count: 10

@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Reversible Primer" Posts'
+title: "Reversible Programming Primer"
 listed_tag: reversible_primer
 page_sort: asc
 post_offset: 0

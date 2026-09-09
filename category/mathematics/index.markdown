@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Mathematics" Posts'
+title: "\"Mathematics\" Posts"
 listed_tag: mathematics
 post_offset: 0
 post_count: 10

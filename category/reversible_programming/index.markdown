@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Reversible Programming" Posts'
+title: "\"Reversible Programming\" Posts"
 listed_tag: reversible_programming
 post_offset: 0
 post_count: 10

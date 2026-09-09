@@ -1,6 +1,6 @@
 ---
 layout: paged_posts_by_tag
-title: '"Game Development" Posts'
+title: "\"Game Development\" Posts"
 listed_tag: game_development
 post_offset: 0
 post_count: 10
