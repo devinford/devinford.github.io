@@ -16,6 +16,7 @@
   path_stub: category/graphics_programming
 - tag: reversible_primer
   name: "Reversible Primer"
+  title: "Reversible Programming Primer"
   path_stub: category/reversible_primer
   page_sort: asc
   text: |
