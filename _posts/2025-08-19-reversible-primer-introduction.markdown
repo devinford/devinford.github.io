@@ -102,10 +102,11 @@ This gate accepts two inputs. It outputs the first input unchanged, but negates
 the second input if the first input was true. You can see that just as each
 input combination is unique, each output combination is also unique. So, it's
 possible to determine what inputs produced a given set of outputs, making the
-gate invertible. (We won't be working directly with logic gates much in these
-posts, but, for the curious, the [Fredkin](https://en.wikipedia.org/wiki/Fredkin_gate) and [Toffoli](https://en.wikipedia.org/wiki/Toffoli_gate)
-gates are the most commonly-used "universal" gates that take the role of the
-NAND gate in reversible computing)
+gate invertible. (The Reversible Programming Primer will not involve working
+directly with logic gates much, but for anyone curious about what kinds of
+reversible logic gates exist and how they can be used for implementing logical
+circuits, I've written a [separate post](/post/2026/09/15/reversible-logic-gates/)
+enumerating some notable reversible logic gates)
 
 In our previous arithmetic example, multiplying a number by `0` is an example of
 an operation that has no inverse (since dividing by `0` is undefined). However,
