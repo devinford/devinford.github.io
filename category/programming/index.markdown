@@ -8,7 +8,7 @@ paginator:
   page: 1
   previous_page: 
   previous_page_path: /category/programming/0
-  next_page: 
+  next_page: 2
   next_page_path: /category/programming/2
 ---
 
