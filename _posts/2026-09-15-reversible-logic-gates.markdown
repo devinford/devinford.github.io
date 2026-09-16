@@ -375,7 +375,7 @@ register, and the second bit as the least-significant bit of a 2-bit register,
 then we can actually interpret the Peres gate as a kind of "conditional
 increment" gate, which increments its 2-bit register if its first bit is `true`.
 
-### MAJ gate
+### MAJ
 
 The MAJ gate is another gate that I did not specifically enumerate myself.
 Instead, the MAJ gate is a gate that I encountered in [a paper](https://arxiv.org/pdf/quant-ph/0410184)
@@ -410,7 +410,7 @@ decision as to whether or not there is a carry.
 
 The second half of that adder circuit is the "UMA" gate:
 
-### UMA gate
+### UMA
 
 The "UMA" gate, short for "Un-Majority and Add", is the other half of the ripple
 carry adder in the paper from the MAJ gate section.
@@ -603,7 +603,7 @@ is identical to the constructions used for the Fredkin gate. This gate actually
 shares all but two of its rows in common with the Fredkin gate, meaning that
 many constructions in terms of the Fredkin gate also work with this gate.
 
-### Read-Write gate
+### Read-Write
 
 The Read-Write gate is a gate which operates as follows:
 
