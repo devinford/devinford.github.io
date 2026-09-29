@@ -101,13 +101,17 @@ permalink: /browser-games/pair-place/
   <summary><b>How to Play</b></summary>
   <div class="details-content">
     <p>
-      A Pair Place puzzle is represented as a grid with a "header row" at the
-      top. To complete a Pair Place puzzle, you must fill in each square with
-      a letter while obeying two rules:
+      In Pair Place, your goal is to place a letter in every square of the grid.
+      However, there are two restrictions on how letters can be placed:
     </p>
     <ol>
-      <li>Each letter must appear once in each column.</li>
-      <li>Letters must be placed into squares two at a time, with each square being filled with the header letter of the other square.</li>
+      <li>Each letter may only appear in each column once.</li>
+      <li>
+        The letters must be placed two at a time into a pair of squares in the
+        same row. Each of the two squares will be filled with the "header
+        letter" of the other square; the top row of the grid is a "header" row
+        that assigns a "header letter" to each column.
+      </li>
     </ol>
     <p>
       To place letters in the grid, press on the first square you want to fill,
@@ -117,31 +121,32 @@ permalink: /browser-games/pair-place/
     <img src="../../assets/images/tutorial-drag.gif">
     <h3>Tips</h3>
     <p>
-      Although there are only two explicit rules of the puzzle, it's possible to
-      derive additional rules of thumb that can be used as deduction shortcuts.
-      A few such rules of thumb are:
+      Although there are only two rules, you may need to think a few moves
+      ahead to avoid painting yourself into a corner where you will become
+      unable to make a move. There are a few rules of thumb that you can use
+      to quickly figure out where you can make placements.
     </p>
     <ul>
       <li>
-        A square must not be filled with a letter if:
+        A square <b>must not</b> be filled with a letter if:
         <ul>
-          <li>The letter already appears in the row.</li>
-          <li>The letter already appears in the column.</li>
+          <li>The letter already appears in the square's row.</li>
+          <li>The letter already appears in the square's column.</li>
         </ul>
       </li>
       <li>
-        A square must be filled with a letter if:
+        A square <b>must</b> be filled with a letter if:
         <ul>
-          <li>Only two blank squares remain in the row; each must be filled with the other's header letter.</li>
-          <li>The square is the only blank square in the column, and that letter is the only unused letter in the column.</li>
-          <li>That letter does not appear in that square's column yet, but that square is the only blank square in the column in a row where the letter hasn't been used yet.</li>
+          <li>Only two blank squares remain in the row; in this case, each must be filled with the other's header letter.</li>
+          <li>The square is the only blank square in the column, and that letter is the only letter that does not appear in the column.</li>
+          <li>That letter does not appear in that square's column yet, but that letter already appears in every other row where the column is open.</li>
         </ul>
       </li>
     </ul>
     <p>
-      This is not a full list of deduction shortcuts and you may discover
-      additional shortcuts on your own, but these cover most of the basic cases
-      that you'll encounter.
+      This is not a full list of all of the tricks that can be used to speed up
+      the process of solving a puzzle. You will discover additional shortcuts on
+      your own, but these cover many of the basic cases that you'll encounter.
     </p>
   </div>
 </details>

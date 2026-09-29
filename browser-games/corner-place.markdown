@@ -102,23 +102,25 @@ permalink: /browser-games/corner-place/
   <div class="details-content">
     <p>
       A Corner Place puzzle is a 5x5 grid of squares, which are each divided
-      into 4 quadrants. The goal is to fill one number from 1-5 into each
-      quadrant of each square while obeying three rules:
+      into 4 corners. The goal is to place one number from 1 to 5 into each
+      corner of each square while obeying three rules:
     </p>
     <ol>
-      <li>Each number must appear in each quadrant exactly once in each column.</li>
-      <li>Each number must appear in each quadrant exactly once in each row.</li>
-      <li>No two squares can share two quadrant numbers in common.</li>
+      <li>Each number must appear in each kind of corner exactly once in each column.</li>
+      <li>Each number must appear in each kind of corner exactly once in each row.</li>
+      <li>No two squares can share the same two numbers in the same two corners.</li>
     </ol>
     <p>
-      In the example below, we have two squares that both have 1 in their
-      northwest corner and both have 4 in their southeast corner.
+      For example, in the image below, we have two squares that both have 1 in
+      their northwest corner and both have 4 in their southeast corner,
+      violating rule 3.
     </p>
     <img src="/assets/images/corner-place-rule-3.png" style="width: 350px; height: auto;">
     <p>
-      In order to place a number into the grid, you simply press on the quadrant
-      of square you want to fill, then press the appropriate number button that
-      appears. For example, here, we fill in a 2 into a space in the grid:
+      In order to place a number into the grid, you simply press on the corner
+      of square where you want to place the number, then press the appropriate
+      number button that appears. For example, here, we place a 2 into the
+      northwest corner of a square:
     </p>
     <img src="/assets/images/corner-place-placement.gif" style="width: 293px; height: auto;">
     <p>
@@ -132,79 +134,76 @@ permalink: /browser-games/corner-place/
     </p>
     <h3 id="visual-aids">Visual Aids</h3>
     <p>
-      There are a few visual aids that have been added to the game to help you
-      track the constraints based on quadrants within a row and based on pairs
-      of quadrants.
+      In order to make solving puzzles easier, this digital version of Corner
+      Place features a few visual aids.
     </p>
     <p>
-      As you can see from some of the other examples, each quadrant uses a
+      As you can see from some of the other images, each kind of corner uses a
       distinctive font. This should make it easier to tell at a glance what
-      quadrant a number is in.
+      kind of corner a number is in.
     </p>
     <img src="/assets/images/corner-place-fonts.png" style="width: 350px; height: auto;">
     <p>
-      To aid in identifying the elements of a single quadrant across a row or
-      column, the game automatically highlights the shared quadrants of every
-      square in the same row or column whenever you mouse over or press down on
-      a quadrant of a square.
+      To aid in identifying the elements of a single kind of corner across a
+      whole row or column, the game automatically highlights corners of the same
+      type in every square in the same row or column whenever you press down on
+      <i>(or hover the mouse over)</i> a corner of a square.
     </p>
     <img src="/assets/images/corner-place-hover.gif" style="width: 350px; height: auto;">
     <p>
       You can also see that when hovering directly over an already-filled
-      number, that number gets highlihgted in blue, and all instances of the
-      same number in the same quadrant are highlighted in blue. This can help in
-      determining whether or not that number has been
+      number, that number gets highlighted in blue, and all instances of the
+      same number in the same kind of corner are also highlighted in blue. This
+      can help in determining how many instances of that number still need to
+      be placed in that kind of corner, and which rows and columns are still
+      unoccupied.
     </p>
     <p>
-      For cross-referencing quadrant pairs across different squares an extra
-      "press-and-hold" feature was introduced. This feature can be activated by
-      pressing on a quadrant and then dragging to another quadrant in the same
-      square.
+      Finally, there is a special feature to aid in identifying cases where a
+      placement might violate rule 3, which can be activated by pressing down on
+      a corner, and then dragging to another corner of the same square.
     </p>
     <img src="/assets/images/corner-place-spread.gif" style="width: 350px; height: auto;">
     <p>
-      As you can see, every square that shares the same value in the quadrant
-      you dragged to gets highlighted-- both the shared value (in blue), and the
-      quadrant corresponding to the one that you initially pressed down on (in
-      green, like the rows and columns). This makes it easy to get a visual read
-      on what squares can cause a conflict. In this example, 1, 2 and 5 are in
-      the same row or column, and the press-and-drag feature reveals a 3 that
-      has already been paired with the northeast 1, meaning that 4 is the only
+      Corners of the same kind that contain the same number as the corner under
+      the cursor are highlighted in blue as normal. But, in addition, within the
+      same square, the corner corresponding to the corner that was initially
+      pressed down on is highlighted in green. All numbers that can be
+      highlighted in green in this way are numbers that may not be placed in the
+      corner that was initially pressed down on. In this example, 1, 2 and 5 are
+      in the same row or column, and the press-and-drag feature reveals a 3 that
+      has already been paired with a northeastern 1, meaning that 4 is the only
       valid option remaining.
     </p>
     <h3>Tips</h3>
     <p>
-      Although there are only three explicit rules of the puzzle, it's possible
-      to derive additional rules of thumb that can be used as deduction
-      shortcuts.
+      Although there are only three rules, you may need to think a few moves
+      ahead to avoid painting yourself into a corner where you will become
+      unable to make a move. There are a few rules of thumb that you can use
+      to quickly figure out where you can make placements.
     </p>
     <ul>
       <li>
-        A quadrant of a square must not be filled with a number if:
+        A corner of a square <b>must</b> be filled with a number if:
         <ul>
-          <li>The number already appears in the same quadrant in the same row or column.</li>
-          <li>Doing so would create a pair of numbers in two quadrants that already appear together in the same quadrants of another square.</li>
-        </ul>
-        Cross-referencing these two rules can reveal required placements through process of elimination.
-      </li>
-      <li>
-        A quadrant of a square must be filled with a number if:
-        <ul>
-          <li>The square is the only square missing that quadrant in its row or column in the row, and that number is the only unused number for that quadrant in the row or column.</li>
-          <li>That number has already appeared in that quadrant of other squares 4 other times, and this is the only square that doesn't lie in the same row or column as the other instances.</li>
+          <li>The square is the only square missing that kind of corner in its row or column in the row, and that number is the only number that hasn't appeared in that kind of corner in the row or column.</li>
+          <li>The number has already appeared in that kind of corner 4 other times, and this is the only square that doesn't lie in the same row or column as the other instances.</li>
         </ul>
       </li>
       <li>
-        Some special case scenarios:
-        <ul>
-          <li>If a number has already appeared in a particular quadrant three times, then this narrows it down to only four possible locations for the last two instances, and these four locations will lie at the corners of a rectangle. If one of those four locations is already occupied, the two remaining instances must be the two locations that share a row and a column respectively with the occupied space.</li>
-        </ul>
+        As an additional special case, if a number has already appeared in a
+        particular kind of corner three times, then this narrows it down to only
+        four possible locations for the last two instances. These four locations
+        will lie at the corners of a rectangle, and the last two instances must
+        always be placed at opposite corners of that rectangle. This means that
+        if any corner is already occupied, the remaining instances must be at
+        the corners adjacent to the occupied corner.
       </li>
     </ul>
     <p>
-      This is not a full list of deduction shortcuts and you may discover
-      additional shortcuts on your own, but these cover most of the basic cases
-      that you'll encounter.
+      This is not a full list of all of the tricks that can be used to speed up
+      the process of solving a puzzle. You will discover additional shortcuts on
+      your own, but these cover many of the basic cases that you'll encounter.
     </p>
   </div>
 </details>
@@ -758,8 +757,8 @@ permalink: /browser-games/corner-place/
           gameGrid[row][column][hoveredSymbol.quadrant] === hoveredSymbol.symbolIndex
         ;
 
-        // Compute style for each quadrant
-        const quadrantStyles = [0, 0, 0, 0];
+        // @@ Compute style for each quadrant
+        const centers = quadrantCenters(cx, cy);
         for(let quadrant = 0; quadrant < 4; ++quadrant) {
           let styleIndex = theme.styleCell;
 
@@ -806,19 +805,34 @@ permalink: /browser-games/corner-place/
             styleIndex = theme.styleError;
           }
 
-          quadrantStyles[quadrant] = styleIndex;
+          const quadrantStyle = theme.style[styleIndex];
+
+          // @@ Draw Background
+          const quadrantPosition = getQuadrantPosition(cx, cy, cellSize, quadrant);
+          context.fillStyle = quadrantStyle.background;
+          context.fillRect(quadrantPosition.x, quadrantPosition.y, quadrantPosition.w, quadrantPosition.h);
+
+          // @@ Draw Letters
+          const value = gameGrid[row][column][quadrant];
+          const isHint = hints[row][column][quadrant];
+          const position = centers[quadrant];
+
+          if(value !== -1) {
+            const symbol = getSymbolForQuadrant(quadrant, value);
+            context.fillStyle = isHint ? quadrantStyle.foregroundHint : quadrantStyle.foregroundAnswer;
+            context.font = getQuadrantFont(quadrant, cellSize * 0.4);
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(symbol, position.x, position.y);
+          } else if(notes[row][column][quadrant].size > 0) {
+            drawNotes(notes[row][column][quadrant], position.x, position.y, cellSize * 0.4, quadrant, quadrantStyle);
+          }
         }
 
-        // Draw quadrant backgrounds
-        for(let quadrant = 0; quadrant < 4; ++quadrant) {
-          const qPos = getQuadrantPosition(cx, cy, cellSize, quadrant);
-          context.fillStyle = theme.style[quadrantStyles[quadrant]].background;
-          context.fillRect(qPos.x, qPos.y, qPos.w, qPos.h);
-        }
+        // @@ Quadrant dividers
 
-        // Draw quadrant dividers (middle 2/3 of each inner edge segment)
-        context.strokeStyle = theme.colorGridline;
-        context.lineWidth = 2;
+        context.strokeStyle = theme.colorInnerline;
+        context.lineWidth = 1.5;
         const centerX = cx + cellSize / 2;
         const centerY = cy + cellSize / 2;
         const halfCell = cellSize / 2;
@@ -845,26 +859,6 @@ permalink: /browser-games/corner-place/
         context.lineTo(cx + cellSize - segmentStart, centerY);
         context.stroke();
 
-        // Draw symbols or notes
-        const centers = quadrantCenters(cx, cy);
-        for(let quadrant = 0; quadrant < 4; ++quadrant) {
-          const val = gameGrid[row][column][quadrant];
-          const isHint = hints[row][column][quadrant];
-          const pos = centers[quadrant];
-          const quadStyle = theme.style[quadrantStyles[quadrant]];
-
-          if(val !== -1) {
-            const symbol = getSymbolForQuadrant(quadrant, val);
-            context.fillStyle = isHint ? quadStyle.foregroundHint : quadStyle.foregroundAnswer;
-            context.font = getQuadrantFont(quadrant, cellSize * 0.4);
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-            context.fillText(symbol, pos.x, pos.y);
-          } else if(notes[row][column][quadrant].size > 0) {
-            drawNotes(notes[row][column][quadrant], pos.x, pos.y, cellSize * 0.4, quadrant, quadStyle);
-          }
-        }
-
         // Draw cell border
         context.strokeStyle = theme.colorGridline;
         context.lineWidth = 3;
@@ -873,7 +867,7 @@ permalink: /browser-games/corner-place/
     }
   }
 
-  function drawNotes(noteSet, centerX, centerY, size, quadrant, quadStyle) {
+  function drawNotes(noteSet, centerX, centerY, size, quadrant, quadrantStyle) {
     const positions = [
       { x: centerX - size * 0.3, y: centerY - size * 0.3, },
       { x: centerX + size * 0.3, y: centerY - size * 0.3, },
@@ -882,7 +876,7 @@ permalink: /browser-games/corner-place/
       { x: centerX + size * 0.3, y: centerY + size * 0.3, },
     ];
 
-    context.fillStyle = quadStyle.foregroundAnswer;
+    context.fillStyle = quadrantStyle.foregroundAnswer;
     context.font = getQuadrantFont(quadrant, size * 0.5);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
