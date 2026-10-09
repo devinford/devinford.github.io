@@ -8,9 +8,9 @@ excerpt_separator: <!--more-->
 ---
 
 Shooting is a very common mechanic in video games; however, unless your
-projectiles are entirely [hitscan](https://en.wikipedia.org/wiki/Hitscan)---meaning
-that the player instantly hits whatever they are aiming at when pulling the
-trigger---aiming projectiles is unexpectedly non-trivial from a mathematical
+projectiles are entirely [hitscan](https://en.wikipedia.org/wiki/Hitscan),
+meaning that the player instantly hits whatever they are aiming at when pulling
+the trigger, aiming projectiles is unexpectedly non-trivial from a mathematical
 perspective. For players, this is part of the fun, and their aim is more driven
 by physics intuition and muscle memory. But for AI-controlled characters, this
 is a real problem, and there are a number of factors that can potentially make
@@ -287,7 +287,7 @@ positive real solutions, then, again, the projectile is too slow to hit the
 target. On the other hand, there may be two positive real solutions in some
 cases, such as if the target is on a trajectory that passes by the shooter
 rather than running away from the shooter. In this case, you can pick whichever
-solution you prefer---the smaller $$t$$ will hit the target before they pass,
+solution you prefer; the smaller $$t$$ will hit the target before they pass,
 and the larger $$t$$ will hit them after they pass.
 
 In general, though, since your aiming calculation is likely operating on a
@@ -572,7 +572,7 @@ monkey, and it is guaranteed to reach it (as long as it travels fast enough to
 reach the monkey before it touches the ground).
 
 I've always thought that this would be a neat little special attack for a
-character in a show or game---they use some kind of melee attack to launch their
+character in a show or game. They use some kind of melee attack to launch their
 opponent directly upward into the air, and then fire their finishing projectile
 attack at the opponent just as they reach the apex of their trajectory,
 guaranteed to be perfectly accurate, regardless of all other factors.

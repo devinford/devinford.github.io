@@ -160,7 +160,7 @@ orientation:
 </video>
 
 These combinations occur when you are rotating around an axis that passes
-approximately through two opposite corners of the cube---through the cube's
+approximately through two opposite corners of the cube: through the cube's
 "space diagonal".
 
 The object appears to be rotating by 60 degrees per step around this space
@@ -253,8 +253,8 @@ by inserting in-betweens.
 This expands our total number of rotations to $$192$$, and fills in all of our
 previously missing neighbors. However, some of the new rotations now have
 missing neighbors. Specifically, all of the rotations that have a pair of
-opposite corners very nearly aligned to the horizontal or vertical axis---which
-is the "magic trick" case discussed in an earlier section---currently cannot be
+opposite corners very nearly aligned to the horizontal or vertical axis (which
+is the "magic trick" case discussed in an earlier section) currently cannot be
 rotated around that axis. To fill in these last few neighbors in the transition
 table, we can get away with a fairly naive approach.
 
