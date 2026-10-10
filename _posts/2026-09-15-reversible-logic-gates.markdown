@@ -427,11 +427,11 @@ carry adder in the paper from the MAJ gate section.
 | T       | T       | T       | T        | F        | F        |
 
 - Value of Outputs:
-    - `Output 1 = Input 1 XOR (Input 2 XNOR Input 3)`
-    - `Output 2 = (Input 2 XOR Input 3) XOR (Input 1 IMPLY Input 2)`
-    - `Output 3 = Input 3 XOR (Input 2 AND Input 3)`
+    - `Output 1 = Input 3 XOR (Input 1 NIMPLY Input 2)`
+    - `Output 2 = Input 3 XOR (Input 1 OR Input 2)`
+    - `Output 3 = Input 3 XOR (Input 1 AND Input 2)`
 - Implementing Universal Set of Gates:
-    - [x, y, F] => [x, x OR y, x AND y]
+    - [x, y, F] => [x NIMPLY y, x OR y, x AND y]
     - [T, T, x] => [x, NOT x, NOT x]
 
 As another gate I didn't first come across myself, I'm not exactly sure how to
@@ -544,7 +544,7 @@ start of the list if the parity of the number of `true` inputs is even.
     - `Output 3 = (Input 3 AND Input 1) OR (Input 2 AND (NOT Input 3))`
 - Implementing Universal Set of Gates:
     - [x, F, T] => [NOT x, x, x]
-    - [x, y, T] => [y IMPLY x, x OR y, x]
+    - [x, y, T] => [x IMPLY y, x OR y, x]
 
 Because of its population-preserving properties, this gate has been referenced
 a few times in mainstream reversible computing research. It is referred to as
@@ -676,6 +676,7 @@ as long as they are both equal.
     - `Output 3 = Input 3 XOR (Input 1 AND (Input 2 XNOR Input 3))`
 - Implementing Universal Set of Gates:
     - [x, y, x] => [x, y NIMPLY x, x NAND y]
+    - [T, T, x] => [T, NOT x, F]
 
 Just as we have our three pretenders to the throne of the swap gate, we have two
 gates competing to be successor to the antiswap gate. Controlled antiswap
@@ -715,7 +716,7 @@ status of being non-equal, this gate is both reversible and self-inverse.
     - `Output 2 = (Input 2 AND (NOT Input 3)) OR (Input 2 AND (NOT Input 1)) OR ((NOT Input 3) AND (NOT Input 1))`
     - `Output 3 = (Input 3 AND (NOT Input 1)) OR (Input 3 AND (NOT Input 2)) OR ((NOT Input 1) AND (NOT Input 2))`
 - Implementing Universal Set of Gates:
-    - [x, y, F] => [y IMPLY x, x IMPLY y, x NAND y]
+    - [x, y, T] => [x NIMPLY y, y NIMPLY x, x NAND y]
 
 The rule is an obvious generalization of the anti-swap gate to three inputs;
 both follow the same rule: if all inputs are equal, negate all inputs. And, just
