@@ -441,7 +441,7 @@ applying the `UMA` gate, it will result in both the first and third bits being
 `XOR`ed into the second bit; this seems to perform the function of performing
 the sum of the arguments and the carry for a single bit of output from an adder.
 The implementation of the adder is more clear in the original paper
-[linked above](#maj-gate), but they may not have really been designed to ever be
+[linked above](#maj), but they may not have really been designed to ever be
 considered as generic primitives in isolation.
 
 ### Fredkin
@@ -499,8 +499,8 @@ also describe it as a gate that swaps its second and third arguments if exactly
 two of its arguments are `true`. Both of these descriptions are valid because it's
 ambiguous whether or not two bits are being "swapped" if their values are equal.
 
-In that sense, the "nice" gates being identified in this post, are not "nice" in
-any sort of absolute sense, they're just the gates that have some kind of
+In that sense, the "nice" gates being identified in this post are not "nice" in
+any sort of absolute sense; they're just the gates that have some kind of
 readily observable pattern that our brains are able to latch onto and compress
 into something digestable.
 
