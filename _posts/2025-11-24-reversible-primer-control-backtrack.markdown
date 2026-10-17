@@ -559,7 +559,7 @@ to perform step 2 of Lecerf-Bennett reversal: storing the result of the
 computation.
 
 A commonly-used example algorithm in reversible computing literature is the
-calculation of members of members of the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence),
+calculation of members of the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence),
 which has a fairly simple reversible iterative algorithm that can benefit from
 the automatic cleanup that the `flash`/`expose` combo provides:
 

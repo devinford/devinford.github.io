@@ -182,7 +182,7 @@ axis, the cube would instead need to be rotated by a special angle,
 coincidentally called the ["magic angle"](https://en.wikipedia.org/wiki/Magic_angle),
 of approximately $$54.74$$ degrees.
 
-![A labeled side view of two cubes rotated around an axis passing through opposite edges; the first is rotated by 45 degrees, and the other by approximately 56.74 degrees. A vertical line is drawn through each showing that only the 56.74 degree rotation horizontally aligns the top and bottom corners.](/assets/images/cube-tilts.png)
+![A labeled side view of two cubes rotated around an axis passing through opposite edges; the first is rotated by 45 degrees, and the other by approximately 54.74 degrees. A vertical line is drawn through each showing that only the 54.74 degree rotation horizontally aligns the top and bottom corners.](/assets/images/cube-tilts.png)
 
 The difference is less than 10 degrees, which is difficult to spot. This
 illusion is aided by the fact that, when a cube is aligned in this way, the
@@ -306,7 +306,7 @@ particular orientations. However, it unexpectedly changes things quite a lot.
 
 Adding Z axis rotations increases the total number of reachable orientations
 from 192 to 240. These extra rotations are put to work expanding all of the
-6-cycles into 12-cycles. Each of these 12 steps is approximately $$32.68$$
+6-cycles into 12-cycles. Each of these 12 steps is approximately $$33.68$$
 degrees, giving it a noticeable wobble, similar to the 6 step cycle.
 
 <cube-rotation src="{{ '/assets/json/totkor-xyz.json' | relative_url }}"></cube-rotation>
@@ -334,7 +334,7 @@ correctly:
   candidate end orientation back towards the start orientation), and try to
   minimize the sum of of the error for the two checks.
 2. In the XY transition table, I only check at offsets of $$45$$ degrees. For
-  XYZ, I check both $$45$$ and $$32.68$$ degrees, and pick whichever produced
+  XYZ, I check both $$45$$ and $$33.68$$ degrees, and pick whichever produced
   the smaller error sum.
 
 I wasn't able to come up with a very principled basis for deciding on these

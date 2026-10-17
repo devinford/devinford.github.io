@@ -321,10 +321,10 @@ But, there's one remaining question for this model. If you remember from the
 [previous post](/post/2026/02/18/reversible-primer-symmetry-breaking/#reversible-user-input),
 we determined that the inverse of reading user input cannot exist in a
 reversible programming language, and this is why reading user input cannot be
-undo symmetric. In otherwise, for a $$readline$$ function that reads user input,
-we cannot construct a bifunction $$[readline, readline^{-1}]$$. This means that
-there are restrictions on what kinds of functions are allowed to be part of a
-reversible bifunction.
+undo symmetric. In other words, for a $$readline$$ function that reads user
+input, we cannot construct a bifunction $$[readline, readline^{-1}]$$. This
+means that there are restrictions on what kinds of functions are allowed to be
+part of a reversible bifunction.
 
 If that restriction excludes I/O functions (or any other functions that are
 necessary for practical user-facing applications), then we're going to have

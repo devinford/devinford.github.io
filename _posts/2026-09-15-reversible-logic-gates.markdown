@@ -502,7 +502,7 @@ ambiguous whether or not two bits are being "swapped" if their values are equal.
 In that sense, the "nice" gates being identified in this post are not "nice" in
 any sort of absolute sense; they're just the gates that have some kind of
 readily observable pattern that our brains are able to latch onto and compress
-into something digestable.
+into something digestible.
 
 The Fredkin gate, as the "Controlled Swap" gate, is the first of three
 pretenders to the throne of the Swap gate, each generalizing the Swap gate in a
