@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Corner Place
+title: "Corner Place: Daily Sudoku-Like Logic Puzzle Game"
+heading: Corner Place
 permalink: /browser-games/corner-place/
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Triple Place
+title: "Triple Place: Daily Sudoku-Like Logic Puzzle Game"
+heading: Triple Place
 permalink: /browser-games/triple-place/
 ---
 

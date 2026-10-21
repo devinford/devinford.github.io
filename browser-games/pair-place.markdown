@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Pair Place
+title: "Pair Place: Daily Sudoku-Like Logic Puzzle Game"
+heading: Pair Place
 permalink: /browser-games/pair-place/
 ---
 
