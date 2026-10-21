@@ -3,7 +3,7 @@ layout: post
 title: "Aiming Projectiles"
 date: "2026-06-30 11:00:00 -0400"
 categories: post
-tags: programming game_development mathematics
+tags: game_development programming mathematics
 excerpt_separator: <!--more-->
 ---
 

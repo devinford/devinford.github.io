@@ -3,7 +3,7 @@ layout: post
 title: "Some Notable Reversible Logic Gates"
 date: "2026-09-15 11:00:00 -0400"
 categories: post
-tags: programming reversible_programming mathematics
+tags: reversible_computing programming mathematics
 excerpt_separator: <!--more-->
 ---
 

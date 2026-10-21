@@ -3,7 +3,7 @@ layout: post
 title: "Reverse Engineering Tears of the Kingdom's Object Rotation System"
 date: "2026-07-15 11:00:00 -0400"
 categories: post
-tags: programming game_development mathematics
+tags: game_development programming mathematics
 excerpt_separator: <!--more-->
 ---
 

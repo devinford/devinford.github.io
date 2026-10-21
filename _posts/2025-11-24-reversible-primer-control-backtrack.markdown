@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Backtracking Control Flow"
 date: "2025-11-24 11:00:00 -0400"
 categories: post
-tags: programming reversible_programming reversible_primer
+tags: reversible_computing reversible_primer programming
 excerpt_separator: <!--more-->
 series: reversible_primer
 series_name: "Reversible Programming Primer"

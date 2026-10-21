@@ -3,7 +3,7 @@ layout: post
 title: "Order-Dependent Triangulations"
 date: "2026-08-31 11:00:00 -0400"
 categories: post
-tags: programming game_development graphics_programming
+tags: game_development graphics_programming programming
 excerpt_separator: <!--more-->
 ---
 

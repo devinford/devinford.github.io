@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Introduction"
 date: "2025-08-19 11:00:00 -0400"
 categories: post
-tags: programming reversible_programming reversible_primer
+tags: reversible_computing reversible_primer programming
 excerpt_separator: <!--more-->
 series: reversible_primer
 series_name: "Reversible Programming Primer"
