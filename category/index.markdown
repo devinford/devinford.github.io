@@ -8,6 +8,6 @@ title: "Posts by Category"
 - [Game Development](game_development)
 - [Mathematics](mathematics)
 - [Programming](programming)
-- [Reversible Programming](reversible_programming)
+- [Reversible Computing](reversible_computing)
 - [Graphics Programming](graphics_programming)
-- [Reversible Primer](reversible_primer)
+- [Reversible Programming Primer](reversible_primer)
