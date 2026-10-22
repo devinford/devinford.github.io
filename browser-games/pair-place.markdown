@@ -2,6 +2,7 @@
 layout: page
 title: "Pair Place: Daily Sudoku-Like Logic Puzzle Game"
 heading: Pair Place
+description: "A daily Sudoku-like logic puzzle game in which you must pair up letters to fill in a grid."
 permalink: /browser-games/pair-place/
 ---
 
@@ -151,6 +152,8 @@ permalink: /browser-games/pair-place/
     </p>
   </div>
 </details>
+
+If you're interested in the development process for this game, I have a post describing the game's development [here](/post/2025/10/01/pair-place).
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
 <script type="module">

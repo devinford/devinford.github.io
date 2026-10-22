@@ -4,6 +4,7 @@ title: "Order-Dependent Triangulations"
 date: "2026-08-31 11:00:00 -0400"
 categories: post
 tags: game_development graphics_programming programming
+description: "A discussion of a few foundational triangulation primitives for procedural mesh generation."
 excerpt_separator: <!--more-->
 ---
 

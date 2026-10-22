@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Aiming Projectiles"
+title: "Game Development: Aiming Projectiles"
 date: "2026-06-30 11:00:00 -0400"
 categories: post
 tags: game_development programming mathematics
+description: "A derivation of techniques for aiming arching projectiles at moving targets for use in game development."
 excerpt_separator: <!--more-->
 ---
 

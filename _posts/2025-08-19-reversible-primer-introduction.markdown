@@ -4,6 +4,7 @@ title: "Reversible Programming Primer: Introduction"
 date: "2025-08-19 11:00:00 -0400"
 categories: post
 tags: reversible_computing reversible_primer programming
+description: "The first post of the Reversible Programming Primer, covering the core concepts and motivation of reversible computing."
 excerpt_separator: <!--more-->
 series: reversible_primer
 series_name: "Reversible Programming Primer"

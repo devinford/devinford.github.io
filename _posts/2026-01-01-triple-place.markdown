@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Triple Place"
+title: "Puzzle Game Development: Triple Place"
 date: "2026-01-01 11:00:00 -0400"
 categories: post
 tags: game_development mathematics
+description: "An overview of the development of the Triple Place puzzle game, based on permutation cycle decompositions."
 excerpt_separator: <!--more-->
 ---
 

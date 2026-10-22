@@ -2,6 +2,7 @@
 layout: page
 title: "Triple Place: Daily Sudoku-Like Logic Puzzle Game"
 heading: Triple Place
+description: "A daily Sudoku-like logic puzzle game in which you must put letters in groups of three to fill in a grid."
 permalink: /browser-games/triple-place/
 ---
 
@@ -189,6 +190,8 @@ permalink: /browser-games/triple-place/
     </p>
   </div>
 </details>
+
+If you're interested in the development process for this game, I have a post describing the game's development [here](/post/2026/01/01/triple-place).
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
 <script type="module">

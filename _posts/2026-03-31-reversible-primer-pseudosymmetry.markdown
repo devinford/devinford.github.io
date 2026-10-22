@@ -4,6 +4,7 @@ title: "Reversible Programming Primer: Symmetry-Breaking (Part 2)"
 date: "2026-03-31 11:00:00 -0400"
 categories: post
 tags: reversible_computing reversible_primer programming
+description: "The sixth post of the Reversible Programming Primer, covering the integration of symmetry-breaking with Bennett's trick."
 excerpt_separator: <!--more-->
 mermaid: true
 series: reversible_primer
@@ -22,6 +23,8 @@ our existing patterns for use in symmetry-breaking code.
 <!--more-->
 <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<div markdown="1" data-nosnippet>
+
 #### A Disclaimer on Syntax
 
 The code examples in this series use C-like imperative pseudocode. New
@@ -35,6 +38,8 @@ implementations.
 This syntax is also distinct from the syntax of existing reversible programming
 languages, which often choose to reuse the syntax and keywords of non-reversible
 programming languages for corresponding-but-not-equivalent concepts.
+
+</div>
 
 ## Cleaning Up After Symmetry-Breaking Functions
 

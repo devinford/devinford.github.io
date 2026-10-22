@@ -4,6 +4,7 @@ title: "Reversible Programming Primer: Assignment"
 date: "2025-09-26 12:00:00 -0400"
 categories: post
 tags: reversible_computing reversible_primer programming
+description: "The second post of the Reversible Programming Primer, covering reversible methods of initializing variables."
 excerpt_separator: <!--more-->
 series: reversible_primer
 series_name: "Reversible Programming Primer"
@@ -19,6 +20,8 @@ going over some of the most useful types of reversible assignment operators that
 can be defined.
 <!--more-->
 
+<div markdown="1" data-nosnippet>
+
 #### A Disclaimer on Syntax
 
 The code examples in this series use C-like imperative pseudocode. New
@@ -32,6 +35,8 @@ implementations.
 This syntax is also distinct from the syntax of existing reversible programming
 languages, which often choose to reuse the syntax and keywords of non-reversible
 programming languages for corresponding-but-not-equivalent concepts.
+
+</div>
 
 ## The Building Blocks of Reversible Assignment
 

@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Puzzle Rankings"
+title: "Puzzle Game Development: Puzzle Rankings"
 date: "2026-04-24 11:00:00 -0400"
 categories: post
 tags: game_development
+description: "An overview of the implementation of a ranking system for daily online puzzles."
 excerpt_separator: <!--more-->
 ---
 

@@ -4,6 +4,7 @@ title: "Reversible Programming Primer: Symmetry-Breaking (Part 1)"
 date: "2026-02-18 11:00:00 -0400"
 categories: post
 tags: reversible_computing reversible_primer programming
+description: "The fifth post of the Reversible Programming Primer, covering the use of symmetry-breaking at I/O boundaries."
 excerpt_separator: <!--more-->
 mermaid: true
 series: reversible_primer
@@ -27,6 +28,8 @@ work towards establishing a more all-encompassing framework for these edgecases
 to better understand how to integrate them into our existing reversible
 programming patterns.
 
+<div markdown="1" data-nosnippet>
+
 #### A Disclaimer on Syntax
 
 The code examples in this series use C-like imperative pseudocode. New
@@ -40,6 +43,8 @@ implementations.
 This syntax is also distinct from the syntax of existing reversible programming
 languages, which often choose to reuse the syntax and keywords of non-reversible
 programming languages for corresponding-but-not-equivalent concepts.
+
+</div>
 
 ## Reversible User Input
 

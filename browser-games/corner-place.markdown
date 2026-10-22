@@ -2,6 +2,7 @@
 layout: page
 title: "Corner Place: Daily Sudoku-Like Logic Puzzle Game"
 heading: Corner Place
+description: "A daily Sudoku-like logic puzzle game where you must fill four overlapping grids, based on orthogonal Latin squares."
 permalink: /browser-games/corner-place/
 ---
 
@@ -208,6 +209,8 @@ permalink: /browser-games/corner-place/
     </p>
   </div>
 </details>
+
+If you're interested in the development process for this game, I have a post describing the game's development [here](/post/2026/05/01/corner-place).
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
 <script type="module">

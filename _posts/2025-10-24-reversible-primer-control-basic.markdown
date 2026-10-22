@@ -4,6 +4,7 @@ title: "Reversible Programming Primer: Basic Control Flow"
 date: "2025-10-24 11:00:00 -0400"
 categories: post
 tags: reversible_computing reversible_primer programming
+description: "The third post of the Reversible Programming Primer, covering conditional and looping control structures."
 excerpt_separator: <!--more-->
 series: reversible_primer
 series_name: "Reversible Programming Primer"
@@ -19,6 +20,8 @@ these control structures and showing how they can be used to implement some
 basic, familiar programming patterns.
 <!--more-->
 
+<div markdown="1" data-nosnippet>
+
 #### A Disclaimer on Syntax
 
 The code examples in this series use C-like imperative pseudocode. New
@@ -32,6 +35,8 @@ implementations.
 This syntax is also distinct from the syntax of existing reversible programming
 languages, which often choose to reuse the syntax and keywords of non-reversible
 programming languages for corresponding-but-not-equivalent concepts.
+
+</div>
 
 ## The Problem with Control Flow in Reversible Programming Languages
 
