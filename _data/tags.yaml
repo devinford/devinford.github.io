@@ -1,25 +1,33 @@
 ---
-- tag: game_development
-  name: "Game Development"
-  path_stub: category/game_development
-- tag: mathematics
-  name: "Mathematics"
-  path_stub: category/mathematics
-- tag: programming
-  name: "Programming"
-  path_stub: category/programming
-- tag: reversible_computing
-  name: "Reversible Computing"
-  path_stub: category/reversible_computing
-- tag: graphics_programming
-  name: "Graphics Programming"
-  path_stub: category/graphics_programming
 - tag: reversible_primer
   name: "Reversible Programming Primer"
   title: "Reversible Programming Primer"
   path_stub: category/reversible_primer
   page_sort: asc
+  description: "A comprehensive technical guide to programming concepts in reversible computing."
   text: |
-    This series of posts introduces the important concepts of reversible
-    programming, using diagrams and analogies, and building the concepts up from
-    basic primitives.
+    The Reversible Programming Primer is a comprehensive technical guide to
+    programming concepts and techniques in reversible computing. These posts
+    make use of diagrams and analogies to help the reader learn the core
+    logical concepts of reversible computation from the ground up, and building
+    a foundation for reversible programming from only a few basic primitives.
+- tag: game_development
+  name: "Game Development"
+  path_stub: category/game_development
+  description: "Writing on the design of computer games and development techniques for creating them."
+- tag: mathematics
+  name: "Mathematics"
+  path_stub: category/mathematics
+  description: "Writing on recreational and applied mathematics topics"
+- tag: programming
+  name: "Programming"
+  path_stub: category/programming
+  description: "Writing on programming techniques and publicly-released software."
+- tag: reversible_computing
+  name: "Reversible Computing"
+  path_stub: category/reversible_computing
+  description: "Writing on concepts in reversible computing."
+- tag: graphics_programming
+  name: "Graphics Programming"
+  path_stub: category/graphics_programming
+  description: "Writing on graphics programming techniques."
