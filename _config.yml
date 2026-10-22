@@ -16,6 +16,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 remote_theme: devinford/minima
 
