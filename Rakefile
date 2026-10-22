@@ -56,7 +56,7 @@ CONTENT
       tag_configurations.each do |tag_configuration|
         posts_for_tag = tags[tag_configuration['tag']] || []
         if posts_for_tag.count > 0 || tag_configuration['text'] != nil
-          file.puts "- [#{tag_configuration['name']}](#{tag_configuration['tag']})"
+          file.puts "- [#{tag_configuration['name']}](#{tag_configuration['tag']})<br>#{tag_configuration['description']}"
         end
       end
     end
@@ -68,6 +68,7 @@ CONTENT
 
       tag_subdirectory = tag_configuration['path_stub']
       title = tag_configuration['title'] || "\"#{tag_configuration['name']}\" Posts"
+      description = tag_configuration['description']
       pages.times do |i|
         file_path = nil
 
@@ -86,6 +87,7 @@ CONTENT
 ---
 layout: paged_posts_by_tag
 title: #{title.to_json}
+#{(tag_configuration['description'] != nil ? "description: #{description.to_json}" : "")}
 listed_tag: #{tag_configuration['tag']}#{tag_configuration['page_sort'] != nil ? "\npage_sort: #{tag_configuration['page_sort']}" : ""}
 post_offset: #{i * articles_per_page}
 post_count: #{articles_per_page}
@@ -98,8 +100,9 @@ paginator:
 ---
 
 CONTENT
-          if tag_configuration['text'] != nil
-            file.puts tag_configuration['text']
+          text = tag_configuration['text'] || tag_configuration['description']
+          if text != nil
+            file.puts text
           end
         end
       end
