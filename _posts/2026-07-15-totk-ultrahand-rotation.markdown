@@ -4,6 +4,8 @@ title: "Remaking Tears of the Kingdom (TOTK) Ultrahand Rotation"
 date: "2026-07-15 11:00:00 -0400"
 categories: post
 tags: game_development programming mathematics
+redirect_from:
+  - /post/2026/07/15/totkor/
 description: "A Reimplementation the Ultrahand rotation system from Tears of the Kingdom using concepts from group theory."
 excerpt_separator: <!--more-->
 ---
