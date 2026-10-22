@@ -1,6 +1,7 @@
 ---
 layout: paged_posts_by_tag
 title: "\"Mathematics\" Posts"
+description: "Writing on recreational and applied mathematics topics"
 listed_tag: mathematics
 post_offset: 0
 post_count: 10
@@ -12,3 +13,4 @@ paginator:
   next_page_path: /category/mathematics/2
 ---
 
+Writing on recreational and applied mathematics topics
