@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Browser Games
+description: "A collection of daily puzzle games playable directly in your browser."
 permalink: /browser-games/
 ---
 

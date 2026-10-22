@@ -1,6 +1,7 @@
 ---
 layout: base
 title: "Posts by Category"
+description: "A technical blog covering game development, recreational mathematics and reversible computing."
 ---
 
 <h1>{{ page.title }}</h1>

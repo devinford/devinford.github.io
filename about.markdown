@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+description: "A technical blog covering game development, recreational mathematics and reversible computing."
 ---
 
 My name is Devin Ford. I am a programmer, and this is a site where I plan to
