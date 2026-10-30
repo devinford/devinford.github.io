@@ -223,7 +223,7 @@ octahedral rotation group contains every rotation that can be reached by 90
 degree rotations around the cardinal axes. Here, we have limited ourselves to
 only moving by rotating around the $$x$$ and $$y$$ axes, but this is still
 enough to reach every rotation. We can construct a $$z$$ axis rotation by
-combining a sequnce of: a positive rotation around the $$x$$ axis, a positive
+combining a sequence of: a positive rotation around the $$x$$ axis, a positive
 rotation around the $$y$$ axis, then a negative rotation around the $$x$$ axis.
 The octahedral rotation group only has $$24$$ distinct rotations and isn't
 nearly as granular as the Tears of the Kingdom system.
@@ -423,8 +423,8 @@ You might notice that there are four other combinations that we haven't listed:
 
 - $$(y, x)$$ - Swap without negation.
 - $$(-y, -x)$$ - Negate AND swap.
-- $$(x, -y)$$ - Negation without swapping.
-- $$(-x, y)$$ - Negation without swapping.
+- $$(x, -y)$$ - Negate y without swapping.
+- $$(-x, y)$$ - Negate x without swapping.
 
 These four represent the four reflective symmetries of a square. In general, if
 we consider all possible signed permutations in a given number of dimensions,
@@ -447,11 +447,11 @@ $$
 We can use all of this to derive a very compact way of representing
 hyperoctahedral rotations for $$N$$ dimensions in software. The negated axes can
 be represented as a $$N$$-bit  bitfield, and the permutation of the axes can be
-represented as a permutation index from $$0$$ to $$N!$$. You can store both in a
-single integer and just use a bitshift and a bitmask to extract the two pieces.
-This provides a representation for both rotations and reflections, but we can
-choose our permutation indexing scheme cleverly to get an even more compact
-representation of just rotations.
+represented as a permutation index from $$0$$ to $$N! - 1$$. You can store both
+in a single integer and just use a bitshift and a bitmask to extract the two
+pieces. This provides a representation for both rotations and reflections, but
+we can choose our permutation indexing scheme cleverly to get an even more
+compact representation of just rotations.
 
 If our permutation indexing scheme assigns even indexes to even permutations,
 and we only want to represent rotations, then we can delete one of the negation
