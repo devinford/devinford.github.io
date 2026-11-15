@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Symmetry-Breaking (Part 2)"
 date: "2026-03-31 11:00:00 -0400"
 categories: post
-tags: reversible_computing reversible_primer programming
+tags: reversible-computing reversible-primer programming
 description: "The sixth post of the Reversible Programming Primer, covering the integration of symmetry-breaking with Bennett's trick."
 excerpt_separator: <!--more-->
 mermaid: true

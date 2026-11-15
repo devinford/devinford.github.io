@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Basic Control Flow"
 date: "2025-10-24 11:00:00 -0400"
 categories: post
-tags: reversible_computing reversible_primer programming
+tags: reversible-computing reversible-primer programming
 description: "The third post of the Reversible Programming Primer, covering conditional and looping control structures."
 excerpt_separator: <!--more-->
 series: reversible_primer

@@ -3,7 +3,7 @@ layout: post
 title: "Puzzle Game Development: Corner Place"
 date: "2026-05-01 11:00:00 -0400"
 categories: post
-tags: game_development mathematics
+tags: game-development mathematics
 description: "An overview of the development of the Corner Place puzzle game, based on mutually-orthogonal Latin squares."
 excerpt_separator: <!--more-->
 ---

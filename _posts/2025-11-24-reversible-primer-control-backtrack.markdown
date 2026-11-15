@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Backtracking Control Flow"
 date: "2025-11-24 11:00:00 -0400"
 categories: post
-tags: reversible_computing reversible_primer programming
+tags: reversible-computing reversible-primer programming
 description: "The fourth post of the Reversible Programming Primer, covering backtracking with turn statements and Bennett's trick."
 excerpt_separator: <!--more-->
 series: reversible_primer

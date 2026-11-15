@@ -3,7 +3,7 @@ layout: post
 title: "Puzzle Game Development: Pair Place"
 date: "2025-10-01 11:00:00 -0400"
 categories: post
-tags: programming game_development mathematics reversible_computing
+tags: programming game-development mathematics reversible-computing
 description: "An overview of the development of the Pair Place puzzle game, based on reversible control flow graphs."
 excerpt_separator: <!--more-->
 ---

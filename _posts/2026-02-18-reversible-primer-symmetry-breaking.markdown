@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Symmetry-Breaking (Part 1)"
 date: "2026-02-18 11:00:00 -0400"
 categories: post
-tags: reversible_computing reversible_primer programming
+tags: reversible-computing reversible-primer programming
 description: "The fifth post of the Reversible Programming Primer, covering the use of symmetry-breaking at I/O boundaries."
 excerpt_separator: <!--more-->
 mermaid: true

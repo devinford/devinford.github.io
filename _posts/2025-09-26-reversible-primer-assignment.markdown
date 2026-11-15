@@ -6,7 +6,7 @@ categories: post
 tags: reversible_computing reversible_primer programming
 description: "The second post of the Reversible Programming Primer, covering reversible methods of initializing variables."
 excerpt_separator: <!--more-->
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 
