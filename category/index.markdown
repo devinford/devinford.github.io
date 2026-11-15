@@ -2,6 +2,7 @@
 layout: base
 title: "Posts by Category"
 permalink: /category/
+description: "A technical blog covering game development, recreational mathematics and reversible computing."
 ---
 
 <h1>{{ page.title }}</h1>
