@@ -48,6 +48,7 @@ namespace :generate do
 ---
 layout: base
 title: "Posts by Category"
+permalink: /category/
 ---
 
 <h1>{{ page.title }}</h1>
@@ -76,10 +77,30 @@ CONTENT
           FileUtils.mkdir_p(tag_subdirectory)
 
           file_path = File.join(tag_subdirectory, 'index.markdown')
+
+        permalink_line = <<-PERMALINK
+permalink: /#{tag_configuration['path_stub']}/
+PERMALINK
+          if !(tag_configuration['redirect_stub'].nil? || tag_configuration['redirect_stub'].empty?)
+        permalink_line += <<-PERMALINK
+redirect_from:
+  - /#{tag_configuration['redirect_stub']}/
+PERMALINK
+          end
         else
           subdirectory = File.join(tag_subdirectory, (i + 1).to_s)
           FileUtils.mkdir_p(subdirectory)
           file_path = File.join(subdirectory, 'index.markdown')
+
+        permalink_line = <<-PERMALINK
+permalink: /#{tag_configuration['path_stub']}/#{(i + 1).to_s}/
+PERMALINK
+          if !(tag_configuration['redirect_stub'].nil? || tag_configuration['redirect_stub'].empty?)
+        permalink_line += <<-PERMALINK
+redirect_from:
+  - /#{tag_configuration['redirect_stub']}/#{(i + 1).to_s}/
+PERMALINK
+          end
         end
 
         File.open(file_path, 'w') do |file|
@@ -87,7 +108,7 @@ CONTENT
 ---
 layout: paged_posts_by_tag
 title: #{title.to_json}
-#{(tag_configuration['description'] != nil ? "description: #{description.to_json}" : "")}
+#{permalink_line}#{(tag_configuration['description'] != nil ? "description: #{description.to_json}" : "")}
 listed_tag: #{tag_configuration['tag']}#{tag_configuration['page_sort'] != nil ? "\npage_sort: #{tag_configuration['page_sort']}" : ""}
 post_offset: #{i * articles_per_page}
 post_count: #{articles_per_page}
