@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Browser Games
+title: Games
 description: "A collection of daily puzzle games playable directly in your browser."
-permalink: /browser-games/
+permalink: /games/
+redirect_from:
+  - /browser-games/
 ---
 
 This is a collection of simple games playable directly in the browser.

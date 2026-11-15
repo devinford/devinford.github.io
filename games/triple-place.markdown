@@ -1,9 +1,11 @@
 ---
 layout: page
-title: "Pair Place: Daily Sudoku-Like Logic Puzzle Game"
-heading: Pair Place
-description: "A daily Sudoku-like logic puzzle game in which you must pair up letters to fill in a grid."
-permalink: /browser-games/pair-place/
+title: "Triple Place: Daily Sudoku-Like Logic Puzzle Game"
+heading: Triple Place
+description: "A daily Sudoku-like logic puzzle game in which you must put letters in groups of three to fill in a grid."
+permalink: /games/triple-place/
+redirect_from:
+  - /browser-games/triple-place/
 ---
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/css/pikaday.min.css">
@@ -103,24 +105,59 @@ permalink: /browser-games/pair-place/
   <summary><b>How to Play</b></summary>
   <div class="details-content">
     <p>
-      In Pair Place, your goal is to place a letter in every square of the grid.
-      However, there are two restrictions on how letters can be placed:
+      In Triple Place, your goal is to place a letter in every square of the
+      grid. However, there are two restrictions on how letters can be placed:
     </p>
     <ol>
       <li>Each letter may only appear in each column once.</li>
       <li>
-        The letters must be placed two at a time into a pair of squares in the
-        same row. Each of the two squares will be filled with the "header
-        letter" of the other square; the top row of the grid is a "header" row
-        that assigns a "header letter" to each column.
+        The squares in each row must be grouped into "triples", groups of 3
+        squares that each contain one another's "header letters" in a cycle; the
+        top row of the grid is a "header" row that assigns a "header letter" to
+        each column.
       </li>
     </ol>
     <p>
-      To place letters in the grid, press on the first square you want to fill,
-      then drag to another open square in the same row. This will fill each
-      square with the other square's header letter.
+      A "triple" will have a structure like this:
     </p>
-    <img src="../../assets/images/tutorial-drag.gif">
+    <img src="/assets/images/triple.png" style="width: 293px; height: auto;">
+    <p>
+      Here, column A contains letter C, column C contains letter B, and column
+      B contains letter A, in a 3-column loop.
+    </p>
+    <p>
+      To place letters in the grid, press on the square you want to fill, then
+      drag to the column of the letter that you want to fill into that square.
+    </p>
+    <img src="/assets/images/triple-place-drag-1.gif" style="width: 350px; height: auto;">
+    <p>
+      Once you fill in the second letter in a "chain", the third letter in
+      the triple can be automatically deduced. For convenience, the third letter
+      will be filled in automatically to complete the triple once the second
+      letter is placed:
+    </p>
+    <img src="/assets/images/triple-place-drag-2.gif" style="width: 350px; height: auto;">
+    <h3 id="backreference-help">Backreferences</h3>
+    <p>
+      Each square has a smaller square in its top-left corner; this is called
+      its "backreference box". When you fill in a square with a letter, the
+      square in the same row under that header letter will automatically be
+      populated with a "backreference".
+    </p>
+    <img src="/assets/images/triple-place-backreference.png" style="width: 350px; height: auto;">
+    <p>
+      In this example, since the square in column A contains "B", the
+      backreference of the square in column B contains "A". Backreferences allow
+      you to quickly check both forward and backwards through chains or cycles.
+    </p>
+    <p>
+      When a square has a backreference, it becomes very easy to rule out
+      letters that cannot possibly be placed in it. In this example, the square
+      in column A is referencing column B, and column B needs to reference a
+      third column, which will itself reference column A, completing a triple.
+      This means that the third column must be a column that does not already
+      contain "A" anywhere.
+    </p>
     <h3>Tips</h3>
     <p>
       Although there are only two rules, you may need to think a few moves
@@ -132,15 +169,18 @@ permalink: /browser-games/pair-place/
       <li>
         A square <b>must not</b> be filled with a letter if:
         <ul>
-          <li>The letter already appears in the square's row.</li>
-          <li>The letter already appears in the square's column.</li>
+          <li>The letter already appears in the row.</li>
+          <li>The letter already appears in the column.</li>
+          <li>Doing so would create a cycle of only 2 lettersw.</li>
+          <li>Doing so would create a chain of 4 or more letters (such as connecting one chain to another).</li>
+          <li>The square has a backreference, but the column under the letter already contains the backreference letter (see: <a  style="cursor: pointer;" onclick="event.preventDefault(); document.getElementById('backreference-help').scrollIntoView({ behavior: 'smooth' });">the explanation of backreferences</a> for more details)</li>
         </ul>
       </li>
       <li>
         A square <b>must</b> be filled with a letter if:
         <ul>
-          <li>Only two blank squares remain in the row; in this case, each must be filled with the other's header letter.</li>
-          <li>The square is the only blank square in the column, and that letter is the only letter that does not appear in the column.</li>
+          <li>The square is the only blank square in the row, and that letter is the only unused letter in the row.</li>
+          <li>The square is the only blank square in the column, and that letter is the only unused letter in the column.</li>
           <li>That letter does not appear in that square's column yet, but that letter already appears in every other row where the column is open.</li>
         </ul>
       </li>
@@ -153,7 +193,7 @@ permalink: /browser-games/pair-place/
   </div>
 </details>
 
-If you're interested in the development process for this game, I have a post describing the game's development [here](/post/2025/10/01/pair-place).
+If you're interested in the development process for this game, I have a post describing the game's development [here](/post/2026/01/01/triple-place).
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
 <script type="module">
@@ -199,6 +239,10 @@ If you're interested in the development process for this game, I have a post des
 
   let theme = null;
   let gridColor = null;
+  let chainStyles = null;
+
+  let noteOffset = 0;
+  let letterOffset = 0;
 
   let defaultTheme = null;
 
@@ -246,27 +290,234 @@ If you're interested in the development process for this game, I have a post des
         }
       }
     }
+
+    // Check for duplicates in rows
+    for(let row = 0; row < gridHeight; ++row) {
+      const rowIndexPositions = new Map();
+
+      for(let column = 0; column < gridWidth; ++column) {
+        const columnIndex = gameGrid[row][column];
+        if(columnIndex >= 0) {
+          if(!rowIndexPositions.has(columnIndex)) {
+            rowIndexPositions.set(columnIndex, []);
+          }
+          rowIndexPositions.get(columnIndex).push(column);
+        }
+      }
+
+      // Mark all duplicates as errors
+      for(const positions of rowIndexPositions.values()) {
+        if(positions.length > 1) {
+          positions.forEach(column => {
+            cachedErrors.add(`${row},${column}`);
+          });
+        }
+      }
+    }
+
+    // Check for 3-cycle errors
+    for(let row = 1; row < gridHeight; row++) {
+      const cycles = find3CycleErrors(row);
+      cycles.forEach(positions => {
+        positions.forEach(({row, column}) => {
+          cachedErrors.add(`${row},${column}`);
+        });
+      });
+    }
+  }
+
+  function find3CycleErrors(row) {
+    const violations = [];
+    const chains = findChainsInRow(row);
+
+    for(const chain of chains) {
+      const chainIsError = isChainAnError(row, chain);
+
+      if(chainIsError) {
+        const violationCells = chain.map(column => ({row, column}));
+        violations.push(violationCells);
+      }
+    }
+
+    return violations;
+  }
+
+  const forwardReferenceLookup = new Map();
+  const backReferenceLookup = new Map();
+
+  function findChainsInRow(row) {
+    forwardReferenceLookup.clear();
+    backReferenceLookup.clear();
+
+    for(let column = 0; column < gridWidth; ++column) {
+      const targetColumn = gameGrid[row][column];
+      if(targetColumn >= 0 && targetColumn !== column) {
+        forwardReferenceLookup.set(column, targetColumn);
+        backReferenceLookup.set(targetColumn, column);
+      }
+    }
+
+    const visited = new Set();
+    const components = [];
+
+    for(let startColumn = 0; startColumn < gridWidth; ++startColumn) {
+      if(visited.has(startColumn)) continue;
+
+      const component = findComponent(startColumn, forwardReferenceLookup, backReferenceLookup, visited);
+      if(component.length > 1) {
+        components.push(component);
+      }
+    }
+
+    return components;
+  }
+
+  function findComponent(startColumn, forwardReferenceLookup, backReferenceLookup, globalVisited) {
+    const component = [];
+    const toVisit = [startColumn];
+    const localVisited = new Set();
+
+    while(toVisit.length > 0) {
+      const column = toVisit.pop();
+      if(localVisited.has(column)) continue;
+
+      localVisited.add(column);
+      globalVisited.add(column);
+      component.push(column);
+
+      if(forwardReferenceLookup.has(column)) {
+        const target = forwardReferenceLookup.get(column);
+        if(!localVisited.has(target)) {
+          toVisit.push(target);
+        }
+      }
+
+      if(backReferenceLookup.has(column)) {
+        const source = backReferenceLookup.get(column);
+        if(!localVisited.has(source)) {
+          toVisit.push(source);
+        }
+      }
+    }
+
+    return component;
+  }
+
+  function isChainAnError(row, chain) {
+    const forwardReferenceLookup = new Map();
+    for(const column of chain) {
+      const targetColumn = gameGrid[row][column];
+      if(targetColumn >= 0 && chain.includes(targetColumn)) {
+        forwardReferenceLookup.set(column, targetColumn);
+      }
+    }
+
+    const isCycle = chain.every(column => forwardReferenceLookup.has(column));
+
+    if(isCycle) {
+      return chain.length !== 3;
+    } else {
+      return chain.length > 3;
+    }
+  }
+
+  function findParametersOfContainingChain(row, column) {
+    let maxCount = 3;
+    let tail = column;
+    let count = 1;
+    while(true) {
+      let next = gameGrid[row][tail];
+      if(next == column) {
+        return {
+          cycle: true,
+          count: count,
+        };
+      } else if(next >= 0) {
+        tail = next;
+        ++count;
+        // If the user has connected a space to an already existing cycle, then
+        // this forward search through the references will never terminate, as
+        // the cycle will repeat forever without ever returning to the original
+        // column. To avoid this, we simply immediately terminate the search
+        // when we have reached a chain of 4 or more.
+        // Properly coloring the connected pieces is handled elsewhere and
+        // properly addresses this structure, but this method is really just a
+        // fast check for where auto-closure of 3-chains needs to occur.
+        if(count > maxCount) return { cycle: false, count: 0 };
+      } else {
+        break;
+      }
+    }
+
+    let head = column;
+    while(true) {
+      let backReference = findBackreferenceColumnIndex(row, head);
+      if(backReference == column) {
+        console.log("found cycle via head (should be impossible)");
+        return {
+          cycle: true,
+          count: count,
+        };
+      } else if(backReference >= 0) {
+        head = backReference;
+        ++count;
+      } else {
+        break;
+      }
+    }
+
+    return {
+      cycle: false,
+      count: count,
+      head: head,
+      tail: tail,
+    };
   }
 
   function handleWrite(row, column0, column1) {
-    if(isHintCell(row, column0) || isHintCell(row, column1)) return;
-    if(!isBlankCell(row, column0) || !isBlankCell(row, column1)) return;
+    if(isHintCell(row, column0)) return;
 
-    if(column0 >= 0 && column1 >= 0) {
-      gameGrid[row][column0] = column1;
-      gameGrid[row][column1] = column0;
+    if(!isBlankCell(row, column0)) return;
 
-      clearNotesForPlacement(row, column0, column1);
+    if(column0 < 0 || column1 < 0) return;
 
-      // @todo this probably should not all be in the game logic.
-      saveGameState();
-      recalculateCachedErrors();
-      drawGame();
+    gameGrid[row][column0] = column1;
+    removeNotes(row, column0, column1);
 
-      if(isPuzzleComplete()) {
-        handlePuzzleCompletion();
-      }
+    let chain = findParametersOfContainingChain(row, column0);
+    if(!chain.cycle && chain.count == 3) {
+      gameGrid[row][chain.tail] = chain.head;
+      removeNotes(row, chain.tail, chain.head);
     }
+
+    saveGameState();
+    drawGame();
+    recalculateCachedErrors();
+
+    if(isPuzzleComplete()) {
+      handlePuzzleCompletion();
+    }
+  }
+
+  function removeNotes(row, column0, column1) {
+    notes[row][column0].clear();
+    for(let column = 0; column < gridWidth; ++column) {
+      notes[row][column].delete(column1);
+    }
+    for(let row0 = 0; row0 < gridHeight; ++row0) {
+      notes[row0][column0].delete(column1);
+    }
+  }
+
+  function findBackreferenceColumnIndex(row, column) {
+    for(let backreferenceColumn = 0; backreferenceColumn < gridWidth; ++backreferenceColumn) {
+      if(gameGrid[row][backreferenceColumn] === column) return backreferenceColumn;
+    }
+    return -1;
+  }
+
+  function columnIndexFromHeaderLetter(letter) {
+    return headerLetters.indexOf(letter);
   }
 
   function clearNotesForPlacement(row, column0, column1) {
@@ -285,12 +536,11 @@ If you're interested in the development process for this game, I have a post des
   }
 
   function handleNote(row, column0, column1) {
-    if(!isBlankCell(row, column0) || !isBlankCell(row, column1)) return;
-    if(isHintCell(row, column0) || isHintCell(row, column1)) return;
+    if(!isBlankCell(row, column0)) return;
+    if(isHintCell(row, column0)) return;
 
     if(column0 >= 0 && column1 >= 0) {
       notes[row][column0].add(column1);
-      notes[row][column1].add(column0);
       saveGameState();
     }
   }
@@ -304,10 +554,11 @@ If you're interested in the development process for this game, I have a post des
   function handleErase(row, column) {
     if(isHintCell(row, column)) return;
 
-    const pairedIndex = gameGrid[row][column];
-    if(pairedIndex >= 0) {
-      gameGrid[row][pairedIndex] = -1;
+    const letterIndex = gameGrid[row][column];
+    if(letterIndex >= 0) {
       gameGrid[row][column] = -1;
+
+      eraseBackReferenceIfCycle(row, column);
 
       recalculateCachedErrors();
 
@@ -315,10 +566,37 @@ If you're interested in the development process for this game, I have a post des
     }
   }
 
+  function eraseBackReferenceIfCycle(row, column) {
+    let backReferenceColumn = -1;
+    for(let checkColumn = 0; checkColumn < gridWidth; checkColumn++) {
+      if(gameGrid[row][checkColumn] === column) {
+        backReferenceColumn = checkColumn;
+        break;
+      }
+    }
+
+    if(backReferenceColumn >= 0) {
+      const backReferenceValue = gameGrid[row][backReferenceColumn];
+      if(backReferenceValue >= 0) {
+        const middleColumn = backReferenceValue;
+        if(middleColumn >= 0) {
+          const middleValue = gameGrid[row][middleColumn];
+          if(middleValue === column) {
+            if(!isHintCell(row, backReferenceColumn)) {
+              gameGrid[row][backReferenceColumn] = -1;
+            }
+          }
+        }
+      }
+    }
+  }
+
   function isPuzzleComplete() {
     for(let row = 1; row < gridHeight; ++row) {
       for(let column = 0; column < gridWidth; ++column) {
-        if(isBlankCell(row, column)) return false;
+        if(isBlankCell(row, column)) {
+          return false;
+        }
       }
     }
 
@@ -328,6 +606,7 @@ If you're interested in the development process for this game, I have a post des
   }
 
   function handlePuzzleCompletion() {
+    console.log("Puzzle Completed");
     completionTime = Date.now() - startTime;
 
     const puzzleId = getPuzzleId(puzzleConfiguration);
@@ -592,34 +871,72 @@ If you're interested in the development process for this game, I have a post des
     gridOffset = padding;
     cellSize = (size - 2 * padding) / gridWidth;
 
+    noteOffset = cellSize * 0.2;
+    letterOffset = cellSize * 0.1;
+
     drawGame();
   }
 
   function drawGame() {
     context.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
 
+    const errorCells = cachedErrors;
+
     for(let row = 0; row < gridHeight; ++row) {
+      const chains = findChainsInRow(row);
+      const colorPalette = chainStyles[row % chainStyles.length];
+
       for(let column = 0; column < gridWidth; ++column) {
-        let cellStyleIndex = getStyleIndexForCell(row, column, gridColor, theme);
-
-        if(cachedErrors.has(`${row},${column}`)) {
-          cellStyleIndex = theme.styleError;
-        }
-
-        let selectedCellFilled = false;
-        if(selectedCell && selectedCell.row == row) {
-          const partnerColumn = gameGrid[selectedCell.row][selectedCell.column];
-          selectedCellFilled = partnerColumn >= 0;
-
-          if(selectedCell.column == column || partnerColumn == column) {
-            cellStyleIndex = theme.styleHighlight;
+        let chainIndex = 0;
+        for(let i = 0; i < chains.length; ++i) {
+          if(chains[i].includes(column)) {
+            chainIndex = i % colorPalette.length;
+            break;
           }
         }
-        if(dragTarget && dragTarget.row == row && dragTarget.column == column && !selectedCellFilled) {
-          cellStyleIndex = theme.styleHighlight;
+
+        let chainStyleIndex = null;
+        let defaultCellStyle = getStyleIndexForCell(row, column, gridColor, theme);
+        let bodyStyleIndex = defaultCellStyle;
+        if(row !== 0) {
+          let belongsToChain = false;
+          let chainSize = 1;
+          for(let i = 0; i < chains.length; ++i) {
+            if(chains[i].includes(column)) {
+              belongsToChain = true;
+              chainSize = chains[i].length;
+              chainIndex = i % colorPalette.length;
+              break;
+            }
+          }
+
+          const valueInCell = gameGrid[row][column] >= 0;
+          chainStyleIndex = colorPalette[chainIndex];
+          if(valueInCell) bodyStyleIndex = chainStyleIndex;
+        }
+        let backreferenceStyleIndex = findBackreferenceColumnIndex(row, column) >= 0 ? chainStyleIndex : defaultCellStyle;
+
+        if(errorCells.has(`${row},${column}`)) {
+          bodyStyleIndex = theme.styleError;
         }
 
-        drawCell(row, column, cellStyleIndex);
+        if(selectedCell && selectedCell.row == row && gameGrid[selectedCell.row][selectedCell.column] < 0) {
+          if(selectedCell.column == column) {
+            bodyStyleIndex = theme.styleHighlight;
+          }
+
+          if(
+            dragTarget &&
+            dragTarget.row == row &&
+            dragTarget.column == column &&
+            dragTarget.column != selectedCell.column &&
+            findBackreferenceColumnIndex(dragTarget.row, dragTarget.column) < 0
+          ) {
+            backreferenceStyleIndex = theme.styleHighlight;
+          }
+        }
+
+        drawCellWithCustomBackground(row, column, bodyStyleIndex, backreferenceStyleIndex);
       }
     }
 
@@ -638,46 +955,92 @@ If you're interested in the development process for this game, I have a post des
     }
   }
 
-  function drawCell(row, column, styleIndex) {
+  function drawCellWithCustomBackground(row, column, bodyStyleIndex, backreferenceStyleIndex) {
     const x = gridOffset + column * cellSize;
     const y = gridOffset + row * cellSize;
 
-    const cellStyle = theme.style[styleIndex] || theme.style[theme.styleCell];
+    const selectedStyleIndex = bodyStyleIndex;
+    const selectedStyle = theme.style[selectedStyleIndex];
 
-    context.fillStyle = cellStyle.background;
+    context.fillStyle = selectedStyle.background;
     context.fillRect(x, y, cellSize, cellSize);
 
     const originalLetter = puzzleConfiguration.grid[row][column];
     const isHint = originalLetter !== ' ' && originalLetter === originalLetter.toUpperCase();
 
+    if(row > 0) {
+      drawBackReference(x, y, row, column, backreferenceStyleIndex);
+    }
+
     const letterIndex = gameGrid[row][column];
     if(letterIndex >= 0) {
       const letter = headerLetters[letterIndex];
-      context.fillStyle = isHint ? cellStyle.foregroundHint : cellStyle.foregroundAnswer;
-      context.font = `${cellSize * 0.6}px Arial`;
+      context.fillStyle = isHint ? selectedStyle.foregroundHint : selectedStyle.foregroundAnswer;
+      context.font = `${cellSize * 0.5}px Arial`;
       context.textAlign = 'center';
       context.textBaseline = 'middle';
-      context.fillText(letter, x + cellSize / 2, y + cellSize / 2);
+
+      const letterX = row > 0 ? x + cellSize / 2 + letterOffset / 2 : x + cellSize / 2;
+      context.fillText(letter, letterX, y + cellSize / 2);
     }
 
     if(notes[row][column] && notes[row][column].size > 0) {
-      drawNotes(x, y, notes[row][column], cellStyle);
+      const noteX = x + noteOffset;
+      const noteY = y + noteOffset;
+      drawNotes(noteX, noteY, notes[row][column], selectedStyle);
     }
   }
 
-  function drawNotes(x, y, noteSet, cellStyle) {
+  function drawBackReference(x, y, row, column, styleIndex) {
+    let backReferenceLetter = '';
+    for(let checkColumn = 0; checkColumn < gridWidth; ++checkColumn) {
+      if(gameGrid[row][checkColumn] === column) {
+        backReferenceLetter = headerLetters[checkColumn];
+        break;
+      }
+    }
+
+    const squareSize = cellSize * 0.3;
+    const squareX = x + 1;
+    const squareY = y + 1;
+
+    const selectedStyle = theme.style[styleIndex];
+
+    context.fillStyle = selectedStyle.background;
+    context.fillRect(squareX, squareY, squareSize, squareSize);
+
+    context.strokeStyle = selectedStyle.foregroundAnswer;
+    context.lineWidth = 1;
+    context.beginPath();
+
+    context.moveTo(squareX + squareSize, squareY);
+    context.lineTo(squareX + squareSize, squareY + squareSize);
+
+    context.moveTo(squareX, squareY + squareSize);
+    context.lineTo(squareX + squareSize, squareY + squareSize);
+    context.stroke();
+
+    if(backReferenceLetter) {
+      context.fillStyle = selectedStyle.foregroundAnswer;
+      context.font = `${squareSize * 0.7}px Arial`;
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(backReferenceLetter, squareX + squareSize / 2, squareY + squareSize / 2);
+    }
+  }
+
+  function drawNotes(x, y, noteSet, cellTheme) {
     const noteArray = Array.from(noteSet).sort();
     const notesPerRow = Math.ceil(Math.sqrt(gridWidth));
-    const noteSize = cellSize / (notesPerRow + 1);
+    const noteSize = cellSize * 0.22;
 
-    context.fillStyle = cellStyle.foregroundAnswer;
+    context.fillStyle = cellTheme.foregroundAnswer;
     context.font = `${noteSize * 1.2}px Arial`;
     context.textAlign = 'center';
     context.textBaseline = 'middle';
 
     noteArray.forEach(noteColumnIndex => {
       if(noteColumnIndex >= 0 && noteColumnIndex < gridWidth) {
-        // @todo Maybe balance the distribution to rows for very non-square column counts.
         const letter = headerLetters[noteColumnIndex];
         const noteRow = Math.floor(noteColumnIndex / notesPerRow);
         const noteColumn = noteColumnIndex % notesPerRow;
@@ -689,17 +1052,19 @@ If you're interested in the development process for this game, I have a post des
   }
 
   function drawGridLines() {
-    context.strokeStyle = theme.colorGridline;
+    context.strokeStyle = puzzleConfiguration['grid-lines'] || '#000000';
     context.lineWidth = 1;
 
+    // Draw vertical lines
     for(let column = 0; column <= gridWidth; ++column) {
       const x = gridOffset + column * cellSize;
       context.beginPath();
       context.moveTo(x, gridOffset);
-      context.lineTo(x, gridOffset + gridHeight * cellSize);
+      context.lineTo(x, gridOffset + gridWidth * cellSize);
       context.stroke();
     }
 
+    // Draw horizontal lines
     for(let row = 0; row <= gridHeight; ++row) {
       const y = gridOffset + row * cellSize;
       context.beginPath();
@@ -882,6 +1247,7 @@ If you're interested in the development process for this game, I have a post des
       }
     }
   }
+
 
   // @@@ Event Handlers
 
@@ -1154,6 +1520,7 @@ If you're interested in the development process for this game, I have a post des
 
     theme = config.theme ? { ...defaultTheme, ...config.theme } : defaultTheme;
     gridColor = config.gridColor;
+    chainStyles = theme.chain;
 
     headerLetters = config.grid[0];
     gridWidth = headerLetters.length;
@@ -1177,8 +1544,10 @@ If you're interested in the development process for this game, I have a post des
     setupClearButton();
   }
 
-  const gameName = 'pair-place';
+  const gameName = 'triple-place';
   const gameApiIdentifier = gameName + '{{ site.environment_suffix }}';
+
+  const tags = [];
 
   const leftArrow = document.getElementById('left-arrow');
   const rightArrow = document.getElementById('right-arrow');
@@ -1212,7 +1581,6 @@ If you're interested in the development process for this game, I have a post des
   // @@ Boilerplate
 
   let puzzleData;
-
   let puzzles = [];
 
   let minPuzzleIndex;
