@@ -1,14 +1,14 @@
 ---
 layout: base
 title: "Posts by Category"
-description: "A technical blog covering game development, recreational mathematics and reversible computing."
+permalink: /category/
 ---
 
 <h1>{{ page.title }}</h1>
 
-- [Reversible Programming Primer](reversible_primer)<br>A comprehensive technical guide to programming concepts in reversible computing.
-- [Game Development](game_development)<br>Writing on the design of computer games and development techniques for creating them.
-- [Mathematics](mathematics)<br>Writing on recreational and applied mathematics topics
-- [Programming](programming)<br>Writing on programming techniques and publicly-released software.
-- [Reversible Computing](reversible_computing)<br>Writing on concepts in reversible computing.
-- [Graphics Programming](graphics_programming)<br>Writing on graphics programming techniques.
+- [Reversible Programming Primer](reversible-primer)<br>The Reversible Programming Primer is a comprehensive technical guide to programming concepts and techniques in reversible computing.
+- [Game Development](game-development)<br>A collection of articles about the design of computer games and techniques for game development.
+- [Mathematics](mathematics)<br>A collection of articles about recreational and applied mathematics topics.
+- [Programming](programming)<br>A collection of articles about programming techniques and publicly-released software.
+- [Reversible Computing](reversible-computing)<br>A collection of articles about concepts in reversible computing.
+- [Graphics Programming](graphics-programming)<br>A collection of articles about graphics programming techniques.

@@ -1,7 +1,8 @@
 ---
 layout: paged_posts_by_tag
 title: "\"Programming\" Posts"
-description: "Writing on programming techniques and publicly-released software."
+permalink: /category/programming/2/
+description: "A collection of articles about programming techniques and publicly-released software."
 listed_tag: programming
 post_offset: 10
 post_count: 10
@@ -13,4 +14,4 @@ paginator:
   next_page_path: /category/programming/3
 ---
 
-Writing on programming techniques and publicly-released software.
+A collection of articles about programming techniques and publicly-released software.

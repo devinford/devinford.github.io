@@ -1,17 +1,20 @@
 ---
 layout: paged_posts_by_tag
 title: "Reversible Programming Primer"
-description: "A comprehensive technical guide to programming concepts in reversible computing."
-listed_tag: reversible_primer
+permalink: /category/reversible-primer/
+redirect_from:
+  - /category/reversible_primer/
+description: "The Reversible Programming Primer is a comprehensive technical guide to programming concepts and techniques in reversible computing."
+listed_tag: reversible-primer
 page_sort: asc
 post_offset: 0
 post_count: 10
 paginator:
   page: 1
   previous_page: 
-  previous_page_path: /category/reversible_primer/0
+  previous_page_path: /category/reversible-primer/0
   next_page: 
-  next_page_path: /category/reversible_primer/2
+  next_page_path: /category/reversible-primer/2
 ---
 
 The Reversible Programming Primer is a comprehensive technical guide to
