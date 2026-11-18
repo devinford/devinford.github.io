@@ -6,7 +6,7 @@ categories: post
 tags: reversible-computing reversible-primer programming
 description: "The fourth post of the Reversible Programming Primer, covering backtracking with turn statements and Bennett's trick."
 excerpt_separator: <!--more-->
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 

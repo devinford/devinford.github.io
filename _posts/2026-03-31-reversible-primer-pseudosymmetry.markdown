@@ -7,7 +7,7 @@ tags: reversible-computing reversible-primer programming
 description: "The sixth post of the Reversible Programming Primer, covering the integration of symmetry-breaking with Bennett's trick."
 excerpt_separator: <!--more-->
 mermaid: true
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 

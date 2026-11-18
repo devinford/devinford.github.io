@@ -6,7 +6,7 @@ categories: post
 tags: reversible-computing reversible-primer programming
 description: "The first post of the Reversible Programming Primer, covering the core concepts and motivation of reversible computing."
 excerpt_separator: <!--more-->
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 

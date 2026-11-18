@@ -6,7 +6,7 @@ categories: post
 tags: reversible-computing reversible-primer programming
 description: "The third post of the Reversible Programming Primer, covering conditional and looping control structures."
 excerpt_separator: <!--more-->
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 

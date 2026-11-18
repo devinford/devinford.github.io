@@ -3,7 +3,7 @@ layout: series-post
 title: "Reversible Programming Primer: Assignment"
 date: "2025-09-26 12:00:00 -0400"
 categories: post
-tags: reversible_computing reversible_primer programming
+tags: reversible-computing reversible-primer programming
 description: "The second post of the Reversible Programming Primer, covering reversible methods of initializing variables."
 excerpt_separator: <!--more-->
 series: reversible-primer

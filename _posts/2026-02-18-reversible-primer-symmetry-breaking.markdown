@@ -7,7 +7,7 @@ tags: reversible-computing reversible-primer programming
 description: "The fifth post of the Reversible Programming Primer, covering the use of symmetry-breaking at I/O boundaries."
 excerpt_separator: <!--more-->
 mermaid: true
-series: reversible_primer
+series: reversible-primer
 series_name: "Reversible Programming Primer"
 ---
 
